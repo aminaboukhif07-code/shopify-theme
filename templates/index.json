@@ -3,20 +3,20 @@
     "hero": {
       "type": "hero",
       "blocks": {
-        "b1": { "type": "benefit", "settings": { "text": "Compression graduée qui soulage les douleurs articulaires" } },
-        "b2": { "type": "benefit", "settings": { "text": "Matière respirante, confortable toute la journée" } },
-        "b3": { "type": "benefit", "settings": { "text": "Facile à enfiler, discrète sous les vêtements" } }
+        "b1": { "type": "benefit", "settings": { "text": "Soulagement ressenti dès les premières minutes" } },
+        "b2": { "type": "benefit", "settings": { "text": "Maintien ferme qui stabilise l'articulation" } },
+        "b3": { "type": "benefit", "settings": { "text": "Si légère et discrète que vous l'oublierez" } }
       },
       "block_order": ["b1", "b2", "b3"],
       "settings": {
         "soft_bg": true,
-        "eyebrow": "Recommandé par les kinés",
-        "title": "Dites adieu aux douleurs au genou",
-        "subtitle": "La genouillère de compression BetterKnee soulage vos articulations et vous redonne le plaisir de marcher, jardiner et bouger librement — sans douleur.",
+        "eyebrow": "Déjà adoptée par plus de 12 000 Français",
+        "title": "La fin des douleurs au genou",
+        "subtitle": "La genouillère BetterKnee enveloppe votre articulation d'une compression ciblée qui apaise la douleur, sécurise chaque pas et vous rend la liberté de bouger — dès le premier port.",
         "show_rating": true,
-        "rating_text": "4,9/5 · plus de 12 000 clients soulagés",
+        "rating_text": "4,9/5 · plus de 12 000 genoux soulagés",
         "product": "genouillere-betterknee",
-        "button_label": "Je soulage mon genou",
+        "button_label": "Soulager mon genou",
         "button_url": "/products/genouillere-betterknee",
         "show_price": true,
         "badge_text": "Satisfait ou remboursé 30 jours"
@@ -25,57 +25,71 @@
     "trust": {
       "type": "trust-strip",
       "blocks": {
-        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Livraison offerte", "subtitle": "Expédié sous 24h" } },
-        "t2": { "type": "item", "settings": { "icon": "return", "title": "Retour gratuit", "subtitle": "30 jours pour changer d'avis" } },
-        "t3": { "type": "item", "settings": { "icon": "shield", "title": "Satisfait ou remboursé", "subtitle": "Sans condition" } },
-        "t4": { "type": "item", "settings": { "icon": "headset", "title": "Service client FR", "subtitle": "Réponse sous 24h" } }
+        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Livraison offerte", "subtitle": "Expédiée sous 24h" } },
+        "t2": { "type": "item", "settings": { "icon": "return", "title": "30 jours pour l'adopter", "subtitle": "Ou remboursé, sans question" } },
+        "t3": { "type": "item", "settings": { "icon": "shield", "title": "Paiement sécurisé", "subtitle": "Vos données protégées" } },
+        "t4": { "type": "item", "settings": { "icon": "headset", "title": "Conseil 100% français", "subtitle": "Une équipe à votre écoute" } }
       },
       "block_order": ["t1", "t2", "t3", "t4"]
     },
     "benefits": {
       "type": "benefits",
       "blocks": {
-        "x1": { "type": "benefit", "settings": { "icon": "activity", "title": "Maintien optimal", "text": "Compression graduée qui soulage les douleurs ligamentaires et articulaires." } },
-        "x2": { "type": "benefit", "settings": { "icon": "feather", "title": "Confort toute la journée", "text": "Matière respirante, légère et anti-transpirante : on oublie qu'on la porte." } },
-        "x3": { "type": "benefit", "settings": { "icon": "activity", "title": "Polyvalente", "text": "Idéale pour le sport, la rééducation, le jardinage ou le port quotidien." } },
-        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Facile à enfiler", "text": "Design ergonomique qui s'adapte parfaitement à votre morphologie." } }
+        "x1": { "type": "benefit", "settings": { "icon": "heart", "title": "Apaise la douleur", "text": "La compression graduée enveloppe le genou et aide à calmer les douleurs articulaires et ligamentaires." } },
+        "x2": { "type": "benefit", "settings": { "icon": "activity", "title": "Stabilise chaque pas", "text": "Un maintien ferme qui sécurise l'articulation et vous redonne confiance dans vos mouvements." } },
+        "x3": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Soutient la récupération", "text": "Idéale en prévention, après l'effort ou pendant la rééducation, pour repartir plus serein." } },
+        "x4": { "type": "benefit", "settings": { "icon": "feather", "title": "Confort invisible", "text": "Tissu respirant et sans couture, si léger que vous oublierez que vous la portez." } }
       },
       "block_order": ["x1", "x2", "x3", "x4"],
       "settings": {
-        "eyebrow": "Pourquoi la BetterKnee",
-        "title": "Conçue pour soulager, pensée pour durer",
-        "subtitle": "Chaque détail a été étudié pour vous offrir confort et maintien, du lever au coucher."
+        "eyebrow": "Pourquoi la BetterKnee change tout",
+        "title": "Conçue pour soulager. Pensée pour durer.",
+        "subtitle": "Chaque détail a été étudié pour vous offrir maintien et confort, du lever au coucher."
       }
     },
     "image_text": {
       "type": "image-with-text",
       "blocks": {
-        "p1": { "type": "point", "settings": { "text": "Réduit la pression sur l'articulation du genou" } },
-        "p2": { "type": "point", "settings": { "text": "Améliore la stabilité lors de la marche" } },
-        "p3": { "type": "point", "settings": { "text": "Accompagne la rééducation et la prévention" } }
+        "p1": { "type": "point", "settings": { "text": "Moins de pression sur l'articulation à chaque pas" } },
+        "p2": { "type": "point", "settings": { "text": "Plus de stabilité, donc moins de faux mouvements" } },
+        "p3": { "type": "point", "settings": { "text": "Un soutien rassurant, au repos comme à l'effort" } }
       },
       "block_order": ["p1", "p2", "p3"],
       "settings": {
         "soft_bg": true,
         "reverse": false,
-        "eyebrow": "Reprenez votre vie en main",
-        "title": "La douleur ne devrait pas dicter votre quotidien",
-        "text": "<p>Monter les escaliers, jardiner, jouer avec vos petits-enfants… Avec la BetterKnee, retrouvez ces gestes simples sans appréhension ni douleur.</p>",
+        "eyebrow": "On vous comprend",
+        "title": "La douleur ne devrait pas vous voler vos plus belles journées",
+        "text": "<p>Monter un escalier, jardiner, porter vos courses, jouer avec vos petits-enfants… Quand chaque mouvement réveille la douleur, on finit par renoncer. La BetterKnee a été créée exactement pour ça : vous rendre ces gestes du quotidien, sans appréhension.</p>",
         "button_label": "Découvrir la BetterKnee",
         "button_url": "/products/genouillere-betterknee"
+      }
+    },
+    "stats": {
+      "type": "stats",
+      "blocks": {
+        "st1": { "type": "stat", "settings": { "number": "92%", "label": "ressentent un soulagement dès la première semaine" } },
+        "st2": { "type": "stat", "settings": { "number": "12 000+", "label": "genoux soulagés partout en France" } },
+        "st3": { "type": "stat", "settings": { "number": "4,9/5", "label": "sur plus de 2 300 avis clients vérifiés" } }
+      },
+      "block_order": ["st1", "st2", "st3"],
+      "settings": {
+        "soft_bg": true,
+        "eyebrow": "Des résultats concrets",
+        "title": "Pourquoi ils ne s'en passent plus"
       }
     },
     "how": {
       "type": "how-it-works",
       "blocks": {
-        "s1": { "type": "step", "settings": { "title": "Choisissez votre taille", "text": "Mesurez votre tour de genou et sélectionnez la taille adaptée grâce à notre guide." } },
-        "s2": { "type": "step", "settings": { "title": "Enfilez la BetterKnee", "text": "Glissez la genouillère en quelques secondes : elle épouse parfaitement votre articulation." } },
-        "s3": { "type": "step", "settings": { "title": "Bougez librement", "text": "Ressentez le soulagement et la stabilité dès les premiers pas, toute la journée." } }
+        "s1": { "type": "step", "settings": { "title": "Choisissez votre taille", "text": "Mesurez votre tour de genou et laissez-vous guider : la bonne taille en 30 secondes." } },
+        "s2": { "type": "step", "settings": { "title": "Enfilez la BetterKnee", "text": "Elle se glisse en un geste et épouse parfaitement votre genou, sans jamais serrer." } },
+        "s3": { "type": "step", "settings": { "title": "Bougez librement", "text": "Sentez le soutien et le soulagement dès les premiers pas, du matin au soir." } }
       },
       "block_order": ["s1", "s2", "s3"],
       "settings": {
         "soft_bg": true,
-        "eyebrow": "Simple comme bonjour",
+        "eyebrow": "Aussi simple qu'efficace",
         "title": "Soulagez votre genou en 3 étapes",
         "button_label": "Commander ma genouillère",
         "button_url": "/products/genouillere-betterknee"
@@ -84,16 +98,16 @@
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "r1": { "type": "review", "settings": { "rating": 5, "name": "Martine D., 58 ans", "text": "Je souffrais du genou depuis des années. Après une semaine avec la BetterKnee, je remarche sans douleur. Un vrai soulagement !", "verified": true } },
-        "r2": { "type": "review", "settings": { "rating": 5, "name": "Jean-Pierre L., 63 ans", "text": "Je peux enfin reprendre mes randonnées du dimanche. Confortable, on l'oublie totalement sous le pantalon.", "verified": true } },
-        "r3": { "type": "review", "settings": { "rating": 5, "name": "Christine M., 52 ans", "text": "Parfaite pour le jardinage. Le maintien est top et la matière ne tient pas chaud. Je recommande les yeux fermés.", "verified": true } }
+        "r1": { "type": "review", "settings": { "rating": 5, "name": "Martine D., 58 ans", "text": "Je souffrais du genou depuis des années. En une semaine avec la BetterKnee, je remarche sans grimacer. Je ne la quitte plus.", "verified": true } },
+        "r2": { "type": "review", "settings": { "rating": 5, "name": "Jean-Pierre L., 63 ans", "text": "J'ai pu reprendre mes randonnées du dimanche. On l'oublie totalement sous le pantalon et le maintien est bluffant.", "verified": true } },
+        "r3": { "type": "review", "settings": { "rating": 5, "name": "Christine M., 52 ans", "text": "Parfaite pour le jardinage. Elle soutient sans comprimer et ne tient pas chaud. Je l'ai recommandée à toutes mes amies.", "verified": true } }
       },
       "block_order": ["r1", "r2", "r3"],
       "settings": {
-        "eyebrow": "Ils nous font confiance",
+        "eyebrow": "Ils ont retrouvé le sourire",
         "title": "12 000 genoux soulagés (et ça continue)",
         "show_rating": true,
-        "rating_text": "4,9/5 sur plus de 2 300 avis"
+        "rating_text": "4,9/5 sur plus de 2 300 avis vérifiés"
       }
     },
     "comparison": {
@@ -101,14 +115,14 @@
       "blocks": {
         "c1": { "type": "row", "settings": { "feature": "Compression graduée ciblée" } },
         "c2": { "type": "row", "settings": { "feature": "Tissu respirant anti-transpiration" } },
-        "c3": { "type": "row", "settings": { "feature": "Maintien sans comprimer la circulation" } },
+        "c3": { "type": "row", "settings": { "feature": "Maintient sans couper la circulation" } },
         "c4": { "type": "row", "settings": { "feature": "Discrète sous les vêtements" } },
-        "c5": { "type": "row", "settings": { "feature": "Satisfait ou remboursé 30 jours" } }
+        "c5": { "type": "row", "settings": { "feature": "Garantie satisfait ou remboursé 30 jours" } }
       },
       "block_order": ["c1", "c2", "c3", "c4", "c5"],
       "settings": {
         "soft_bg": false,
-        "title": "Pourquoi choisir la BetterKnee ?",
+        "title": "BetterKnee ou genouillère de pharmacie ?",
         "subtitle": "La différence se sent dès le premier port.",
         "us_label": "BetterKnee",
         "them_label": "Genouillères classiques"
@@ -117,15 +131,15 @@
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "qa", "settings": { "question": "La BetterKnee soulage-t-elle vraiment les douleurs ?", "answer": "<p>Oui. Sa compression graduée stabilise l'articulation et réduit la pression sur le genou. La plupart de nos clients ressentent un soulagement dès la première utilisation.</p>" } },
-        "q2": { "type": "qa", "settings": { "question": "Comment choisir ma taille ?", "answer": "<p>Mesurez votre tour de genou (au centre de la rotule) et reportez-vous au guide des tailles sur la page produit. En cas de doute, prenez la taille supérieure.</p>" } },
-        "q3": { "type": "qa", "settings": { "question": "Puis-je la porter toute la journée ?", "answer": "<p>Absolument. La matière respirante et anti-transpirante permet un port prolongé, au quotidien comme pendant l'effort.</p>" } },
-        "q4": { "type": "qa", "settings": { "question": "Quels sont les délais de livraison ?", "answer": "<p>Expédition sous 24h et livraison offerte dès 50€. Vous recevez votre commande en 2 à 4 jours ouvrés en France.</p>" } },
-        "q5": { "type": "qa", "settings": { "question": "Et si elle ne me convient pas ?", "answer": "<p>Vous bénéficiez de 30 jours satisfait ou remboursé. Si vous n'êtes pas convaincu, nous vous remboursons intégralement.</p>" } }
+        "q1": { "type": "qa", "settings": { "question": "Vais-je vraiment ressentir un soulagement ?", "answer": "<p>La compression graduée stabilise l'articulation et aide à réduire la pression sur le genou. La grande majorité de nos clients ressentent un mieux dès les premiers ports — et vous avez 30 jours pour en juger, sans risque.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "Comment choisir ma taille ?", "answer": "<p>Mesurez votre tour de genou au centre de la rotule et reportez-vous au guide des tailles sur la page produit. En cas de doute, prenez la taille au-dessus.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "Puis-je la porter toute la journée ?", "answer": "<p>Oui. Sa matière respirante et sans couture permet un port prolongé, au quotidien comme pendant l'effort, sans irritation ni transpiration excessive.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "En combien de temps suis-je livré(e) ?", "answer": "<p>Expédition sous 24h et livraison offerte dès 50€. Vous recevez votre commande en 2 à 4 jours ouvrés partout en France.</p>" } },
+        "q5": { "type": "qa", "settings": { "question": "Et si elle ne me convient pas ?", "answer": "<p>Vous bénéficiez de 30 jours satisfait ou remboursé. Si vous n'êtes pas pleinement convaincu(e), on vous rembourse — c'est notre engagement.</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4", "q5"],
       "settings": {
-        "eyebrow": "On répond à tout",
+        "eyebrow": "Vous hésitez ? On répond.",
         "title": "Questions fréquentes"
       }
     },
@@ -134,47 +148,33 @@
       "settings": {
         "dark": true,
         "eyebrow": "Offre de lancement",
-        "title": "Prêt à dire adieu aux douleurs au genou ?",
-        "text": "Rejoignez les milliers de personnes qui ont retrouvé leur liberté de mouvement avec la BetterKnee.",
-        "button_label": "Je commande maintenant",
+        "title": "Vos genoux méritent ce soulagement",
+        "text": "Rejoignez les milliers de Français qui ont retrouvé leur liberté de mouvement avec la BetterKnee.",
+        "button_label": "Je soulage mon genou",
         "button_url": "/products/genouillere-betterknee",
-        "subtext": "✓ Livraison offerte dès 50€   ✓ Satisfait ou remboursé 30 jours"
+        "subtext": "✓ Livraison offerte dès 50€   ✓ Satisfait ou remboursé 30 jours   ✓ Expédiée sous 24h"
       }
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
         "soft_bg": true,
-        "eyebrow": "-10% sur votre 1ère commande",
-        "title": "Rejoignez la communauté Bettermoove",
-        "text": "Recevez nos conseils pour soulager vos articulations et profitez de -10% sur votre première commande."
+        "eyebrow": "-10% sur votre 1ʳᵉ commande",
+        "title": "Prenez soin de vos articulations",
+        "text": "Recevez nos conseils d'experts pour soulager vos genoux, et profitez de -10% immédiat sur votre première commande."
       }
     },
     "marquee": {
       "type": "marquee",
       "blocks": {
-        "m1": { "type": "item", "settings": { "icon": "check-circle", "text": "Compression graduée" } },
-        "m2": { "type": "item", "settings": { "icon": "leaf", "text": "Matière respirante" } },
-        "m3": { "type": "item", "settings": { "icon": "feather", "text": "Ultra-légère" } },
-        "m4": { "type": "item", "settings": { "icon": "shield", "text": "Recommandé par les kinés" } },
-        "m5": { "type": "item", "settings": { "icon": "heart", "text": "Confort toute la journée" } },
-        "m6": { "type": "item", "settings": { "icon": "truck", "text": "Livraison offerte dès 50€" } }
+        "m1": { "type": "item", "settings": { "icon": "heart", "text": "Soulagement ciblé" } },
+        "m2": { "type": "item", "settings": { "icon": "check-circle", "text": "Compression graduée" } },
+        "m3": { "type": "item", "settings": { "icon": "activity", "text": "Maintien ferme" } },
+        "m4": { "type": "item", "settings": { "icon": "leaf", "text": "Ultra-respirante" } },
+        "m5": { "type": "item", "settings": { "icon": "shield", "text": "Recommandée par les kinés" } },
+        "m6": { "type": "item", "settings": { "icon": "feather", "text": "Portée toute la journée" } }
       },
       "block_order": ["m1", "m2", "m3", "m4", "m5", "m6"]
-    },
-    "stats": {
-      "type": "stats",
-      "blocks": {
-        "st1": { "type": "stat", "settings": { "number": "92%", "label": "ressentent un soulagement dès la première semaine" } },
-        "st2": { "type": "stat", "settings": { "number": "12 000+", "label": "clients soulagés à travers la France" } },
-        "st3": { "type": "stat", "settings": { "number": "4,9/5", "label": "note moyenne sur plus de 2 300 avis vérifiés" } }
-      },
-      "block_order": ["st1", "st2", "st3"],
-      "settings": {
-        "soft_bg": true,
-        "eyebrow": "Des résultats qui parlent",
-        "title": "La confiance de milliers de Français"
-      }
     }
   },
   "order": ["hero", "marquee", "benefits", "image_text", "stats", "how", "testimonials", "trust", "comparison", "faq", "cta", "newsletter"]
