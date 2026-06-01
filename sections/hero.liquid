@@ -35,9 +35,9 @@
 
       <div class="hero__media">
         {%- if section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: 900 | image_tag: widths: '450,700,900', sizes: '(max-width: 990px) 100vw, 50vw', alt: section.settings.title | escape, fetchpriority: 'high' }}
+          {{ section.settings.image | image_url: width: 900 | image_tag: widths: '450,700,900', sizes: '(max-width: 990px) 100vw, 50vw', fetchpriority: 'high', alt: section.settings.title }}
         {%- elsif product.featured_media != blank -%}
-          {{ product.featured_media | image_url: width: 900 | image_tag: widths: '450,700,900', sizes: '(max-width: 990px) 100vw, 50vw', alt: product.title | escape, fetchpriority: 'high' }}
+          {{ product.featured_media | image_url: width: 900 | image_tag: widths: '450,700,900', sizes: '(max-width: 990px) 100vw, 50vw', fetchpriority: 'high', alt: product.title }}
         {%- else -%}
           {{ 'product-1' | placeholder_svg_tag }}
         {%- endif -%}

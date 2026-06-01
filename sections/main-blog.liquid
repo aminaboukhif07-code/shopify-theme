@@ -5,7 +5,7 @@
       {%- for article in blog.articles -%}
         <a href="{{ article.url }}" class="card">
           {%- if article.image -%}
-            <div class="card__media">{{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: article.title | escape }}</div>
+            <div class="card__media">{{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: article.title }}</div>
           {%- endif -%}
           <div class="card__body">
             <span class="card__title">{{ article.title }}</span>

@@ -24,7 +24,7 @@
       {%- for item in cart.items -%}
         <div class="cart-item">
           <a href="{{ item.url }}" class="cart-item__media">
-            {%- if item.image -%}{{ item.image | image_url: width: 144 | image_tag: loading: 'lazy', alt: item.title | escape }}{%- endif -%}
+            {%- if item.image -%}{{ item.image | image_url: width: 144 | image_tag: loading: 'lazy', alt: item.title }}{%- endif -%}
           </a>
           <div class="cart-item__details">
             <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title }}</a>

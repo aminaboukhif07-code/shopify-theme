@@ -14,7 +14,7 @@
       <div class="product__media" data-gallery>
         <div class="product__gallery-main" data-gallery-main>
           {%- if product.featured_media -%}
-            {{ product.featured_media | image_url: width: 1000 | image_tag: widths: '500,750,1000', sizes: '(max-width: 990px) 100vw, 50vw', alt: product.title | escape, fetchpriority: 'high' }}
+            {{ product.featured_media | image_url: width: 1000 | image_tag: widths: '500,750,1000', sizes: '(max-width: 990px) 100vw, 50vw', fetchpriority: 'high', alt: product.title }}
           {%- else -%}
             {{ 'product-2' | placeholder_svg_tag }}
           {%- endif -%}
@@ -23,7 +23,7 @@
           <div class="product__thumbs">
             {%- for media in product.media limit: 10 -%}
               <button type="button" class="product__thumb {% if forloop.first %}is-active{% endif %}" data-gallery-thumb data-full="{{ media | image_url: width: 1000 }}" aria-label="Image {{ forloop.index }}">
-                {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: media.alt | default: product.title | escape }}
+                {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: product.title }}
               </button>
             {%- endfor -%}
           </div>
