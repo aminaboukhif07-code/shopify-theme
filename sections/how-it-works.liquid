@@ -1,0 +1,54 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+    <div class="steps">
+      {%- for block in section.blocks -%}
+        <div class="step" {{ block.shopify_attributes }}>
+          <div class="step__num"></div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.button_label != blank -%}
+      <div class="text-center mt-2"><a href="{{ section.settings.button_url | default: '#' }}" class="btn" style="width:auto">{{ section.settings.button_label }}</a></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comment ça marche",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Simple comme bonjour" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Soulagez votre genou en 3 étapes" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre" },
+    { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Commander ma genouillère" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton" }
+  ],
+  "blocks": [
+    {
+      "type": "step", "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Choisissez votre taille" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Mesurez votre tour de genou et sélectionnez la taille adaptée grâce à notre guide." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comment ça marche",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Choisissez votre taille", "text": "Mesurez votre tour de genou et sélectionnez la taille adaptée grâce à notre guide." } },
+        { "type": "step", "settings": { "title": "Enfilez la BetterKnee", "text": "Glissez la genouillère en quelques secondes : elle épouse parfaitement votre articulation." } },
+        { "type": "step", "settings": { "title": "Bougez librement", "text": "Ressentez le soulagement et la stabilité dès les premiers pas, toute la journée." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

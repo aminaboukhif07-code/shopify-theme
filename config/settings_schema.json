@@ -1,0 +1,180 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Bettermoove",
+    "theme_version": "1.0.0",
+    "theme_author": "Bettermoove",
+    "theme_documentation_url": "https://bettermoove.com",
+    "theme_support_url": "https://bettermoove.com"
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Palette de la marque"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Fond",
+        "default": "#FFFFFC"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Texte",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_cta",
+        "label": "Boutons (CTA)",
+        "default": "#8FAF8A"
+      },
+      {
+        "type": "color",
+        "id": "color_cta_text",
+        "label": "Texte des boutons",
+        "default": "#FFFFFC"
+      },
+      {
+        "type": "color",
+        "id": "color_cta_hover",
+        "label": "Boutons au survol",
+        "default": "#76976F"
+      },
+      {
+        "type": "color",
+        "id": "color_soft",
+        "label": "Fond doux (sections)",
+        "default": "#F2F5F0"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Bordures",
+        "default": "#E2E6DE"
+      }
+    ]
+  },
+  {
+    "name": "Typographie",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Police des titres",
+        "default": "poppins_n6"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Police du texte",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "range",
+        "id": "font_size_base",
+        "min": 15,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Taille du texte de base",
+        "info": "Une taille plus grande améliore la lisibilité (recommandé pour une audience 45-65 ans).",
+        "default": 18
+      }
+    ]
+  },
+  {
+    "name": "Boutons & coins",
+    "settings": [
+      {
+        "type": "range",
+        "id": "button_radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Arrondi des boutons",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "card_radius",
+        "min": 0,
+        "max": 32,
+        "step": 2,
+        "unit": "px",
+        "label": "Arrondi des cartes",
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Mise en page",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1100,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "label": "Largeur maximale du site",
+        "default": 1280
+      }
+    ]
+  },
+  {
+    "name": "Réseaux sociaux",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok"
+      }
+    ]
+  },
+  {
+    "name": "Panier",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Type de panier",
+        "options": [
+          { "value": "drawer", "label": "Tiroir latéral" },
+          { "value": "page", "label": "Page" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_free_shipping_bar",
+        "label": "Afficher la barre de livraison offerte",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "free_shipping_threshold",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "unit": "€",
+        "label": "Seuil livraison offerte",
+        "default": 50
+      }
+    ]
+  }
+]

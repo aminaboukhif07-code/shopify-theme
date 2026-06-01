@@ -1,0 +1,55 @@
+<section class="trust-strip section--tight">
+  <div class="page-width">
+    <div class="trust-strip__grid">
+      {%- for block in section.blocks -%}
+        <div class="trust-item" {{ block.shopify_attributes }}>
+          {% render 'icon', name: block.settings.icon %}
+          <div>
+            <strong>{{ block.settings.title }}</strong>
+            <span>{{ block.settings.subtitle }}</span>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bandeau de confiance",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Élément",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icône",
+          "options": [
+            { "value": "truck", "label": "Livraison" },
+            { "value": "return", "label": "Retour" },
+            { "value": "shield", "label": "Garantie" },
+            { "value": "card", "label": "Paiement" },
+            { "value": "headset", "label": "Support" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "leaf", "label": "Nature" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Livraison offerte" },
+        { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Dès 50€ d'achat" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bandeau de confiance",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "truck", "title": "Livraison offerte", "subtitle": "Expédié sous 24h" } },
+        { "type": "item", "settings": { "icon": "return", "title": "Retour gratuit", "subtitle": "30 jours pour changer d'avis" } },
+        { "type": "item", "settings": { "icon": "shield", "title": "Satisfait ou remboursé", "subtitle": "Sans condition" } },
+        { "type": "item", "settings": { "icon": "headset", "title": "Service client FR", "subtitle": "Réponse sous 24h" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

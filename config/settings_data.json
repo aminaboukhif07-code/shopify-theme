@@ -1,0 +1,34 @@
+{
+  "current": {
+    "color_background": "#FFFFFC",
+    "color_text": "#000000",
+    "color_cta": "#8FAF8A",
+    "color_cta_text": "#FFFFFC",
+    "color_cta_hover": "#76976F",
+    "color_soft": "#F2F5F0",
+    "color_border": "#E2E6DE",
+    "font_heading": "poppins_n6",
+    "font_body": "assistant_n4",
+    "font_size_base": 18,
+    "button_radius": 40,
+    "card_radius": 16,
+    "page_width": 1280,
+    "social_instagram": "",
+    "social_facebook": "",
+    "social_tiktok": "",
+    "cart_type": "drawer",
+    "show_free_shipping_bar": true,
+    "free_shipping_threshold": 50
+  },
+  "presets": {
+    "Bettermoove": {
+      "color_background": "#FFFFFC",
+      "color_text": "#000000",
+      "color_cta": "#8FAF8A",
+      "color_cta_text": "#FFFFFC",
+      "color_cta_hover": "#76976F",
+      "color_soft": "#F2F5F0",
+      "color_border": "#E2E6DE"
+    }
+  }
+}

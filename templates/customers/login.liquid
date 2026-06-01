@@ -1,0 +1,16 @@
+<section class="section">
+  <div class="page-width page-width--narrow">
+    <h1 class="page-title">{{ 'customer.login.title' | t }}</h1>
+    {% form 'customer_login' %}
+      <div style="display:grid;gap:1rem;max-width:420px;margin-inline:auto">
+        {{ form.errors | default_errors }}
+        <label for="login-email">{{ 'customer.login.email' | t }}</label>
+        <input id="login-email" type="email" name="customer[email]" required style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <label for="login-password">{{ 'customer.login.password' | t }}</label>
+        <input id="login-password" type="password" name="customer[password]" required style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <button type="submit" class="btn">{{ 'customer.login.submit' | t }}</button>
+        <a href="{{ routes.account_register_url }}" class="btn btn--outline">{{ 'customer.login.create_account' | t }}</a>
+      </div>
+    {% endform %}
+  </div>
+</section>

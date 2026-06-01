@@ -1,0 +1,52 @@
+<header class="header">
+  <div class="page-width header__inner">
+    <button type="button" class="header__icon header__menu-toggle" data-menu-toggle aria-label="{{ 'accessibility.menu' | t }}">
+      {% render 'icon', name: 'menu' %}
+    </button>
+
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, widths: '200,400', height: section.settings.logo.height }}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <nav class="header__nav" aria-label="{{ 'sections.header.menu' | t }}">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="header__actions">
+      {%- if section.settings.show_search -%}
+        <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'accessibility.search' | t }}">{% render 'icon', name: 'search' %}</a>
+      {%- endif -%}
+      <button type="button" class="header__icon" data-cart-toggle aria-label="{{ 'accessibility.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count" data-cart-count {% if cart.item_count == 0 %}style="display:none"{% endif %}>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Menu mobile {%- endcomment -%}
+<aside class="mobile-nav" id="MobileNav" aria-label="{{ 'sections.header.menu' | t }}">
+  <button type="button" class="mobile-nav__close" data-menu-close aria-label="{{ 'accessibility.close' | t }}">&times;</button>
+  <ul>
+    {%- for link in section.settings.menu.links -%}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {%- endfor -%}
+  </ul>
+</aside>
+
+{% schema %}
+{
+  "name": "En-tête",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "show_search", "label": "Afficher la recherche", "default": true }
+  ]
+}
+{% endschema %}

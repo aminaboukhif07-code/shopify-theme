@@ -1,0 +1,255 @@
+{%- liquid
+  assign product = product
+  assign current_variant = product.selected_or_first_available_variant
+  assign on_sale = false
+  if current_variant.compare_at_price > current_variant.price
+    assign on_sale = true
+  endif
+-%}
+
+<section class="section" data-product-container>
+  <div class="page-width">
+    <div class="product">
+      {%- comment -%} Galerie {%- endcomment -%}
+      <div class="product__media" data-gallery>
+        <div class="product__gallery-main" data-gallery-main>
+          {%- if product.featured_media -%}
+            {{ product.featured_media | image_url: width: 1000 | image_tag: widths: '500,750,1000', sizes: '(max-width: 990px) 100vw, 50vw', alt: product.title | escape, fetchpriority: 'high' }}
+          {%- else -%}
+            {{ 'product-2' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="product__thumbs">
+            {%- for media in product.media limit: 10 -%}
+              <button type="button" class="product__thumb {% if forloop.first %}is-active{% endif %}" data-gallery-thumb data-full="{{ media | image_url: width: 1000 }}" aria-label="Image {{ forloop.index }}">
+                {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: media.alt | default: product.title | escape }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Infos & achat {%- endcomment -%}
+      <div class="product__info">
+        {%- if product.vendor != blank and section.settings.show_vendor -%}
+          <div class="product__vendor">{{ product.vendor }}</div>
+        {%- endif -%}
+        <h1 class="product__title">{{ product.title }}</h1>
+
+        {%- if section.settings.show_rating -%}
+          <div class="product__rating">
+            {% render 'stars', rating: 5 %}
+            <a href="#avis">4,9/5 · {{ section.settings.reviews_count }} {{ 'sections.product.reviews' | t }}</a>
+          </div>
+        {%- endif -%}
+
+        <div class="product__price">
+          {%- if on_sale -%}
+            <span class="price__current" data-price-current>{{ current_variant.price | money }}</span>
+            <span class="price__compare" data-price-compare>{{ current_variant.compare_at_price | money }}</span>
+            <span class="price__badge">-{{ current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price }}%</span>
+          {%- else -%}
+            <span class="price__current" data-price-current>{{ current_variant.price | money }}</span>
+            <span class="price__compare" data-price-compare hidden></span>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.instalment_text != blank -%}
+          <p class="product__instalment">{{ section.settings.instalment_text }}</p>
+        {%- endif -%}
+
+        {%- comment -%} Stock {%- endcomment -%}
+        {%- if section.settings.show_stock and current_variant.available -%}
+          {%- if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= section.settings.low_stock_threshold -%}
+            <div class="product__stock product__stock--low" data-stock><span class="dot"></span> {{ 'sections.product.low_stock' | t }} ({{ current_variant.inventory_quantity }})</div>
+          {%- else -%}
+            <div class="product__stock" data-stock><span class="dot"></span> {{ 'sections.product.in_stock' | t }}</div>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- comment -%} Description courte (bénéfices) {%- endcomment -%}
+        {%- if product.description != blank -%}
+          <div class="product__description rte">{{ product.description }}</div>
+        {%- endif -%}
+
+        {%- comment -%} Formulaire d'achat {%- endcomment -%}
+        {%- form 'product', product, data-product-form: true -%}
+          {%- comment -%} Sélecteur de variantes par option {%- endcomment -%}
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="variant-picker" data-option-index="{{ forloop.index0 }}">
+                <div class="variant-picker__label">
+                  <span>{{ option.name }} : <strong data-selected-value="{{ forloop.index0 }}">{{ option.selected_value }}</strong></span>
+                  {%- if option.name == 'Taille' or option.name == 'Size' -%}
+                    {%- if section.settings.size_guide_page != blank -%}
+                      <a href="{{ section.settings.size_guide_page.url }}">{{ 'sections.product.size_guide' | t }}</a>
+                    {%- endif -%}
+                  {%- endif -%}
+                </div>
+                <div class="variant-options">
+                  {%- for value in option.values -%}
+                    {%- assign opt_id = section.id | append: '-' | append: forloop.index0 | append: '-' | append: forloop.index -%}
+                    <input
+                      type="radio"
+                      id="{{ opt_id }}"
+                      name="option-{{ option.position }}"
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}checked{% endif %}>
+                    <label for="{{ opt_id }}">{{ value }}</label>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+          {%- comment -%} Offres par lot {%- endcomment -%}
+          {%- if section.settings.show_bundles -%}
+            <div class="bundles" data-bundles="#Quantity-{{ section.id }}">
+              <div class="bundle is-selected" data-bundle="1">
+                <span class="bundle__radio"></span>
+                <div class="bundle__info"><div class="bundle__title">1 genouillère</div><div class="bundle__save">Essai</div></div>
+                <div class="bundle__price">{{ current_variant.price | money }}</div>
+              </div>
+              <div class="bundle" data-bundle="2">
+                <span class="bundle__tag">Le + populaire</span>
+                <span class="bundle__radio"></span>
+                <div class="bundle__info"><div class="bundle__title">2 genouillères (les deux genoux)</div><div class="bundle__save">Économisez sur la paire</div></div>
+                <div class="bundle__price">{{ current_variant.price | times: 2 | money }}</div>
+              </div>
+              <div class="bundle" data-bundle="3">
+                <span class="bundle__radio"></span>
+                <div class="bundle__info"><div class="bundle__title">3 genouillères</div><div class="bundle__save">Idéal pour offrir</div></div>
+                <div class="bundle__price">{{ current_variant.price | times: 3 | money }}</div>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Quantité {%- endcomment -%}
+          <div class="variant-picker__label" style="margin-bottom:.5rem"><span>{{ 'sections.product.quantity' | t }}</span></div>
+          <div class="quantity-selector" data-quantity>
+            <button type="button" data-qty-btn="-1" aria-label="Diminuer">&minus;</button>
+            <input type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1" inputmode="numeric">
+            <button type="button" data-qty-btn="1" aria-label="Augmenter">+</button>
+          </div>
+
+          <div class="product__form-buttons">
+            <button type="submit" class="btn btn--large" data-add-btn {% unless current_variant.available %}disabled{% endunless %}>
+              <span class="loading-spinner"></span>
+              <span class="btn__text">{% if current_variant.available %}{{ 'sections.product.add_to_cart' | t }}{% else %}{{ 'sections.product.sold_out' | t }}{% endif %}</span>
+            </button>
+            {%- if section.settings.show_dynamic_checkout -%}
+              {{ form | payment_button }}
+            {%- endif -%}
+          </div>
+
+          <div data-cart-error hidden style="color:#c0392b;font-weight:600;margin-bottom:1rem"></div>
+        {%- endform -%}
+
+        {%- comment -%} Réassurance {%- endcomment -%}
+        <ul class="product__reassurance">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'reassurance' -%}
+              <li {{ block.shopify_attributes }}>{% render 'icon', name: block.settings.icon %} <span>{{ block.settings.text }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+
+        {%- comment -%} Moyens de paiement {%- endcomment -%}
+        {%- if section.settings.show_payment_icons -%}
+          <div>
+            <p style="font-size:.85rem;opacity:.7;margin-bottom:.4rem">{% render 'icon', name: 'shield', class: 'icon-inline' %} Paiement 100% sécurisé</p>
+            <div class="payment-icons">
+              {%- for type in shop.enabled_payment_types -%}
+                {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} JSON des variantes pour le JS {%- endcomment -%}
+  <script type="application/json" data-variant-json>
+    [
+      {%- for variant in product.variants -%}
+        {
+          "id": {{ variant.id }},
+          "options": {{ variant.options | json }},
+          "price": {{ variant.price }},
+          "compare_at_price": {{ variant.compare_at_price | default: 0 }},
+          "available": {{ variant.available }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+</section>
+
+{%- comment -%} Barre d'ajout collante (mobile) {%- endcomment -%}
+<div class="sticky-atc" data-sticky-atc>
+  <div class="sticky-atc__info">
+    <div class="sticky-atc__title">{{ product.title }}</div>
+    <div class="sticky-atc__price">{{ current_variant.price | money }}</div>
+  </div>
+  <button type="button" class="btn" data-sticky-add>{{ 'sections.product.add_to_cart' | t }}</button>
+</div>
+
+{%- comment -%} Données structurées SEO {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 300 | json }},
+  "image": [{{ product.featured_media | image_url: width: 1000 | prepend: 'https:' | json }}],
+  "brand": { "@type": "Brand", "name": {{ product.vendor | json }} },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": "{{ current_variant.price | divided_by: 100.0 }}",
+    "availability": "{% if current_variant.available %}http://schema.org/InStock{% else %}http://schema.org/OutOfStock{% endif %}",
+    "url": {{ request.origin | append: product.url | json }}
+  },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "{{ section.settings.reviews_count }}" }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Page produit",
+  "settings": [
+    { "type": "checkbox", "id": "show_vendor", "label": "Afficher la marque", "default": true },
+    { "type": "checkbox", "id": "show_rating", "label": "Afficher la note", "default": true },
+    { "type": "text", "id": "reviews_count", "label": "Nombre d'avis", "default": "2347" },
+    { "type": "checkbox", "id": "show_stock", "label": "Afficher le stock", "default": true },
+    { "type": "range", "id": "low_stock_threshold", "min": 5, "max": 50, "step": 5, "label": "Seuil de stock faible", "default": 20 },
+    { "type": "text", "id": "instalment_text", "label": "Texte paiement fractionné", "default": "ou 4x sans frais — Paiement sécurisé" },
+    { "type": "checkbox", "id": "show_bundles", "label": "Afficher les offres par lot", "default": true },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Bouton de paiement express", "default": true },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Afficher les moyens de paiement", "default": true },
+    { "type": "page", "id": "size_guide_page", "label": "Page guide des tailles" }
+  ],
+  "blocks": [
+    {
+      "type": "reassurance", "name": "Réassurance",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icône",
+          "options": [
+            { "value": "truck", "label": "Livraison" },
+            { "value": "return", "label": "Retour" },
+            { "value": "shield", "label": "Garantie" },
+            { "value": "headset", "label": "Support" },
+            { "value": "clock", "label": "Rapidité" },
+            { "value": "check-circle", "label": "Validé" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Livraison offerte dès 50€, expédiée sous 24h" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,52 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    <div class="faq">
+      {%- for block in section.blocks -%}
+        <details class="faq__item" {{ block.shopify_attributes }} {% if forloop.first and section.settings.open_first %}open{% endif %}>
+          <summary class="faq__question">
+            <span>{{ block.settings.question }}</span>
+            {% render 'icon', name: 'plus', class: 'faq__icon' %}
+          </summary>
+          <div class="faq__answer rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "checkbox", "id": "open_first", "label": "Ouvrir la 1ère question", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "On répond à tout" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Questions fréquentes" }
+  ],
+  "blocks": [
+    {
+      "type": "qa", "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "La BetterKnee convient-elle à mon genou ?" },
+        { "type": "richtext", "id": "answer", "label": "Réponse", "default": "<p>Oui, elle est conçue pour soulager les douleurs articulaires et ligamentaires courantes (arthrose, tendinite, instabilité). Choisissez simplement la bonne taille avec notre guide.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "qa", "settings": { "question": "La BetterKnee soulage-t-elle vraiment les douleurs ?", "answer": "<p>Oui. Sa compression graduée stabilise l'articulation et réduit la pression sur le genou. La plupart de nos clients ressentent un soulagement dès la première utilisation.</p>" } },
+        { "type": "qa", "settings": { "question": "Comment choisir ma taille ?", "answer": "<p>Mesurez votre tour de genou (au centre de la rotule) et reportez-vous au guide des tailles disponible sur la page produit. En cas de doute, prenez la taille supérieure.</p>" } },
+        { "type": "qa", "settings": { "question": "Puis-je la porter toute la journée ?", "answer": "<p>Absolument. La matière respirante et anti-transpirante permet un port prolongé, au quotidien comme pendant l'effort.</p>" } },
+        { "type": "qa", "settings": { "question": "Quels sont les délais de livraison ?", "answer": "<p>Expédition sous 24h et livraison offerte dès 50€. Vous recevez votre commande en 2 à 4 jours ouvrés en France.</p>" } },
+        { "type": "qa", "settings": { "question": "Et si elle ne me convient pas ?", "answer": "<p>Vous bénéficiez de 30 jours satisfait ou remboursé. Si vous n'êtes pas convaincu, nous vous remboursons intégralement.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

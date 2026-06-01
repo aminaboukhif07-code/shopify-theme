@@ -1,0 +1,18 @@
+{
+  "type": "footer",
+  "name": "Pied de page",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "heading": "Bettermoove",
+        "about": "Des solutions de maintien pensées pour soulager vos articulations et retrouver le plaisir de bouger, jour après jour.",
+        "menu_1_title": "Boutique",
+        "menu_2_title": "Aide",
+        "show_newsletter": true,
+        "newsletter_title": "Recevez nos conseils & offres exclusives"
+      }
+    }
+  },
+  "order": ["footer"]
+}

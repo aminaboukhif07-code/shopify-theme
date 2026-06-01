@@ -1,0 +1,64 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.show_rating -%}
+        <div style="display:flex;align-items:center;justify-content:center;gap:.6rem;font-weight:600">
+          {% render 'stars', rating: 5 %} <span>{{ section.settings.rating_text }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="testimonials-grid">
+      {%- for block in section.blocks -%}
+        <figure class="testimonial" {{ block.shopify_attributes }}>
+          {% render 'stars', rating: block.settings.rating %}
+          <blockquote class="testimonial__text">« {{ block.settings.text }} »</blockquote>
+          <figcaption class="testimonial__author">
+            <span class="testimonial__avatar">{{ block.settings.name | slice: 0 }}</span>
+            <div>
+              {{ block.settings.name }}
+              {%- if block.settings.verified -%}
+                <div class="testimonial__verified">{% render 'icon', name: 'check-circle' %} Achat vérifié</div>
+              {%- endif -%}
+            </div>
+          </figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Témoignages",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Ils nous font confiance" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "12 000 genoux soulagés (et ça continue)" },
+    { "type": "checkbox", "id": "show_rating", "label": "Afficher la note globale", "default": true },
+    { "type": "text", "id": "rating_text", "label": "Texte note", "default": "4,9/5 sur plus de 2 300 avis" }
+  ],
+  "blocks": [
+    {
+      "type": "review", "name": "Avis",
+      "settings": [
+        { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "label": "Note", "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Témoignage", "default": "Je souffrais du genou depuis des années. Après une semaine avec la BetterKnee, je remarche sans douleur. Un vrai soulagement !" },
+        { "type": "text", "id": "name", "label": "Nom", "default": "Martine D." },
+        { "type": "checkbox", "id": "verified", "label": "Achat vérifié", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Témoignages",
+      "blocks": [
+        { "type": "review", "settings": { "name": "Martine D., 58 ans", "text": "Je souffrais du genou depuis des années. Après une semaine avec la BetterKnee, je remarche sans douleur. Un vrai soulagement !" } },
+        { "type": "review", "settings": { "name": "Jean-Pierre L., 63 ans", "text": "Je peux enfin reprendre mes randonnées du dimanche. Confortable, on l'oublie totalement sous le pantalon." } },
+        { "type": "review", "settings": { "name": "Christine M., 52 ans", "text": "Parfaite pour le jardinage. Le maintien est top et la matière ne tient pas chaud. Je recommande les yeux fermés." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

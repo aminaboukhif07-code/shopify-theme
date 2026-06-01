@@ -1,0 +1,12 @@
+{%- comment -%} Tiroir de panier + overlay global + menu mobile. {%- endcomment -%}
+<div class="overlay" id="Overlay"></div>
+
+<aside class="cart-drawer" id="CartDrawer" aria-label="{{ 'accessibility.cart' | t }}" aria-modal="true" role="dialog">
+  <div class="cart-drawer__header">
+    <h2>{{ 'sections.cart.title' | t }}</h2>
+    <button type="button" class="cart-drawer__close" data-cart-close aria-label="{{ 'accessibility.close' | t }}">&times;</button>
+  </div>
+  <div class="cart-drawer__body">
+    {% render 'cart-contents' %}
+  </div>
+</aside>

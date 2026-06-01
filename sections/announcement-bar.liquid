@@ -1,0 +1,18 @@
+{%- if section.settings.text != blank -%}
+  <div class="announcement-bar">
+    <div class="announcement-bar__inner">
+      {%- if section.settings.show_icon -%}{% render 'icon', name: 'truck', class: 'icon-truck' %}{%- endif -%}
+      <span>{{ section.settings.text }}</span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barre d'annonce",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Texte", "default": "🚚 Livraison OFFERTE dès 50€ · Paiement sécurisé · Satisfait ou remboursé 30 jours" },
+    { "type": "checkbox", "id": "show_icon", "label": "Afficher l'icône", "default": false }
+  ]
+}
+{% endschema %}

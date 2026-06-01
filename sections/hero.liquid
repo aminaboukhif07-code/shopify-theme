@@ -1,0 +1,93 @@
+{%- liquid
+  assign product = section.settings.product
+-%}
+<section class="hero section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="hero__grid">
+      <div class="hero__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="hero__eyebrow">{% render 'icon', name: 'leaf', class: 'icon-leaf' %} {{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        <h1 class="hero__title">{{ section.settings.title }}</h1>
+        {%- if section.settings.subtitle != blank -%}<p class="hero__subtitle">{{ section.settings.subtitle }}</p>{%- endif -%}
+
+        {%- if section.settings.show_rating -%}
+          <div class="hero__rating">{% render 'stars', rating: 5 %} <span>{{ section.settings.rating_text }}</span></div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="hero__benefits">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'benefit' -%}
+                <li {{ block.shopify_attributes }}>{% render 'icon', name: 'check-circle', class: 'icon-check' %} {{ block.settings.text }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="hero__cta-row">
+          <a href="{{ section.settings.button_url | default: product.url | default: '#' }}" class="btn btn--large" style="width:auto">{{ section.settings.button_label }}</a>
+          {%- if section.settings.show_price and product != blank -%}
+            <span style="font-weight:700;font-size:1.2rem">dès {{ product.price | money }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="hero__media">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 900 | image_tag: widths: '450,700,900', sizes: '(max-width: 990px) 100vw, 50vw', alt: section.settings.title | escape, fetchpriority: 'high' }}
+        {%- elsif product.featured_media != blank -%}
+          {{ product.featured_media | image_url: width: 900 | image_tag: widths: '450,700,900', sizes: '(max-width: 990px) 100vw, 50vw', alt: product.title | escape, fetchpriority: 'high' }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+
+        {%- if section.settings.badge_text != blank -%}
+          <div class="hero__badge">
+            {% render 'icon', name: 'shield', class: 'icon-shield' %}
+            <strong>{{ section.settings.badge_text }}</strong>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Recommandé par les kinés" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Dites adieu aux douleurs au genou" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "La genouillère de compression BetterKnee soulage vos articulations et vous redonne le plaisir de marcher, jardiner et bouger librement — sans douleur." },
+    { "type": "checkbox", "id": "show_rating", "label": "Afficher la note", "default": true },
+    { "type": "text", "id": "rating_text", "label": "Texte de note", "default": "4,9/5 · plus de 12 000 clients soulagés" },
+    { "type": "product", "id": "product", "label": "Produit mis en avant" },
+    { "type": "image_picker", "id": "image", "label": "Image (sinon image du produit)" },
+    { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Je soulage mon genou" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton" },
+    { "type": "checkbox", "id": "show_price", "label": "Afficher le prix", "default": true },
+    { "type": "text", "id": "badge_text", "label": "Texte du badge", "default": "Satisfait ou remboursé 30 jours" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Bénéfice",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texte", "default": "Soulagement dès la première utilisation" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "Compression graduée qui soulage les douleurs articulaires" } },
+        { "type": "benefit", "settings": { "text": "Matière respirante, confortable toute la journée" } },
+        { "type": "benefit", "settings": { "text": "Facile à enfiler, discrète sous les vêtements" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

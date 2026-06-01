@@ -1,0 +1,19 @@
+{
+  "type": "header",
+  "name": "En-tête",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "settings": {
+        "text": "🚚 Livraison OFFERTE dès 50€ · Satisfait ou remboursé 30 jours · Paiement sécurisé"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "show_search": true
+      }
+    }
+  },
+  "order": ["announcement", "header"]
+}

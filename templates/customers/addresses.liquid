@@ -1,0 +1,20 @@
+<section class="section">
+  <div class="page-width page-width--narrow">
+    <h1 class="page-title">{{ 'customer.account.view_addresses' | t }}</h1>
+    <p><a href="{{ routes.account_url }}">&larr; {{ 'customer.account.return' | t }}</a></p>
+    {%- for address in customer.addresses -%}
+      <div class="card" style="padding:1.5rem;margin-bottom:1rem">
+        {{ address | format_address }}
+      </div>
+    {%- endfor -%}
+    {% form 'customer_address', customer.new_address %}
+      <h2>Ajouter une adresse</h2>
+      <div style="display:grid;gap:1rem;max-width:420px">
+        <input type="text" name="address[address1]" placeholder="Adresse" style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <input type="text" name="address[city]" placeholder="Ville" style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <input type="text" name="address[zip]" placeholder="Code postal" style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <button type="submit" class="btn">Enregistrer</button>
+      </div>
+    {% endform %}
+  </div>
+</section>

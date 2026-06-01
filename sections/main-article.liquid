@@ -1,0 +1,14 @@
+<article class="section">
+  <div class="page-width page-width--narrow">
+    {%- if article.image -%}
+      <img src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.title | escape }}" style="border-radius:var(--card-radius);margin-bottom:1.5rem">
+    {%- endif -%}
+    <h1 class="page-title" style="text-align:left">{{ article.title }}</h1>
+    <p style="opacity:.7">{{ article.published_at | date: '%d %B %Y' }} · {{ article.author }}</p>
+    <div class="rte">{{ article.content }}</div>
+  </div>
+</article>
+
+{% schema %}
+{ "name": "Article" }
+{% endschema %}

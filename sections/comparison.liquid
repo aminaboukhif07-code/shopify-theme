@@ -1,0 +1,54 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="section-header">
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-us">{{ section.settings.us_label }}</th>
+          <th>{{ section.settings.them_label }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for block in section.blocks -%}
+          <tr {{ block.shopify_attributes }}>
+            <td>{{ block.settings.feature }}</td>
+            <td class="col-us yes">{% render 'icon', name: 'check-circle' %}</td>
+            <td class="no">{% render 'icon', name: 'x' %}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparatif",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": true },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Pourquoi choisir la BetterKnee ?" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "La différence se sent dès le premier port." },
+    { "type": "text", "id": "us_label", "label": "Notre colonne", "default": "BetterKnee" },
+    { "type": "text", "id": "them_label", "label": "Colonne concurrents", "default": "Genouillères classiques" }
+  ],
+  "blocks": [
+    { "type": "row", "name": "Critère", "settings": [ { "type": "text", "id": "feature", "label": "Critère", "default": "Compression graduée médicale" } ] }
+  ],
+  "presets": [
+    {
+      "name": "Comparatif",
+      "blocks": [
+        { "type": "row", "settings": { "feature": "Compression graduée ciblée" } },
+        { "type": "row", "settings": { "feature": "Tissu respirant anti-transpiration" } },
+        { "type": "row", "settings": { "feature": "Maintien sans comprimer la circulation" } },
+        { "type": "row", "settings": { "feature": "Discrète sous les vêtements" } },
+        { "type": "row", "settings": { "feature": "Satisfait ou remboursé 30 jours" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

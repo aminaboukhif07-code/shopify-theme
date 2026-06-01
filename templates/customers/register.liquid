@@ -1,0 +1,19 @@
+<section class="section">
+  <div class="page-width page-width--narrow">
+    <h1 class="page-title">{{ 'customer.register.title' | t }}</h1>
+    {% form 'create_customer' %}
+      <div style="display:grid;gap:1rem;max-width:420px;margin-inline:auto">
+        {{ form.errors | default_errors }}
+        <label for="r-first">{{ 'customer.register.first_name' | t }}</label>
+        <input id="r-first" type="text" name="customer[first_name]" style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <label for="r-last">{{ 'customer.register.last_name' | t }}</label>
+        <input id="r-last" type="text" name="customer[last_name]" style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <label for="r-email">{{ 'customer.register.email' | t }}</label>
+        <input id="r-email" type="email" name="customer[email]" required style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <label for="r-pass">{{ 'customer.register.password' | t }}</label>
+        <input id="r-pass" type="password" name="customer[password]" required style="padding:.9rem;border:2px solid var(--color-border);border-radius:12px">
+        <button type="submit" class="btn">{{ 'customer.register.submit' | t }}</button>
+      </div>
+    {% endform %}
+  </div>
+</section>

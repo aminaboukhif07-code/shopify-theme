@@ -1,0 +1,20 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width page-width--narrow text-center">
+    {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    {%- if section.settings.title != blank -%}<h2>{{ section.settings.title }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Texte enrichi",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Notre engagement" },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Chez Bettermoove, nous croyons que la douleur ne doit pas vous priver des plaisirs simples de la vie.</p>" }
+  ],
+  "presets": [ { "name": "Texte enrichi" } ]
+}
+{% endschema %}

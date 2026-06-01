@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ settings.color_cta }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.font_heading -%}{{ settings.font_heading | font_face: font_display: 'swap' }}{%- endif -%}
+    {%- if settings.font_body -%}{{ settings.font_body | font_face: font_display: 'swap' }}{%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ content_for_header }}
+
+    {%- liquid
+      assign body_font = settings.font_body
+      assign heading_font = settings.font_heading
+      assign body_font_bold = body_font | font_modify: 'weight', 'bold'
+    -%}
+
+    <style>
+      :root {
+        --color-bg: {{ settings.color_background }};
+        --color-text: {{ settings.color_text }};
+        --color-cta: {{ settings.color_cta }};
+        --color-cta-text: {{ settings.color_cta_text }};
+        --color-cta-hover: {{ settings.color_cta_hover }};
+        --color-soft: {{ settings.color_soft }};
+        --color-border: {{ settings.color_border }};
+        --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+        --font-weight-body: {{ body_font.weight }};
+        --font-weight-bold: {{ body_font_bold.weight | default: 700 }};
+        --font-weight-heading: {{ heading_font.weight }};
+        --font-size-base: {{ settings.font_size_base }}px;
+        --button-radius: {{ settings.button_radius }}px;
+        --card-radius: {{ settings.card_radius }}px;
+        --page-width: {{ settings.page_width }}px;
+      }
+    </style>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  </head>
+
+  <body class="template-{{ request.page_type | handle }}">
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" class="main-content" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {%- if settings.cart_type == 'drawer' -%}
+      {% render 'cart-drawer' %}
+    {%- endif -%}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+    <script>
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}'
+      };
+      window.cartStrings = {
+        error: {{ 'sections.cart.cart_error' | t | json }},
+        quantityError: {{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' | json }}
+      };
+      window.shopCurrency = {{ shop.currency | json }};
+      window.moneyFormat = {{ shop.money_format | json }};
+      window.freeShippingThreshold = {{ settings.free_shipping_threshold | times: 100 }};
+    </script>
+  </body>
+</html>

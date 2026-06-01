@@ -1,0 +1,25 @@
+<section class="section">
+  <div class="page-width page-width--narrow">
+    <h1 class="page-title">{{ 'customer.account.title' | t }}</h1>
+    <p>Bonjour {{ customer.first_name | default: customer.email }} — <a href="{{ routes.account_logout_url }}">Déconnexion</a></p>
+    <h2>{{ 'customer.orders.title' | t }}</h2>
+    {%- if customer.orders.size > 0 -%}
+      <table class="comparison-table" style="max-width:none">
+        <thead><tr><th>Commande</th><th>Date</th><th>Total</th><th>Statut</th></tr></thead>
+        <tbody>
+          {%- for order in customer.orders -%}
+            <tr>
+              <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+              <td>{{ order.created_at | date: '%d/%m/%Y' }}</td>
+              <td>{{ order.total_net_amount | money }}</td>
+              <td>{{ order.fulfillment_status_label }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    {%- else -%}
+      <p>{{ 'customer.orders.none' | t }}</p>
+    {%- endif -%}
+    <p class="mt-2"><a href="{{ routes.account_addresses_url }}" class="btn btn--outline" style="width:auto">{{ 'customer.account.view_addresses' | t }}</a></p>
+  </div>
+</section>

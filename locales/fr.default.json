@@ -1,0 +1,123 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Étiquette « {{ tags }} »",
+      "page": "Page {{ page }}"
+    },
+    "search": {
+      "search": "Rechercher",
+      "placeholder": "Rechercher un produit",
+      "no_results": "Aucun résultat pour « {{ terms }} ».",
+      "results_with_count": "{{ count }} résultat pour « {{ terms }} »",
+      "results_with_count_plural": "{{ count }} résultats pour « {{ terms }} »",
+      "title": "Résultats de recherche"
+    },
+    "pagination": {
+      "previous": "Précédent",
+      "next": "Suivant"
+    },
+    "newsletter_form": {
+      "newsletter_email": "Adresse e-mail",
+      "email_placeholder": "Votre e-mail",
+      "confirmation": "Merci ! Vous êtes bien inscrit(e).",
+      "submit": "Je m'inscris"
+    },
+    "404": {
+      "title": "Page introuvable",
+      "subtext": "La page que vous cherchez n'existe pas ou a été déplacée.",
+      "link": "Retour à l'accueil"
+    }
+  },
+  "accessibility": {
+    "skip_to_content": "Aller au contenu",
+    "close": "Fermer",
+    "menu": "Menu",
+    "cart": "Panier",
+    "search": "Rechercher",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "star_reviews": "{{ rating }} étoiles sur 5"
+  },
+  "sections": {
+    "header": {
+      "announcement": "Annonce",
+      "menu": "Menu",
+      "cart_count": "Articles dans le panier : {{ count }}"
+    },
+    "cart": {
+      "title": "Votre panier",
+      "empty": "Votre panier est vide",
+      "empty_subtext": "Découvrez la Genouillère qui change le quotidien de milliers de Français.",
+      "continue_shopping": "Continuer mes achats",
+      "subtotal": "Sous-total",
+      "checkout": "Commander",
+      "remove": "Retirer",
+      "quantity": "Quantité",
+      "cart_error": "Une erreur est survenue lors de l'ajout au panier. Veuillez réessayer.",
+      "cart_quantity_error_html": "Vous ne pouvez ajouter que {{ quantity }} de cet article.",
+      "taxes_and_shipping_at_checkout": "Taxes et livraison calculées au paiement.",
+      "free_shipping_progress_html": "Plus que <strong>{{ amount }}</strong> pour la livraison offerte !",
+      "free_shipping_unlocked": "🎉 Livraison offerte débloquée !"
+    },
+    "product": {
+      "add_to_cart": "Ajouter au panier",
+      "sold_out": "Rupture de stock",
+      "unavailable": "Indisponible",
+      "on_sale": "Promo",
+      "save": "Économisez {{ amount }}",
+      "in_stock": "En stock — expédié sous 24h",
+      "low_stock": "Stock limité — il ne reste que quelques pièces",
+      "size_guide": "Guide des tailles",
+      "quantity": "Quantité",
+      "vendor": "Marque",
+      "reviews": "avis",
+      "buy_now": "Commander maintenant"
+    },
+    "collection": {
+      "title": "Collection",
+      "empty": "Aucun produit dans cette collection pour le moment.",
+      "products_count": "{{ count }} produit",
+      "products_count_plural": "{{ count }} produits"
+    }
+  },
+  "templates": {
+    "contact": {
+      "form": {
+        "name": "Nom",
+        "email": "E-mail",
+        "phone": "Téléphone",
+        "message": "Message",
+        "send": "Envoyer",
+        "success": "Merci, votre message a bien été envoyé. Notre équipe vous répond sous 24h."
+      }
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Mon compte",
+      "details": "Mes informations",
+      "view_addresses": "Mes adresses",
+      "return": "Retour au compte"
+    },
+    "login": {
+      "title": "Connexion",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "create_account": "Créer un compte",
+      "forgot_password": "Mot de passe oublié ?"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "Créer mon compte"
+    },
+    "orders": {
+      "title": "Mes commandes",
+      "none": "Aucune commande pour le moment."
+    }
+  }
+}

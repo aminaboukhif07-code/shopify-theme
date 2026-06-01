@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'gift_cards.issued.title' | t: value: gift_card.initial_value | money, shop: shop.name }}</title>
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <style>:root{--color-bg:{{ settings.color_background }};--color-text:{{ settings.color_text }};--color-cta:{{ settings.color_cta }};--color-cta-text:{{ settings.color_cta_text }};--color-soft:{{ settings.color_soft }};--button-radius:{{ settings.button_radius }}px;--card-radius:{{ settings.card_radius }}px;}</style>
+  </head>
+  <body>
+    <main class="section">
+      <div class="page-width page-width--narrow text-center">
+        <h1>{{ shop.name }}</h1>
+        <h2>Votre carte cadeau</h2>
+        <p style="font-size:2.5rem;font-weight:700">{{ gift_card.balance | money }}</p>
+        <div class="card" style="padding:2rem;max-width:420px;margin-inline:auto">
+          {{ gift_card.qr_identifier }}
+          <p style="font-family:monospace;font-size:1.3rem;letter-spacing:2px">{{ gift_card.code | format_code }}</p>
+        </div>
+        <a href="{{ shop.url }}" class="btn mt-2" style="width:auto">Utiliser ma carte</a>
+      </div>
+    </main>
+  </body>
+</html>

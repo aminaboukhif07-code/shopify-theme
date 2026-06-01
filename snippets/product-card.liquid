@@ -1,0 +1,24 @@
+{%- comment -%} Carte produit. Usage : {% render 'product-card', product: product %} {%- endcomment -%}
+{%- assign on_sale = false -%}
+{%- if product.compare_at_price > product.price -%}{%- assign on_sale = true -%}{%- endif -%}
+<div class="card">
+  <a href="{{ product.url }}" class="card__media" aria-label="{{ product.title | escape }}">
+    {%- if on_sale -%}<span class="card__badge">{{ 'sections.product.on_sale' | t }}</span>{%- endif -%}
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', alt: product.title | escape }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'card__placeholder' }}
+    {%- endif -%}
+  </a>
+  <div class="card__body">
+    <a href="{{ product.url }}" class="card__title">{{ product.title }}</a>
+    {% render 'stars', rating: 5 %}
+    <div class="card__price">
+      {%- if on_sale -%}
+        <span style="text-decoration:line-through;opacity:.55">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+      {{ product.price | money }}
+    </div>
+    <a href="{{ product.url }}" class="btn">{{ 'sections.product.add_to_cart' | t }}</a>
+  </div>
+</div>

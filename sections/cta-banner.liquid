@@ -1,0 +1,29 @@
+<section class="section {% if section.settings.dark %}section--dark{% else %}section--soft{% endif %}">
+  <div class="page-width page-width--narrow text-center">
+    {%- if section.settings.eyebrow != blank -%}<span class="badge-pill">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    <h2 style="margin-top:1rem">{{ section.settings.title }}</h2>
+    {%- if section.settings.text != blank -%}<p style="font-size:1.15rem;opacity:.9">{{ section.settings.text }}</p>{%- endif -%}
+    {%- if section.settings.show_countdown -%}
+      <p style="font-weight:700">⏳ Offre valable encore <span data-countdown>00:00:00</span></p>
+    {%- endif -%}
+    <a href="{{ section.settings.button_url | default: '#' }}" class="btn btn--large" style="width:auto;margin-top:1rem">{{ section.settings.button_label }}</a>
+    {%- if section.settings.subtext != blank -%}<p style="margin-top:1rem;font-size:.9rem;opacity:.75">{{ section.settings.subtext }}</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bannière CTA",
+  "settings": [
+    { "type": "checkbox", "id": "dark", "label": "Fond foncé", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Badge", "default": "Offre de lancement" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Prêt à dire adieu aux douleurs au genou ?" },
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Rejoignez les milliers de personnes qui ont retrouvé leur liberté de mouvement avec la BetterKnee." },
+    { "type": "checkbox", "id": "show_countdown", "label": "Afficher le compte à rebours", "default": false },
+    { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Je commande maintenant" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton" },
+    { "type": "text", "id": "subtext", "label": "Sous-texte", "default": "✓ Livraison offerte dès 50€  ✓ Satisfait ou remboursé 30 jours" }
+  ],
+  "presets": [ { "name": "Bannière CTA" } ]
+}
+{% endschema %}

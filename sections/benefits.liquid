@@ -1,0 +1,64 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+    <div class="benefits-grid">
+      {%- for block in section.blocks -%}
+        <div class="benefit-card" {{ block.shopify_attributes }}>
+          <div class="benefit-card__icon">{% render 'icon', name: block.settings.icon %}</div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bénéfices",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Pourquoi la BetterKnee" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Conçue pour soulager, pensée pour durer" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Chaque détail a été étudié pour vous offrir confort et maintien, du lever au coucher." }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Bénéfice",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icône",
+          "options": [
+            { "value": "activity", "label": "Activité" },
+            { "value": "feather", "label": "Légèreté" },
+            { "value": "shield", "label": "Protection" },
+            { "value": "leaf", "label": "Confort" },
+            { "value": "clock", "label": "Durée" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "check-circle", "label": "Validé" }
+          ],
+          "default": "activity"
+        },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Maintien optimal" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Compression graduée qui soulage les douleurs ligamentaires et articulaires." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bénéfices",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "activity", "title": "Maintien optimal", "text": "Compression graduée qui soulage les douleurs ligamentaires et articulaires." } },
+        { "type": "benefit", "settings": { "icon": "feather", "title": "Confort toute la journée", "text": "Matière respirante, légère et anti-transpirante, on oublie qu'on la porte." } },
+        { "type": "benefit", "settings": { "icon": "activity", "title": "Polyvalente", "text": "Idéale pour le sport, la rééducation, le jardinage ou le port quotidien." } },
+        { "type": "benefit", "settings": { "icon": "check-circle", "title": "Facile à enfiler", "text": "Design ergonomique qui s'adapte parfaitement à votre morphologie." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
