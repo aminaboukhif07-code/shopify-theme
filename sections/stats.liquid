@@ -1,0 +1,48 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="section-header">
+        {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+    <div class="stats-grid">
+      {%- for block in section.blocks -%}
+        <div class="stat" {{ block.shopify_attributes }}>
+          <div class="stat__num">{{ block.settings.number }}</div>
+          <div class="stat__label">{{ block.settings.label }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Statistiques",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Des résultats qui parlent" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "La confiance de milliers de Français" }
+  ],
+  "blocks": [
+    {
+      "type": "stat", "name": "Chiffre",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Chiffre", "default": "92%" },
+        { "type": "text", "id": "label", "label": "Description", "default": "ressentent un soulagement dès la 1ère semaine" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Statistiques",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "92%", "label": "ressentent un soulagement dès la première semaine" } },
+        { "type": "stat", "settings": { "number": "12 000+", "label": "clients soulagés à travers la France" } },
+        { "type": "stat", "settings": { "number": "4,9/5", "label": "note moyenne sur plus de 2 300 avis vérifiés" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

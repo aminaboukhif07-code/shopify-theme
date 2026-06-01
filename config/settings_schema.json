@@ -65,7 +65,7 @@
         "type": "font_picker",
         "id": "font_heading",
         "label": "Police des titres",
-        "default": "poppins_n6"
+        "default": "playfair_display_n4"
       },
       {
         "type": "font_picker",

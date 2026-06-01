@@ -1,0 +1,54 @@
+<div class="marquee" aria-label="{{ section.settings.aria | default: 'Nos engagements' }}">
+  <div class="marquee__track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <span class="marquee__item" {{ block.shopify_attributes }} {% if i == 2 %}aria-hidden="true"{% endif %}>
+          {% render 'icon', name: block.settings.icon %} {{ block.settings.text }}
+        </span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bandeau défilant",
+  "settings": [
+    { "type": "text", "id": "aria", "label": "Description (accessibilité)", "default": "Nos engagements" }
+  ],
+  "blocks": [
+    {
+      "type": "item", "name": "Élément",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icône",
+          "options": [
+            { "value": "leaf", "label": "Nature" },
+            { "value": "shield", "label": "Garantie" },
+            { "value": "truck", "label": "Livraison" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "check-circle", "label": "Validé" },
+            { "value": "activity", "label": "Activité" },
+            { "value": "feather", "label": "Légèreté" }
+          ],
+          "default": "check-circle"
+        },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Compression médicale" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bandeau défilant",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "check-circle", "text": "Compression graduée" } },
+        { "type": "item", "settings": { "icon": "leaf", "text": "Matière respirante" } },
+        { "type": "item", "settings": { "icon": "feather", "text": "Ultra-légère" } },
+        { "type": "item", "settings": { "icon": "shield", "text": "Recommandé par les kinés" } },
+        { "type": "item", "settings": { "icon": "heart", "text": "Confort toute la journée" } },
+        { "type": "item", "settings": { "icon": "truck", "text": "Livraison offerte dès 50€" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

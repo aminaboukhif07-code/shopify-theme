@@ -149,7 +149,33 @@
         "title": "Rejoignez la communauté Bettermoove",
         "text": "Recevez nos conseils pour soulager vos articulations et profitez de -10% sur votre première commande."
       }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m1": { "type": "item", "settings": { "icon": "check-circle", "text": "Compression graduée" } },
+        "m2": { "type": "item", "settings": { "icon": "leaf", "text": "Matière respirante" } },
+        "m3": { "type": "item", "settings": { "icon": "feather", "text": "Ultra-légère" } },
+        "m4": { "type": "item", "settings": { "icon": "shield", "text": "Recommandé par les kinés" } },
+        "m5": { "type": "item", "settings": { "icon": "heart", "text": "Confort toute la journée" } },
+        "m6": { "type": "item", "settings": { "icon": "truck", "text": "Livraison offerte dès 50€" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4", "m5", "m6"]
+    },
+    "stats": {
+      "type": "stats",
+      "blocks": {
+        "st1": { "type": "stat", "settings": { "number": "92%", "label": "ressentent un soulagement dès la première semaine" } },
+        "st2": { "type": "stat", "settings": { "number": "12 000+", "label": "clients soulagés à travers la France" } },
+        "st3": { "type": "stat", "settings": { "number": "4,9/5", "label": "note moyenne sur plus de 2 300 avis vérifiés" } }
+      },
+      "block_order": ["st1", "st2", "st3"],
+      "settings": {
+        "soft_bg": true,
+        "eyebrow": "Des résultats qui parlent",
+        "title": "La confiance de milliers de Français"
+      }
     }
   },
-  "order": ["hero", "trust", "benefits", "image_text", "how", "testimonials", "comparison", "faq", "cta", "newsletter"]
+  "order": ["hero", "marquee", "benefits", "image_text", "stats", "how", "testimonials", "trust", "comparison", "faq", "cta", "newsletter"]
 }
