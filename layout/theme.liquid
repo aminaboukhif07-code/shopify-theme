@@ -6,9 +6,6 @@
     <meta name="theme-color" content="{{ settings.color_cta }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {%- if settings.font_heading -%}{{ settings.font_heading | font_face: font_display: 'swap' }}{%- endif -%}
-    {%- if settings.font_body -%}{{ settings.font_body | font_face: font_display: 'swap' }}{%- endif -%}
-
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
@@ -29,6 +26,8 @@
     -%}
 
     <style>
+      {%- if settings.font_heading -%}{{ settings.font_heading | font_face: font_display: 'swap' }}{%- endif -%}
+      {%- if settings.font_body -%}{{ settings.font_body | font_face: font_display: 'swap' }}{%- endif -%}
       :root {
         --color-bg: {{ settings.color_background }};
         --color-text: {{ settings.color_text }};
