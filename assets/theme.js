@@ -331,6 +331,44 @@
   });
 
   /* ----------------------------------------------------------------------- */
+  /*  Comparateur avant / après                                              */
+  /* ----------------------------------------------------------------------- */
+  $$('[data-compare]').forEach((el) => {
+    let dragging = false;
+
+    const setPos = (clientX) => {
+      const rect = el.getBoundingClientRect();
+      let pct = ((clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      el.style.setProperty('--pos', pct + '%');
+      el.setAttribute('aria-valuenow', Math.round(pct));
+    };
+
+    el.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      el.setPointerCapture && el.setPointerCapture(e.pointerId);
+      setPos(e.clientX);
+    });
+    el.addEventListener('pointermove', (e) => {
+      if (dragging) setPos(e.clientX);
+    });
+    el.addEventListener('pointerup', () => (dragging = false));
+    el.addEventListener('pointercancel', () => (dragging = false));
+
+    // Accessibilité clavier
+    el.addEventListener('keydown', (e) => {
+      const current = parseFloat(el.style.getPropertyValue('--pos')) || 50;
+      let next = current;
+      if (e.key === 'ArrowLeft') next = Math.max(0, current - 4);
+      else if (e.key === 'ArrowRight') next = Math.min(100, current + 4);
+      else return;
+      e.preventDefault();
+      el.style.setProperty('--pos', next + '%');
+      el.setAttribute('aria-valuenow', Math.round(next));
+    });
+  });
+
+  /* ----------------------------------------------------------------------- */
   /*  Newsletter (feedback)                                                  */
   /* ----------------------------------------------------------------------- */
   // Géré côté Shopify via le formulaire customer.

@@ -1,0 +1,77 @@
+<section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    {%- if section.settings.title != blank or section.settings.eyebrow != blank -%}
+      <div class="section-header">
+        {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.title != blank -%}<h2>{{ section.settings.title }}</h2>{%- endif -%}
+        {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div
+      class="compare"
+      data-compare
+      style="--pos: {{ section.settings.start_position }}%; aspect-ratio: {{ section.settings.ratio }};"
+      tabindex="0"
+      role="slider"
+      aria-label="Comparateur : faites glisser pour comparer"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="{{ section.settings.start_position }}"
+    >
+      <div class="compare__layer compare__after">
+        {%- if section.settings.image_after != blank -%}
+          {{ section.settings.image_after | image_url: width: 1400 | image_tag: widths: '600,900,1200,1400', sizes: '(max-width: 990px) 100vw, 920px', alt: section.settings.label_after }}
+        {%- else -%}
+          {{ 'product-2' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      <div class="compare__layer compare__before">
+        {%- if section.settings.image_before != blank -%}
+          {{ section.settings.image_before | image_url: width: 1400 | image_tag: widths: '600,900,1200,1400', sizes: '(max-width: 990px) 100vw, 920px', alt: section.settings.label_before }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.label_before != blank -%}<span class="compare__label compare__label--before">{{ section.settings.label_before }}</span>{%- endif -%}
+      {%- if section.settings.label_after != blank -%}<span class="compare__label compare__label--after">{{ section.settings.label_after }}</span>{%- endif -%}
+
+      <div class="compare__handle" data-compare-handle aria-hidden="true">
+        <span class="compare__grip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="10 7 5 12 10 17"/><polyline points="14 7 19 12 14 17"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparateur avant/après",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "La différence se voit" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "BetterKnee vs les autres" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Glissez le curseur pour comparer." },
+    { "type": "header", "content": "Images" },
+    { "type": "image_picker", "id": "image_before", "label": "Image de gauche (les autres)" },
+    { "type": "image_picker", "id": "image_after", "label": "Image de droite (BetterKnee)" },
+    { "type": "text", "id": "label_before", "label": "Étiquette gauche", "default": "Les autres" },
+    { "type": "text", "id": "label_after", "label": "Étiquette droite", "default": "BetterKnee" },
+    { "type": "header", "content": "Réglages" },
+    {
+      "type": "select", "id": "ratio", "label": "Format de l'image",
+      "options": [
+        { "value": "4 / 5", "label": "Portrait (4:5)" },
+        { "value": "1 / 1", "label": "Carré (1:1)" },
+        { "value": "4 / 3", "label": "Paysage (4:3)" },
+        { "value": "16 / 10", "label": "Large (16:10)" }
+      ],
+      "default": "4 / 5"
+    },
+    { "type": "range", "id": "start_position", "min": 10, "max": 90, "step": 5, "unit": "%", "label": "Position de départ du curseur", "default": 50 }
+  ],
+  "presets": [{ "name": "Comparateur avant/après" }]
+}
+{% endschema %}

@@ -65,18 +65,17 @@
         "button_url": "/products/genouillere-betterknee"
       }
     },
-    "stats": {
-      "type": "stats",
-      "blocks": {
-        "st1": { "type": "stat", "settings": { "number": "92%", "label": "ressentent un genou plus apaisé dès les premiers jours" } },
-        "st2": { "type": "stat", "settings": { "number": "12 000+", "label": "ont retrouvé le plaisir de bouger sans y penser" } },
-        "st3": { "type": "stat", "settings": { "number": "4,9/5", "label": "sur plus de 2 300 avis clients vérifiés" } }
-      },
-      "block_order": ["st1", "st2", "st3"],
+    "compare": {
+      "type": "compare-slider",
       "settings": {
         "soft_bg": true,
-        "eyebrow": "Ce qu'ils ressentent",
-        "title": "Un genou plus léger, ça se ressent"
+        "eyebrow": "La différence se voit",
+        "title": "BetterKnee vs les autres",
+        "subtitle": "Glissez le curseur : d'un côté une genouillère épaisse et voyante, de l'autre la BetterKnee, fine et discrète.",
+        "label_before": "Les autres",
+        "label_after": "BetterKnee",
+        "ratio": "4 / 5",
+        "start_position": 50
       }
     },
     "how": {
@@ -177,5 +176,5 @@
       "block_order": ["m1", "m2", "m3", "m4", "m5", "m6"]
     }
   },
-  "order": ["hero", "marquee", "benefits", "image_text", "stats", "how", "testimonials", "trust", "comparison", "faq", "cta", "newsletter"]
+  "order": ["hero", "marquee", "benefits", "image_text", "compare", "how", "testimonials", "trust", "comparison", "faq", "cta", "newsletter"]
 }
