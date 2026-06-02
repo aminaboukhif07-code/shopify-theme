@@ -110,7 +110,16 @@ li { margin-bottom: 0.4em; }
 /* -------------------------------------------------------------------------- */
 /*  Annonce + Header                                                          */
 /* -------------------------------------------------------------------------- */
-.announcement-bar { background: var(--color-text); color: var(--color-bg); text-align: center; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em; }
+.announcement-bar { background: var(--color-text); color: var(--color-bg); overflow: hidden; }
+.announcement-bar__track { display: flex; align-items: center; width: max-content; animation: announce-marquee 30s linear infinite; }
+.announcement-bar:hover .announcement-bar__track { animation-play-state: paused; }
+.announcement-bar__item { white-space: nowrap; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; padding-block: 0.55rem; }
+.announcement-bar__item::after { content: '·'; margin-inline: 1.6rem; opacity: 0.5; }
+@keyframes announce-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .announcement-bar__track { animation: none; width: 100%; flex-wrap: wrap; justify-content: center; }
+  .announcement-bar__item:last-child::after { content: ''; margin: 0; }
+}
 .announcement-bar__inner { padding: 0.55rem 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
 
 .header { position: sticky; top: 0; z-index: 100; background: color-mix(in srgb, var(--color-bg) 88%, transparent); backdrop-filter: saturate(140%) blur(12px); border-bottom: 1px solid var(--color-border); }

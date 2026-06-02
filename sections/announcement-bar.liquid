@@ -1,8 +1,13 @@
-{%- if section.settings.text != blank -%}
-  <div class="announcement-bar">
-    <div class="announcement-bar__inner">
-      {%- if section.settings.show_icon -%}{% render 'icon', name: 'truck', class: 'icon-truck' %}{%- endif -%}
-      <span>{{ section.settings.text }}</span>
+{%- assign items = section.settings.text | split: '|' -%}
+{%- if items.size > 0 and section.settings.text != blank -%}
+  <div class="announcement-bar" role="region" aria-label="Annonces">
+    <div class="announcement-bar__track">
+      {%- comment -%} Contenu dupliqué pour un défilement continu et fluide. {%- endcomment -%}
+      {%- for i in (1..4) -%}
+        {%- for item in items -%}
+          <span class="announcement-bar__item" {% if i > 1 %}aria-hidden="true"{% endif %}>{{ item | strip }}</span>
+        {%- endfor -%}
+      {%- endfor -%}
     </div>
   </div>
 {%- endif -%}
@@ -11,8 +16,17 @@
 {
   "name": "Barre d'annonce",
   "settings": [
-    { "type": "text", "id": "text", "label": "Texte", "default": "🚚 Livraison OFFERTE dès 50€ · Paiement sécurisé · Satisfait ou remboursé 30 jours" },
-    { "type": "checkbox", "id": "show_icon", "label": "Afficher l'icône", "default": false }
-  ]
+    {
+      "type": "paragraph",
+      "content": "Séparez vos messages par une barre verticale « | ». Ils défilent en boucle ; survoler met le défilement en pause."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Messages (séparés par « | »)",
+      "default": "Livraison offerte dès 59€ en France 🇫🇷|Service client disponible 7j/7|Paiement 100% sécurisé"
+    }
+  ],
+  "presets": [{ "name": "Barre d'annonce" }]
 }
 {% endschema %}
