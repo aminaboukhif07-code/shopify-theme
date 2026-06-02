@@ -72,9 +72,11 @@
         "eyebrow": "La différence se voit",
         "title": "BetterKnee vs les autres",
         "subtitle": "Glissez le curseur : d'un côté une genouillère épaisse et voyante, de l'autre la BetterKnee, fine et discrète.",
+        "image_before": "shopify://shop_images/3a9f7902-0cee-41ec-afdb-267bfd1f6850_2.jpg",
+        "image_after": "shopify://shop_images/cf8b5169-81c3-48ea-9872-5bd0ecea0031.jpg",
         "label_before": "Les autres",
         "label_after": "BetterKnee",
-        "ratio": "4 / 5",
+        "ratio": "1 / 1",
         "start_position": 50
       }
     },
