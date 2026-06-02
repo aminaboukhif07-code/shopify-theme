@@ -3,10 +3,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "re1": { "type": "reassurance", "settings": { "icon": "truck", "text": "Livraison offerte dès 50€, expédiée sous 24h" } },
-        "re2": { "type": "reassurance", "settings": { "icon": "return", "text": "30 jours pour l'adopter, ou remboursé sans question" } },
-        "re3": { "type": "reassurance", "settings": { "icon": "shield", "text": "Paiement 100% sécurisé, vos données protégées" } },
-        "re4": { "type": "reassurance", "settings": { "icon": "headset", "text": "Une question ? Notre équipe française vous répond sous 24h" } }
+        "re1": { "type": "reassurance", "settings": { "icon": "feather", "text": "Si légère et sans couture qu'on l'oublie en la portant" } },
+        "re2": { "type": "reassurance", "settings": { "icon": "truck", "text": "Livraison offerte dès 50€, expédiée sous 24h" } },
+        "re3": { "type": "reassurance", "settings": { "icon": "return", "text": "30 jours pour l'adopter, ou remboursé sans question" } },
+        "re4": { "type": "reassurance", "settings": { "icon": "headset", "text": "Une équipe française à votre écoute, sous 24h" } }
       },
       "block_order": ["re1", "re2", "re3", "re4"],
       "settings": {
@@ -24,29 +24,29 @@
     "benefits": {
       "type": "benefits",
       "blocks": {
-        "x1": { "type": "benefit", "settings": { "icon": "heart", "title": "Apaise la douleur", "text": "La compression graduée aide à calmer les douleurs articulaires et ligamentaires." } },
-        "x2": { "type": "benefit", "settings": { "icon": "activity", "title": "Stabilise chaque pas", "text": "Un maintien ferme qui sécurise l'articulation et redonne confiance." } },
-        "x3": { "type": "benefit", "settings": { "icon": "feather", "title": "Confort invisible", "text": "Tissu respirant et sans couture, on oublie qu'on la porte." } },
-        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Facile à enfiler", "text": "Se glisse en un geste et épouse parfaitement votre morphologie." } }
+        "x1": { "type": "benefit", "settings": { "icon": "feather", "title": "Un confort qu'on oublie", "text": "Légère et sans couture, on ne la sent plus en quelques minutes." } },
+        "x2": { "type": "benefit", "settings": { "icon": "activity", "title": "La liberté de bouger", "text": "Retrouvez les gestes du quotidien, à votre rythme et sans appréhension." } },
+        "x3": { "type": "benefit", "settings": { "icon": "heart", "title": "La confiance retrouvée", "text": "Un maintien rassurant qui sécurise chaque pas." } },
+        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Discrète, toujours", "text": "Invisible sous un pantalon, elle vous accompagne en toute discrétion." } }
       },
       "block_order": ["x1", "x2", "x3", "x4"],
       "settings": {
         "soft_bg": true,
-        "eyebrow": "Pourquoi elle change tout",
-        "title": "Tout ce dont votre genou a besoin"
+        "eyebrow": "Plus qu'une genouillère",
+        "title": "Pensée pour se faire oublier"
       }
     },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "r1": { "type": "review", "settings": { "rating": 5, "name": "Martine D., 58 ans", "text": "En une semaine, je remarche sans grimacer. Je ne la quitte plus.", "verified": true } },
-        "r2": { "type": "review", "settings": { "rating": 5, "name": "Jean-Pierre L., 63 ans", "text": "J'ai repris mes randonnées. On l'oublie sous le pantalon, le maintien est bluffant.", "verified": true } },
-        "r3": { "type": "review", "settings": { "rating": 5, "name": "Christine M., 52 ans", "text": "Parfaite pour le jardinage. Soutient sans comprimer et ne tient pas chaud.", "verified": true } }
+        "r1": { "type": "review", "settings": { "rating": 5, "name": "Martine D., 58 ans", "text": "Au début je l'oubliais. Puis j'ai réalisé que je montais mes escaliers sans y penser.", "verified": true } },
+        "r2": { "type": "review", "settings": { "rating": 5, "name": "Jean-Pierre L., 63 ans", "text": "On ne la sent pas sous le pantalon, et j'ai repris mes marches du dimanche en confiance.", "verified": true } },
+        "r3": { "type": "review", "settings": { "rating": 5, "name": "Christine M., 52 ans", "text": "Légère, je l'oublie. Je profite à nouveau de mon jardin sans appréhension.", "verified": true } }
       },
       "block_order": ["r1", "r2", "r3"],
       "settings": {
-        "eyebrow": "Ils ont retrouvé le sourire",
-        "title": "Ce qu'en disent nos clients",
+        "eyebrow": "Leurs mots, pas les nôtres",
+        "title": "Ils ont retrouvé leur liberté",
         "show_rating": true,
         "rating_text": "4,9/5 sur plus de 2 300 avis vérifiés"
       }
@@ -54,10 +54,10 @@
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "qa", "settings": { "question": "Vais-je vraiment ressentir un soulagement ?", "answer": "<p>La compression graduée stabilise l'articulation et aide à réduire la pression sur le genou. La plupart de nos clients ressentent un mieux dès les premiers ports — et vous avez 30 jours pour en juger.</p>" } },
+        "q1": { "type": "qa", "settings": { "question": "Est-ce vraiment confortable au quotidien ?", "answer": "<p>Oui. Sans couture et respirante, on l'oublie en quelques minutes — c'est souvent en bougeant qu'on remarque la différence. 30 jours pour l'essayer sereinement.</p>" } },
         "q2": { "type": "qa", "settings": { "question": "Comment choisir ma taille ?", "answer": "<p>Mesurez votre tour de genou au centre de la rotule et reportez-vous au guide des tailles. En cas de doute, prenez la taille au-dessus.</p>" } },
-        "q3": { "type": "qa", "settings": { "question": "Puis-je la porter toute la journée ?", "answer": "<p>Oui, la matière respirante et sans couture permet un port prolongé, au quotidien comme à l'effort.</p>" } },
-        "q4": { "type": "qa", "settings": { "question": "Et si elle ne me convient pas ?", "answer": "<p>30 jours satisfait ou remboursé, sans condition. Vous ne prenez aucun risque.</p>" } }
+        "q3": { "type": "qa", "settings": { "question": "Puis-je la porter toute la journée ?", "answer": "<p>Oui, sa matière légère et respirante permet un port prolongé, au quotidien comme à l'effort.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "Et si elle ne me convient pas ?", "answer": "<p>30 jours pour l'adopter, ou remboursé sans question. Vous ne prenez aucun risque.</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4"],
       "settings": { "soft_bg": true, "title": "Questions fréquentes" }
