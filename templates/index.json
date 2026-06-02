@@ -3,20 +3,20 @@
     "hero": {
       "type": "hero",
       "blocks": {
-        "b1": { "type": "benefit", "settings": { "text": "Un maintien si discret qu'on l'oublie" } },
-        "b2": { "type": "benefit", "settings": { "text": "La liberté de bouger, retrouvée" } },
+        "b1": { "type": "benefit", "settings": { "text": "Apaise les douleurs au genou, en douceur" } },
+        "b2": { "type": "benefit", "settings": { "text": "Un maintien si discret qu'on l'oublie" } },
         "b3": { "type": "benefit", "settings": { "text": "La confiance de remonter les escaliers" } }
       },
       "block_order": ["b1", "b2", "b3"],
       "settings": {
         "soft_bg": true,
-        "eyebrow": "Une nouvelle étape, pas une limite",
-        "title": "Votre corps évolue, votre vie continue",
-        "subtitle": "La BetterKnee est si légère et discrète qu'on l'oublie… jusqu'à remarquer qu'on bouge plus librement, avec moins de gêne. Les escaliers ne seront plus jamais un obstacle.",
+        "eyebrow": "Pensée pour les genoux sensibles",
+        "title": "Soulagez vos genoux, sans y penser",
+        "subtitle": "La BetterKnee soutient votre genou en douceur et aide à apaiser les douleurs du quotidien. Si légère qu'on l'oublie… jusqu'à remarquer qu'on remonte les escaliers sans y penser.",
         "show_rating": true,
         "rating_text": "4,9/5 · ils ont retrouvé leur liberté de mouvement",
         "product": "genouillere-betterknee",
-        "button_label": "Retrouver ma liberté",
+        "button_label": "Soulager mes genoux",
         "button_url": "/products/genouillere-betterknee",
         "show_price": true,
         "badge_text": "30 jours pour l'adopter"
@@ -25,7 +25,7 @@
     "trust": {
       "type": "trust-strip",
       "blocks": {
-        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Livraison offerte", "subtitle": "Expédiée sous 24h" } },
+        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Livraison offerte", "subtitle": "Dès 59€ · livraison rapide" } },
         "t2": { "type": "item", "settings": { "icon": "return", "title": "30 jours pour l'adopter", "subtitle": "Ou remboursé, sereinement" } },
         "t3": { "type": "item", "settings": { "icon": "feather", "title": "Confort qu'on oublie", "subtitle": "Légère et sans couture" } },
         "t4": { "type": "item", "settings": { "icon": "headset", "title": "Une équipe française", "subtitle": "À votre écoute" } }
@@ -35,22 +35,22 @@
     "benefits": {
       "type": "benefits",
       "blocks": {
-        "x1": { "type": "benefit", "settings": { "icon": "feather", "title": "Un confort qu'on oublie", "text": "Si légère et sans couture qu'on ne la sent plus. On l'oublie… jusqu'à remarquer la différence." } },
-        "x2": { "type": "benefit", "settings": { "icon": "activity", "title": "La liberté de bouger", "text": "Marcher, jardiner, jouer avec ses petits-enfants : retrouvez les gestes qui font votre quotidien." } },
-        "x3": { "type": "benefit", "settings": { "icon": "heart", "title": "La confiance retrouvée", "text": "Un maintien rassurant qui sécurise chaque pas et vous redonne confiance dans vos mouvements." } },
-        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Discrète, toujours", "text": "Invisible sous un pantalon, elle vous accompagne sans que personne ne le remarque." } }
+        "x1": { "type": "benefit", "settings": { "icon": "heart", "title": "Apaise le genou en douceur", "text": "Un soutien enveloppant qui aide à soulager les douleurs et les tensions du quotidien." } },
+        "x2": { "type": "benefit", "settings": { "icon": "feather", "title": "Un confort qu'on oublie", "text": "Si légère et sans couture qu'on ne la sent plus. On l'oublie… jusqu'à remarquer la différence." } },
+        "x3": { "type": "benefit", "settings": { "icon": "activity", "title": "La liberté de bouger", "text": "Marcher, jardiner, jouer avec ses petits-enfants : retrouvez les gestes qui font votre quotidien." } },
+        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "La confiance retrouvée", "text": "Un maintien rassurant qui sécurise chaque pas, sans jamais comprimer." } }
       },
       "block_order": ["x1", "x2", "x3", "x4"],
       "settings": {
         "eyebrow": "Plus qu'une genouillère",
-        "title": "Conçue pour vous accompagner, pas pour se faire remarquer",
-        "subtitle": "Chaque détail vise une seule chose : que vous continuiez à vivre à votre rythme, sans y penser."
+        "title": "Soulager le genou, sans s'en rendre compte",
+        "subtitle": "Un vrai soutien pour vos articulations, dans un confort qu'on finit par oublier."
       }
     },
     "image_text": {
       "type": "image-with-text",
       "blocks": {
-        "p1": { "type": "point", "settings": { "text": "Continuer à bouger normalement, à votre rythme" } },
+        "p1": { "type": "point", "settings": { "text": "Apaise les douleurs au genou au fil de la journée" } },
         "p2": { "type": "point", "settings": { "text": "Rester autonome dans les gestes du quotidien" } },
         "p3": { "type": "point", "settings": { "text": "Avancer avec confiance, sans appréhension" } }
       },
@@ -60,7 +60,7 @@
         "reverse": false,
         "eyebrow": "Une nouvelle étape",
         "title": "Votre corps change. Vos envies, elles, ne changent pas.",
-        "text": "<p>Avec les années, le corps lance de nouveaux défis. Ce n'est pas une fin — c'est une étape, avec ses propres règles. La BetterKnee est là pour que vous continuiez à vivre pleinement : monter les escaliers, marcher des heures, rester autonome. Sans y penser.</p>",
+        "text": "<p>Quand le genou se rappelle à vous dans les escaliers ou au jardin, on finit par ralentir. Ce n'est pas une fin — c'est une étape. La BetterKnee soutient votre genou en douceur et apaise les douleurs, pour que vous continuiez à vivre à votre rythme. Sans y penser.</p>",
         "button_label": "Découvrir la BetterKnee",
         "button_url": "/products/genouillere-betterknee"
       }
@@ -68,15 +68,15 @@
     "stats": {
       "type": "stats",
       "blocks": {
-        "st1": { "type": "stat", "settings": { "number": "92%", "label": "se sentent plus libres de leurs mouvements" } },
-        "st2": { "type": "stat", "settings": { "number": "12 000+", "label": "ont retrouvé le plaisir de bouger" } },
+        "st1": { "type": "stat", "settings": { "number": "92%", "label": "ressentent un genou plus apaisé dès les premiers jours" } },
+        "st2": { "type": "stat", "settings": { "number": "12 000+", "label": "ont retrouvé le plaisir de bouger sans y penser" } },
         "st3": { "type": "stat", "settings": { "number": "4,9/5", "label": "sur plus de 2 300 avis clients vérifiés" } }
       },
       "block_order": ["st1", "st2", "st3"],
       "settings": {
         "soft_bg": true,
         "eyebrow": "Ce qu'ils ressentent",
-        "title": "La liberté, ça se ressent"
+        "title": "Un genou plus léger, ça se ressent"
       }
     },
     "how": {
@@ -84,28 +84,28 @@
       "blocks": {
         "s1": { "type": "step", "settings": { "title": "Trouvez votre taille", "text": "Mesurez votre tour de genou : la bonne taille en 30 secondes." } },
         "s2": { "type": "step", "settings": { "title": "Enfilez-la, puis oubliez-la", "text": "Elle se glisse en un geste et épouse votre genou. On ne la sent plus." } },
-        "s3": { "type": "step", "settings": { "title": "Ressentez la différence", "text": "Au fil de la journée, vous remarquez que vous bougez plus librement." } }
+        "s3": { "type": "step", "settings": { "title": "Sentez le genou s'apaiser", "text": "Au fil de la journée, vous remarquez que vous bougez plus librement, avec moins de douleur." } }
       },
       "block_order": ["s1", "s2", "s3"],
       "settings": {
         "soft_bg": true,
         "eyebrow": "Simple, comme ça doit l'être",
-        "title": "Le confort en 3 gestes",
-        "button_label": "Retrouver ma liberté",
+        "title": "Le soulagement en 3 gestes",
+        "button_label": "Soulager mes genoux",
         "button_url": "/products/genouillere-betterknee"
       }
     },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "r1": { "type": "review", "settings": { "rating": 5, "name": "Martine D., 58 ans", "text": "Au début je l'oubliais complètement. Puis j'ai réalisé que je montais mes escaliers sans y penser. C'est ça qui m'a frappée.", "verified": true } },
-        "r2": { "type": "review", "settings": { "rating": 5, "name": "Jean-Pierre L., 63 ans", "text": "Discrète sous le pantalon, on ne la sent pas. Et pourtant j'ai repris mes marches du dimanche, en confiance.", "verified": true } },
-        "r3": { "type": "review", "settings": { "rating": 5, "name": "Christine M., 52 ans", "text": "Légère, confortable, je l'oublie. Je profite à nouveau de mon jardin sans appréhender le moindre mouvement.", "verified": true } }
+        "r1": { "type": "review", "settings": { "rating": 5, "name": "Martine D., 58 ans", "text": "Mes genoux me faisaient souffrir dans les escaliers. Au début j'oubliais que je la portais… puis j'ai réalisé que je montais sans grimacer.", "verified": true } },
+        "r2": { "type": "review", "settings": { "rating": 5, "name": "Jean-Pierre L., 63 ans", "text": "Discrète sous le pantalon, on ne la sent pas. Mes douleurs se sont calmées et j'ai repris mes marches du dimanche, en confiance.", "verified": true } },
+        "r3": { "type": "review", "settings": { "rating": 5, "name": "Christine M., 52 ans", "text": "Légère et confortable, je l'oublie. Mon genou est bien plus apaisé et je profite à nouveau de mon jardin sans appréhension.", "verified": true } }
       },
       "block_order": ["r1", "r2", "r3"],
       "settings": {
         "eyebrow": "Leurs mots, pas les nôtres",
-        "title": "Ils ont retrouvé leur liberté de mouvement",
+        "title": "Des genoux apaisés, une vie retrouvée",
         "show_rating": true,
         "rating_text": "4,9/5 sur plus de 2 300 avis vérifiés"
       }
@@ -113,10 +113,10 @@
     "comparison": {
       "type": "comparison",
       "blocks": {
-        "c1": { "type": "row", "settings": { "feature": "Si légère qu'on l'oublie" } },
-        "c2": { "type": "row", "settings": { "feature": "Tissu sans couture, sans irritation" } },
-        "c3": { "type": "row", "settings": { "feature": "Maintien qui rassure sans comprimer" } },
-        "c4": { "type": "row", "settings": { "feature": "Discrète sous les vêtements" } },
+        "c1": { "type": "row", "settings": { "feature": "Aide à apaiser les douleurs au genou" } },
+        "c2": { "type": "row", "settings": { "feature": "Si légère qu'on l'oublie" } },
+        "c3": { "type": "row", "settings": { "feature": "Tissu sans couture, sans irritation" } },
+        "c4": { "type": "row", "settings": { "feature": "Maintien qui rassure sans comprimer" } },
         "c5": { "type": "row", "settings": { "feature": "30 jours pour l'adopter sereinement" } }
       },
       "block_order": ["c1", "c2", "c3", "c4", "c5"],
@@ -131,11 +131,11 @@
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "qa", "settings": { "question": "Est-ce vraiment confortable au quotidien ?", "answer": "<p>Oui. Sans couture et respirante, on l'oublie en quelques minutes — c'est souvent en bougeant qu'on remarque la différence. Et vous avez 30 jours pour l'essayer en toute sérénité.</p>" } },
-        "q2": { "type": "qa", "settings": { "question": "Comment choisir ma taille ?", "answer": "<p>Mesurez votre tour de genou au centre de la rotule et reportez-vous au guide des tailles sur la page produit. En cas de doute, prenez la taille au-dessus.</p>" } },
-        "q3": { "type": "qa", "settings": { "question": "Puis-je la porter toute la journée ?", "answer": "<p>Absolument. Sa matière légère et respirante permet un port prolongé, au quotidien comme à l'effort, sans gêne ni transpiration excessive.</p>" } },
-        "q4": { "type": "qa", "settings": { "question": "En combien de temps suis-je livré(e) ?", "answer": "<p>Expédition sous 24h et livraison offerte dès 50€. Vous recevez votre commande en 2 à 4 jours ouvrés partout en France.</p>" } },
-        "q5": { "type": "qa", "settings": { "question": "Et si elle ne me convient pas ?", "answer": "<p>Vous avez 30 jours pour l'adopter. Si elle ne vous accompagne pas comme vous l'espériez, on vous rembourse — sans question.</p>" } }
+        "q1": { "type": "qa", "settings": { "question": "Est-ce que ça soulage vraiment les douleurs au genou ?", "answer": "<p>La BetterKnee enveloppe le genou d'un soutien doux qui aide à apaiser les douleurs et tensions du quotidien. La plupart de nos clients ressentent un genou plus léger dès les premiers ports — et vous avez 30 jours pour en juger sereinement.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "Est-ce vraiment confortable au quotidien ?", "answer": "<p>Oui. Sans couture et respirante, on l'oublie en quelques minutes — c'est souvent en bougeant qu'on remarque la différence.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "Comment choisir ma taille ?", "answer": "<p>Mesurez votre tour de genou au centre de la rotule et reportez-vous au guide des tailles sur la page produit. En cas de doute, prenez la taille au-dessus.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "Puis-je la porter toute la journée ?", "answer": "<p>Absolument. Sa matière légère et respirante permet un port prolongé, au quotidien comme à l'effort, sans gêne.</p>" } },
+        "q5": { "type": "qa", "settings": { "question": "Comment se passe la livraison ?", "answer": "<p>Livraison rapide et offerte dès 59€ d'achat, partout en France. Et si elle ne vous convient pas, vous avez 30 jours pour être remboursé(e).</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4", "q5"],
       "settings": {
@@ -149,10 +149,10 @@
         "dark": true,
         "eyebrow": "Votre quotidien, en mieux",
         "title": "Et si les escaliers n'étaient plus jamais un obstacle ?",
-        "text": "La BetterKnee vous accompagne discrètement, pour que vous continuiez à vivre pleinement — à votre rythme.",
-        "button_label": "Retrouver ma liberté de mouvement",
+        "text": "La BetterKnee apaise vos genoux en douceur et vous accompagne discrètement, pour que vous continuiez à vivre pleinement — à votre rythme.",
+        "button_label": "Soulager mes genoux",
         "button_url": "/products/genouillere-betterknee",
-        "subtext": "✓ Livraison offerte dès 50€   ✓ 30 jours pour l'adopter   ✓ Expédiée sous 24h"
+        "subtext": "✓ Livraison offerte dès 59€   ✓ Livraison rapide   ✓ 30 jours pour l'adopter"
       }
     },
     "newsletter": {
@@ -160,15 +160,15 @@
       "settings": {
         "soft_bg": true,
         "eyebrow": "-10% pour commencer",
-        "title": "Restez libres de vos mouvements",
-        "text": "Recevez nos conseils pour prendre soin de vos articulations, et profitez de -10% sur votre première commande."
+        "title": "Prenez soin de vos genoux",
+        "text": "Recevez nos conseils pour soulager et préserver vos articulations, et profitez de -10% sur votre première commande."
       }
     },
     "marquee": {
       "type": "marquee",
       "blocks": {
-        "m1": { "type": "item", "settings": { "icon": "feather", "text": "Le confort qu'on oublie" } },
-        "m2": { "type": "item", "settings": { "icon": "heart", "text": "Liberté retrouvée" } },
+        "m1": { "type": "item", "settings": { "icon": "heart", "text": "Apaise le genou en douceur" } },
+        "m2": { "type": "item", "settings": { "icon": "feather", "text": "Le confort qu'on oublie" } },
         "m3": { "type": "item", "settings": { "icon": "check-circle", "text": "Maintien discret" } },
         "m4": { "type": "item", "settings": { "icon": "leaf", "text": "Légère comme une seconde peau" } },
         "m5": { "type": "item", "settings": { "icon": "activity", "text": "Bouger en confiance" } },

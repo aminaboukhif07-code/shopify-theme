@@ -2,7 +2,8 @@
 <div data-cart-contents>
   {%- if cart.item_count > 0 -%}
     {%- if settings.show_free_shipping_bar -%}
-      {%- assign threshold = settings.free_shipping_threshold | times: 100 -%}
+      {%- comment -%} Seuil livraison offerte : 59€ (France). Modifiable ici. {%- endcomment -%}
+      {%- assign threshold = 5900 -%}
       {%- assign remaining = threshold | minus: cart.total_price -%}
       <div class="free-shipping-bar">
         <div class="free-shipping-bar__text">

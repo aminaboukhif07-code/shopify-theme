@@ -170,10 +170,10 @@
         "id": "free_shipping_threshold",
         "min": 0,
         "max": 150,
-        "step": 5,
+        "step": 1,
         "unit": "€",
         "label": "Seuil livraison offerte",
-        "default": 50
+        "default": 59
       }
     ]
   }
