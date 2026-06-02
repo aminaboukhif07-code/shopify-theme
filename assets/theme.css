@@ -208,34 +208,40 @@ li { margin-bottom: 0.4em; }
 .hero--overlay .hero__content { max-width: 600px; color: #fff; }
 .hero--overlay .hero__title,
 .hero--overlay .hero__subtitle { color: #fff; }
-.hero--overlay .hero__title { font-size: clamp(1.7rem, 6.8vw, 2.3rem); margin-bottom: 0.55rem; }
+.hero--overlay .hero__title { font-size: clamp(1.4rem, 5.4vw, 1.95rem); line-height: 1.14; margin-bottom: 0.5rem; }
 .hero--overlay .hero__subtitle {
-  opacity: 0.95; font-size: 0.96rem; margin-bottom: 1rem;
+  opacity: 0.95; font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.95rem;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-.hero--overlay .hero__eyebrow { background: rgba(255, 255, 255, 0.18); color: #fff; margin-bottom: 0.85rem; font-size: 0.7rem; padding: 0.38rem 0.8rem; }
-.hero--overlay .hero__price { font-weight: 700; font-size: 1.15rem; color: #fff; }
+.hero--overlay .hero__eyebrow { background: rgba(255, 255, 255, 0.18); color: #fff; margin-bottom: 0.75rem; font-size: 0.66rem; padding: 0.34rem 0.75rem; }
+.hero--overlay .hero__price { font-weight: 700; font-size: 1.02rem; color: #fff; }
 /* Mobile : hero épuré façon Flytex (pas de liste de bénéfices ni d'étoiles) */
 .hero--overlay .hero__benefits,
 .hero--overlay .hero__rating { display: none; }
-.hero--overlay .hero__cta-row .btn { width: 100%; }
+.hero--overlay .hero__cta-row .btn {
+  width: auto;
+  font-size: 1rem;
+  min-height: 48px;
+  padding: 0.72rem 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
 
 @media (min-width: 750px) {
   .hero--overlay { min-height: 78vh; min-height: 78svh; }
   .hero--overlay .hero__cta-row { flex-direction: row; align-items: center; flex-wrap: wrap; }
-  .hero--overlay .hero__cta-row .btn { width: auto; }
   .hero--overlay .hero__benefits { display: grid; }
   .hero--overlay .hero__benefits li { color: #fff; font-weight: 600; }
   .hero--overlay .hero__benefits .icon-check { color: #fff; }
   .hero--overlay .hero__rating { display: flex; color: #fff; }
-  .hero--overlay .hero__subtitle { display: block; -webkit-line-clamp: initial; overflow: visible; }
+  .hero--overlay .hero__subtitle { display: block; -webkit-line-clamp: initial; overflow: visible; font-size: 1rem; }
 }
 @media (min-width: 990px) {
   .hero--overlay { align-items: center; min-height: 88vh; min-height: 88svh; max-height: 860px; }
   .hero__overlay-inner { padding-block: 4rem; display: flex; justify-content: var(--hero-align, flex-start); }
   .hero--overlay .hero__content { max-width: 620px; }
-  .hero--overlay .hero__title { font-size: clamp(2.4rem, 4vw, 3.6rem); }
+  .hero--overlay .hero__title { font-size: clamp(2.3rem, 4vw, 3.4rem); }
   .hero--overlay .hero__subtitle { font-size: 1.1rem; }
+  .hero--overlay .hero__cta-row .btn { font-size: 1.1rem; min-height: 58px; padding: 1.05rem 2.1rem; }
 }
 
 /* -------------------------------------------------------------------------- */
