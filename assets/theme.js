@@ -335,6 +335,15 @@
   /* ----------------------------------------------------------------------- */
   $$('[data-compare]').forEach((el) => {
     let dragging = false;
+    const labelBefore = $('.compare__label--before', el);
+    const labelAfter = $('.compare__label--after', el);
+
+    const updateLabels = (pct) => {
+      // "Les autres" (gauche) s'efface quand on révèle BetterKnee en grand
+      if (labelBefore) labelBefore.style.opacity = pct <= 12 ? '0' : '1';
+      // "BetterKnee" (droite) s'efface quand on révèle Les autres en grand
+      if (labelAfter) labelAfter.style.opacity = pct >= 88 ? '0' : '1';
+    };
 
     const setPos = (clientX) => {
       const rect = el.getBoundingClientRect();
@@ -342,7 +351,11 @@
       pct = Math.max(0, Math.min(100, pct));
       el.style.setProperty('--pos', pct + '%');
       el.setAttribute('aria-valuenow', Math.round(pct));
+      updateLabels(pct);
     };
+
+    // État initial selon la position de départ
+    updateLabels(parseFloat(el.style.getPropertyValue('--pos')) || 50);
 
     el.addEventListener('pointerdown', (e) => {
       dragging = true;
@@ -365,6 +378,7 @@
       e.preventDefault();
       el.style.setProperty('--pos', next + '%');
       el.setAttribute('aria-valuenow', Math.round(next));
+      updateLabels(next);
     });
   });
 

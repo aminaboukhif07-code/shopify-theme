@@ -239,6 +239,7 @@ li { margin-bottom: 0.4em; }
   background: rgba(0, 0, 0, 0.55);
   color: #fff; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.03em;
   border-radius: 30px; backdrop-filter: blur(4px);
+  transition: opacity 0.25s ease;
 }
 .compare__label--before { left: 14px; }
 .compare__label--after { right: 14px; }
