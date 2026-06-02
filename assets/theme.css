@@ -217,8 +217,9 @@ li { margin-bottom: 0.4em; }
   width: 100%;
   max-width: 920px;
   margin-inline: auto;
-  aspect-ratio: 4 / 5;
-  border-radius: 20px;
+  aspect-ratio: 1 / 1;
+  max-height: 58vh;
+  border-radius: 18px;
   overflow: hidden;
   touch-action: none;
   user-select: none;
@@ -252,8 +253,15 @@ li { margin-bottom: 0.4em; }
   background: #fff; box-shadow: 0 3px 14px rgba(0, 0, 0, 0.32);
   display: flex; align-items: center; justify-content: center;
 }
-.compare__grip svg { width: 22px; height: 22px; color: var(--color-text); }
-@media (min-width: 750px) { .compare { aspect-ratio: 16 / 10; } }
+.compare__grip svg { width: 20px; height: 20px; color: var(--color-text); }
+@media (min-width: 750px) {
+  .compare { aspect-ratio: var(--ratio, 16 / 10); max-height: none; border-radius: 22px; }
+  .compare__grip { width: 46px; height: 46px; }
+  .compare__grip svg { width: 22px; height: 22px; }
+  .compare__label { top: 16px; font-size: 0.82rem; }
+  .compare__label--before { left: 16px; }
+  .compare__label--after { right: 16px; }
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Bandeau de confiance                                                      */
