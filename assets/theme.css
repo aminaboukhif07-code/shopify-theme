@@ -223,7 +223,10 @@ li { margin-bottom: 0.4em; }
 .hero--overlay .hero__rating { display: none; }
 .hero--overlay .hero__badges { margin-bottom: 1rem; }
 .hero--overlay .hero__badges li { color: #fff; font-size: 0.8rem; }
-.hero--overlay .hero__badges svg { color: #fff; }
+/* Icônes colorées (tape-à-l'œil) */
+.hero__badges li:nth-child(1) svg { color: #6CC08B; }
+.hero__badges li:nth-child(2) svg { color: #F2B33D; }
+.hero__badges li:nth-child(3) svg { color: #5AA9E6; }
 .hero--overlay .hero__cta-row { gap: 0.75rem; align-items: center; }
 .hero--overlay .hero__cta-row .btn {
   width: auto;
