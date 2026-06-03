@@ -563,24 +563,45 @@ li { margin-bottom: 0.4em; }
 .footer { background: var(--color-text); color: var(--color-bg); }
 .footer a { color: var(--color-bg); text-decoration: none; opacity: 0.82; }
 .footer a:hover { opacity: 1; text-decoration: underline; }
-.footer__grid { display: grid; grid-template-columns: 1fr; gap: 32px; padding-block: 48px; }
-.footer__brand h3 { color: var(--color-bg); }
-.footer__brand p { opacity: 0.78; max-width: 320px; }
-.footer__col h4 { color: var(--color-bg); margin-bottom: 1rem; }
-.footer__col ul { list-style: none; padding: 0; }
-.footer__col li { margin-bottom: 0.6rem; }
-.footer__social { display: flex; gap: 1rem; margin-top: 1rem; }
-.footer__social a svg { width: 24px; height: 24px; }
-.footer__social--center { justify-content: center; margin-top: 0; padding-top: 1.5rem; }
+
+/* Barre de réassurance */
+.footer__trust { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-block: 28px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.footer__trust-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; font-weight: 600; }
+.footer__trust-item svg { width: 24px; height: 24px; flex: none; color: var(--color-cta); }
+
+.footer__grid { display: grid; grid-template-columns: 1fr; gap: 32px; padding-block: 40px; }
 .footer__brandname { color: var(--color-bg); font-size: 1.8rem; margin-bottom: 0.4rem; }
 .footer__logo-img { max-height: 72px; width: auto; margin-bottom: 0.6rem; }
-.footer__tagline { opacity: 0.85; letter-spacing: 0.06em; font-size: 0.95rem; }
-.footer__payments { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding-top: 1.5rem; }
+.footer__tagline { opacity: 0.85; font-size: 0.95rem; max-width: 320px; }
+.footer__col h4 { color: var(--color-bg); margin-bottom: 1rem; font-size: 1.05rem; }
+.footer__col ul { list-style: none; padding: 0; }
+.footer__col li { margin-bottom: 0.6rem; }
+.footer__col--service p { opacity: 0.85; max-width: 320px; }
+
+/* Newsletter (capture) */
+.footer__news { margin-top: 1.25rem; }
+.footer__news-title { font-weight: 700; margin-bottom: 0.6rem; }
+.footer__news-form { display: flex; flex-direction: column; gap: 0.6rem; max-width: 360px; }
+.footer__news-form input { padding: 0.85rem 1rem; border: 1.5px solid rgba(255,255,255,0.3); border-radius: var(--button-radius); background: rgba(255,255,255,0.08); color: #fff; font-size: 0.95rem; }
+.footer__news-form input::placeholder { color: rgba(255,255,255,0.6); }
+.footer__news-form .btn { width: 100%; }
+
+.footer__cta { margin-top: 1rem; width: 100%; }
+.footer__social { display: flex; gap: 1rem; margin-top: 1.25rem; }
+.footer__social a svg { width: 24px; height: 24px; }
+.footer__social--center { justify-content: center; }
+
+.footer__payments { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding-top: 1.75rem; }
 .footer__payments svg, .footer__payments img { height: 30px; width: auto; }
-.footer__bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-block: 1.5rem; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; opacity: 0.8; }
-.footer__bottom--center { justify-content: center; text-align: center; }
+.footer__bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-block: 1.4rem; margin-top: 1.5rem; font-size: 0.82rem; opacity: 0.8; }
+.footer__bottom--center { text-align: center; }
+
 @media (min-width: 750px) {
-  .footer__grid { grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; padding-block: 64px; }
+  .footer__trust { grid-template-columns: repeat(4, 1fr); }
+  .footer__grid { grid-template-columns: 1.5fr 1fr 1.1fr; gap: 40px; padding-block: 56px; }
+  .footer__news-form { flex-direction: row; }
+  .footer__news-form .btn { width: auto; flex: none; }
+  .footer__cta { width: auto; }
 }
 
 /* -------------------------------------------------------------------------- */
