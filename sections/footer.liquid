@@ -1,80 +1,44 @@
 <footer class="footer" style="background: {{ section.settings.bg_color }};">
   <div class="page-width">
-
-    {%- comment -%} Barre de réassurance (conversion) {%- endcomment -%}
     <div class="footer__trust">
       <div class="footer__trust-item">{% render 'icon', name: 'truck' %}<span>Livraison offerte dès 59€</span></div>
       <div class="footer__trust-item">{% render 'icon', name: 'shield' %}<span>Satisfait ou remboursé 30 jours</span></div>
       <div class="footer__trust-item">{% render 'icon', name: 'card' %}<span>Paiement 100% sécurisé</span></div>
       <div class="footer__trust-item">{% render 'icon', name: 'headset' %}<span>Service client 7j/7</span></div>
     </div>
-
     <div class="footer__grid">
-      {%- comment -%} Marque + newsletter + réseaux {%- endcomment -%}
       <div class="footer__brand">
         {%- if section.settings.logo != blank -%}
-          {{ section.settings.logo | image_url: width: 520 | image_tag: class: 'footer__logo-img', alt: section.settings.brand_name | default: shop.name, widths: '260,400,520' }}
+          {{ section.settings.logo | image_url: width: 520 | image_tag: class: 'footer__logo-img', widths: '260,400,520', alt: shop.name }}
         {%- else -%}
           <h3 class="footer__brandname">{{ section.settings.brand_name | default: shop.name }}</h3>
         {%- endif -%}
         {%- if section.settings.tagline != blank -%}<p class="footer__tagline">{{ section.settings.tagline }}</p>{%- endif -%}
-
-        {%- if section.settings.show_newsletter -%}
-          <div class="footer__news">
-            {%- if section.settings.newsletter_title != blank -%}<p class="footer__news-title">{{ section.settings.newsletter_title }}</p>{%- endif -%}
-            {%- form 'customer', class: 'footer__news-form' -%}
-              <input type="hidden" name="contact[tags]" value="newsletter">
-              {%- if form.posted_successfully? -%}
-                <p class="field-success">{{ 'general.newsletter_form.confirmation' | t }}</p>
-              {%- else -%}
-                <label class="visually-hidden" for="footer-news-email">E-mail</label>
-                <input id="footer-news-email" type="email" name="contact[email]" placeholder="Votre e-mail" required>
-                <button type="submit" class="btn">{{ section.settings.newsletter_button }}</button>
-              {%- endif -%}
-            {%- endform -%}
-          </div>
-        {%- endif -%}
-
         <div class="footer__social">
           {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" aria-label="Facebook" target="_blank" rel="noopener">{% render 'icon', name: 'facebook' %}</a>{%- endif -%}
           {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" aria-label="Instagram" target="_blank" rel="noopener">{% render 'icon', name: 'instagram' %}</a>{%- endif -%}
           {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" aria-label="TikTok" target="_blank" rel="noopener">{% render 'icon', name: 'tiktok' %}</a>{%- endif -%}
         </div>
       </div>
-
-      {%- comment -%} Liens rapides (pages légales) {%- endcomment -%}
       <div class="footer__col">
         <h4>{{ section.settings.links_title }}</h4>
         <ul>
           <li><a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Politique de confidentialité</a></li>
           <li><a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">Conditions de service</a></li>
           <li><a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">Politique d'expédition</a></li>
-          <li><a href="{{ section.settings.legal_url | default: '/pages/mentions-legales' }}">Mentions légales</a></li>
-          <li><a href="{{ section.settings.cgv_url | default: '/pages/conditions-generales-de-vente' }}">Conditions générales de vente</a></li>
           <li><a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">Politique de remboursement</a></li>
         </ul>
       </div>
-
-      {%- comment -%} Service client + CTA {%- endcomment -%}
       <div class="footer__col footer__col--service">
         <h4>{{ section.settings.service_title }}</h4>
         <p>{{ section.settings.service_text }}</p>
-        {%- if section.settings.cta_label != blank -%}
-          <a href="{{ section.settings.cta_url | default: '/products/genouillere-betterknee' }}" class="btn footer__cta">{{ section.settings.cta_label }}</a>
-        {%- endif -%}
+        {%- if section.settings.cta_label != blank -%}<a href="{{ section.settings.cta_url | default: '/products/genouillere-betterknee' }}" class="btn footer__cta">{{ section.settings.cta_label }}</a>{%- endif -%}
       </div>
     </div>
-
-    {%- comment -%} Moyens de paiement {%- endcomment -%}
     {%- if shop.enabled_payment_types.size > 0 -%}
-      <div class="footer__payments">
-        {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'footer__payment-icon' }}{%- endfor -%}
-      </div>
+      <div class="footer__payments">{%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag }}{%- endfor -%}</div>
     {%- endif -%}
-
-    <div class="footer__bottom footer__bottom--center">
-      <span>&copy; {{ 'now' | date: '%Y' }}, {{ section.settings.brand_name | default: shop.name }} · Tous droits réservés</span>
-    </div>
+    <div class="footer__bottom footer__bottom--center"><span>&copy; {{ 'now' | date: '%Y' }}, {{ section.settings.brand_name | default: shop.name }} · Tous droits réservés</span></div>
   </div>
 </footer>
 
@@ -84,20 +48,12 @@
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Couleur de fond", "default": "#2F3E2C" },
     { "type": "image_picker", "id": "logo", "label": "Logo (sinon le nom s'affiche)" },
-    { "type": "text", "id": "brand_name", "label": "Nom de la marque (vide = nom de la boutique)", "default": "" },
+    { "type": "text", "id": "brand_name", "label": "Nom de la marque (vide = nom de la boutique)" },
     { "type": "text", "id": "tagline", "label": "Slogan", "default": "Retrouvez le plaisir de bouger, en toute liberté." },
-    { "type": "header", "content": "Newsletter (capture e-mail)" },
-    { "type": "checkbox", "id": "show_newsletter", "label": "Afficher la newsletter", "default": true },
-    { "type": "text", "id": "newsletter_title", "label": "Accroche", "default": "-10% sur votre 1ʳᵉ commande" },
-    { "type": "text", "id": "newsletter_button", "label": "Bouton", "default": "Je m'inscris" },
-    { "type": "header", "content": "Liens rapides" },
-    { "type": "text", "id": "links_title", "label": "Titre", "default": "Liens rapides" },
-    { "type": "url", "id": "legal_url", "label": "Lien « Mentions légales »" },
-    { "type": "url", "id": "cgv_url", "label": "Lien « Conditions générales de vente »" },
-    { "type": "header", "content": "Service client" },
-    { "type": "text", "id": "service_title", "label": "Titre", "default": "Service client" },
-    { "type": "textarea", "id": "service_text", "label": "Texte", "default": "Une question ? Notre équipe française vous répond sous 24h, 7j/7 — à contact@bettermoove.com." },
-    { "type": "text", "id": "cta_label", "label": "Texte du bouton CTA", "default": "Soulager mes genoux" },
+    { "type": "text", "id": "links_title", "label": "Titre liens", "default": "Liens rapides" },
+    { "type": "text", "id": "service_title", "label": "Titre service", "default": "Service client" },
+    { "type": "textarea", "id": "service_text", "label": "Texte service", "default": "Une question ? Notre équipe française vous répond sous 24h, 7j/7 — à contact@bettermoove.com." },
+    { "type": "text", "id": "cta_label", "label": "Bouton CTA", "default": "Soulager mes genoux" },
     { "type": "url", "id": "cta_url", "label": "Lien du bouton CTA" }
   ]
 }
