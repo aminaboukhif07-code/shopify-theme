@@ -18,7 +18,7 @@
     "social_tiktok": "",
     "cart_type": "drawer",
     "show_free_shipping_bar": true,
-    "free_shipping_threshold": 59
+    "free_shipping_threshold": 50
   },
   "presets": {
     "Bettermoove": {
