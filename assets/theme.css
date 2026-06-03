@@ -571,10 +571,16 @@ li { margin-bottom: 0.4em; }
 .footer__col li { margin-bottom: 0.6rem; }
 .footer__social { display: flex; gap: 1rem; margin-top: 1rem; }
 .footer__social a svg { width: 24px; height: 24px; }
-.footer__bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-block: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; opacity: 0.8; }
+.footer__social--center { justify-content: center; margin-top: 0; padding-top: 1.5rem; }
+.footer__brandname { color: var(--color-bg); font-size: 1.8rem; margin-bottom: 0.4rem; }
+.footer__logo-img { max-height: 72px; width: auto; margin-bottom: 0.6rem; }
+.footer__tagline { opacity: 0.85; letter-spacing: 0.06em; font-size: 0.95rem; }
+.footer__payments { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding-top: 1.5rem; }
+.footer__payments svg, .footer__payments img { height: 30px; width: auto; }
+.footer__bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-block: 1.5rem; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; opacity: 0.8; }
+.footer__bottom--center { justify-content: center; text-align: center; }
 @media (min-width: 750px) {
   .footer__grid { grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; padding-block: 64px; }
-  .footer__bottom { flex-direction: row; justify-content: space-between; }
 }
 
 /* -------------------------------------------------------------------------- */
