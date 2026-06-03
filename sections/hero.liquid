@@ -23,9 +23,9 @@
 
         {%- if section.settings.show_badges -%}
           <ul class="hero__badges">
-            {%- if section.settings.badge_1 != blank -%}<li>{% render 'icon', name: 'shield' %} <span>{{ section.settings.badge_1 }}</span></li>{%- endif -%}
-            {%- if section.settings.badge_2 != blank -%}<li>{% render 'icon', name: 'card' %} <span>{{ section.settings.badge_2 }}</span></li>{%- endif -%}
-            {%- if section.settings.badge_3 != blank -%}<li>{% render 'icon', name: 'truck' %} <span>{{ section.settings.badge_3 }}</span></li>{%- endif -%}
+            {%- if section.settings.badge_1 != blank -%}<li><span class="hero__badge-emoji">🛡️</span> <span>{{ section.settings.badge_1 }}</span></li>{%- endif -%}
+            {%- if section.settings.badge_2 != blank -%}<li><span class="hero__badge-emoji">🔒</span> <span>{{ section.settings.badge_2 }}</span></li>{%- endif -%}
+            {%- if section.settings.badge_3 != blank -%}<li><span class="hero__badge-emoji">🚚</span> <span>{{ section.settings.badge_3 }}</span></li>{%- endif -%}
           </ul>
         {%- elsif section.settings.show_rating -%}
           <div class="hero__rating">{% render 'stars', rating: 5 %} <span>{{ section.settings.rating_text }}</span></div>
