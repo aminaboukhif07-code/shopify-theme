@@ -22,6 +22,7 @@
       {%- if section.settings.show_search -%}
         <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'accessibility.search' | t }}">{% render 'icon', name: 'search' %}</a>
       {%- endif -%}
+      <a href="{{ routes.account_url }}" class="header__icon" aria-label="Compte client">{% render 'icon', name: 'user' %}</a>
       <button type="button" class="header__icon" data-cart-toggle aria-label="{{ 'accessibility.cart' | t }}">
         {% render 'icon', name: 'cart' %}
         <span class="cart-count" data-cart-count {% if cart.item_count == 0 %}style="display:none"{% endif %}>{{ cart.item_count }}</span>
