@@ -167,6 +167,9 @@ li { margin-bottom: 0.4em; }
 .hero__benefits .icon-check { flex: none; width: 25px; height: 25px; color: var(--color-cta-hover); margin-top: 2px; }
 .hero__cta-row { display: flex; flex-direction: column; gap: 1rem; align-items: stretch; }
 .hero__rating { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-weight: 500; font-size: 0.95rem; flex-wrap: wrap; }
+.hero__badges { list-style: none; padding: 0; margin: 0 0 1.3rem; display: grid; gap: 0.45rem; }
+.hero__badges li { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.85rem; }
+.hero__badges svg { width: 18px; height: 18px; flex: none; color: var(--color-cta-hover); }
 .hero__media { position: relative; margin-inline: -20px; }
 .hero__media img { width: 100%; object-fit: cover; aspect-ratio: 4/3; }
 .hero__badge { position: absolute; bottom: 1rem; left: 1rem; background: var(--color-bg); border-radius: 16px; padding: 0.7rem 1rem; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 10px 30px rgba(0,0,0,0.14); font-size: 0.9rem; font-weight: 600; }
@@ -218,6 +221,9 @@ li { margin-bottom: 0.4em; }
 /* Mobile : on masque seulement les listes (bénéfices / étoiles) */
 .hero--overlay .hero__benefits,
 .hero--overlay .hero__rating { display: none; }
+.hero--overlay .hero__badges { margin-bottom: 1rem; }
+.hero--overlay .hero__badges li { color: #fff; font-size: 0.8rem; }
+.hero--overlay .hero__badges svg { color: #fff; }
 .hero--overlay .hero__cta-row { gap: 0.75rem; align-items: center; }
 .hero--overlay .hero__cta-row .btn {
   width: auto;

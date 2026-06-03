@@ -21,7 +21,13 @@
         <h1 class="hero__title">{{ section.settings.title }}</h1>
         {%- if section.settings.subtitle != blank -%}<p class="hero__subtitle">{{ section.settings.subtitle }}</p>{%- endif -%}
 
-        {%- if section.settings.show_rating -%}
+        {%- if section.settings.show_badges -%}
+          <ul class="hero__badges">
+            {%- if section.settings.badge_1 != blank -%}<li>{% render 'icon', name: 'shield' %} <span>{{ section.settings.badge_1 }}</span></li>{%- endif -%}
+            {%- if section.settings.badge_2 != blank -%}<li>{% render 'icon', name: 'card' %} <span>{{ section.settings.badge_2 }}</span></li>{%- endif -%}
+            {%- if section.settings.badge_3 != blank -%}<li>{% render 'icon', name: 'truck' %} <span>{{ section.settings.badge_3 }}</span></li>{%- endif -%}
+          </ul>
+        {%- elsif section.settings.show_rating -%}
           <div class="hero__rating">{% render 'stars', rating: 5 %} <span>{{ section.settings.rating_text }}</span></div>
         {%- endif -%}
 
@@ -120,8 +126,12 @@
     { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Recommandé par les kinés" },
     { "type": "text", "id": "title", "label": "Titre", "default": "Dites adieu aux douleurs au genou" },
     { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "La genouillère de compression BetterKnee soulage vos articulations et vous redonne le plaisir de marcher, jardiner et bouger librement — sans douleur." },
-    { "type": "checkbox", "id": "show_rating", "label": "Afficher la note", "default": true },
+    { "type": "checkbox", "id": "show_rating", "label": "Afficher la note (si réassurances désactivées)", "default": true },
     { "type": "text", "id": "rating_text", "label": "Texte de note", "default": "4,9/5 · plus de 12 000 clients soulagés" },
+    { "type": "checkbox", "id": "show_badges", "label": "Afficher les réassurances (au lieu de la note)", "default": true },
+    { "type": "text", "id": "badge_1", "label": "Réassurance 1", "default": "Garantie 30 jours satisfait ou remboursé" },
+    { "type": "text", "id": "badge_2", "label": "Réassurance 2", "default": "Paiement 100% sécurisé" },
+    { "type": "text", "id": "badge_3", "label": "Réassurance 3", "default": "Livraison rapide" },
     { "type": "product", "id": "product", "label": "Produit mis en avant" },
     { "type": "image_picker", "id": "image", "label": "Image latérale (mode classique uniquement)" },
     { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Je soulage mon genou" },
