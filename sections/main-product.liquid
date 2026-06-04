@@ -2,7 +2,7 @@
   assign product = product
   assign sizes = section.settings.sizes | default: 'S (37-43cm),M (43-48cm),L (48-53cm),XL (53-58cm)' | split: ','
   comment
-    Variante affichée par défaut : la formule « 2 » si elle existe, sinon la première.
+    Formule affichée par défaut : « 2 » si elle existe, sinon la première.
   endcomment
   assign default_v = product.variants.first
   for v in product.variants
@@ -13,22 +13,23 @@
   endfor
 -%}
 
-<section class="section" data-product-container>
+<section class="section product-section" data-product-container>
   <div class="page-width">
     <div class="product">
-      {%- comment -%} Galerie {%- endcomment -%}
+
+      {%- comment -%} ----- Galerie ----- {%- endcomment -%}
       <div class="product__media" data-gallery>
         <div class="product__gallery-main" data-gallery-main>
           {%- if product.featured_media -%}
-            {{ product.featured_media | image_url: width: 1000 | image_tag: widths: '500,750,1000', sizes: '(max-width: 990px) 100vw, 50vw', fetchpriority: 'high', alt: product.title }}
+            {{ product.featured_media | image_url: width: 1100 | image_tag: widths: '500,750,1100', sizes: '(max-width: 990px) 100vw, 50vw', fetchpriority: 'high', alt: product.title }}
           {%- else -%}
             {{ 'product-2' | placeholder_svg_tag }}
           {%- endif -%}
         </div>
         {%- if product.media.size > 1 -%}
           <div class="product__thumbs">
-            {%- for media in product.media limit: 10 -%}
-              <button type="button" class="product__thumb {% if forloop.first %}is-active{% endif %}" data-gallery-thumb data-full="{{ media | image_url: width: 1000 }}" aria-label="Image {{ forloop.index }}">
+            {%- for media in product.media limit: 8 -%}
+              <button type="button" class="product__thumb {% if forloop.first %}is-active{% endif %}" data-gallery-thumb data-full="{{ media | image_url: width: 1100 }}" aria-label="Image {{ forloop.index }}">
                 {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: product.title }}
               </button>
             {%- endfor -%}
@@ -36,47 +37,46 @@
         {%- endif -%}
       </div>
 
-      {%- comment -%} Infos & achat {%- endcomment -%}
+      {%- comment -%} ----- Infos & achat ----- {%- endcomment -%}
       <div class="product__info">
-        {%- if product.vendor != blank and section.settings.show_vendor -%}
-          <div class="product__vendor">{{ product.vendor }}</div>
-        {%- endif -%}
-        <h1 class="product__title">{{ product.title }}</h1>
 
-        {%- if section.settings.show_rating -%}
-          <div class="product__rating">
-            {% render 'stars', rating: 5 %}
-            <a href="#avis">4,9/5 · {{ section.settings.reviews_count }} {{ 'sections.product.reviews' | t }}</a>
-          </div>
-        {%- endif -%}
-
-        <div class="product__price">
-          <span class="price__current" data-price-current>{{ default_v.price | money }}</span>
-          <span class="price__compare" data-price-compare{% unless default_v.compare_at_price > default_v.price %} hidden{% endunless %}>{{ default_v.compare_at_price | money }}</span>
-          {%- if default_v.compare_at_price > default_v.price -%}
-            <span class="price__badge" data-price-badge>-{{ default_v.compare_at_price | minus: default_v.price | times: 100 | divided_by: default_v.compare_at_price }}%</span>
-          {%- else -%}
-            <span class="price__badge" data-price-badge hidden></span>
+        <div class="product__head">
+          {%- if product.vendor != blank and section.settings.show_vendor -%}
+            <span class="product__vendor">{{ product.vendor }}</span>
+          {%- endif -%}
+          <h1 class="product__title">{{ product.title }}</h1>
+          {%- if section.settings.show_rating -%}
+            <div class="product__rating">
+              {% render 'stars', rating: 5 %}
+              <span>4,9/5 · {{ section.settings.reviews_count }} avis vérifiés</span>
+            </div>
           {%- endif -%}
         </div>
-        <p class="product__save" data-price-save{% unless default_v.compare_at_price > default_v.price %} hidden{% endunless %}>Vous économisez {{ default_v.compare_at_price | minus: default_v.price | money }}</p>
 
-        {%- if section.settings.instalment_text != blank -%}
-          <p class="product__instalment">{{ section.settings.instalment_text }}</p>
-        {%- endif -%}
+        <div class="product__pricing">
+          <div class="product__price">
+            <span class="price__current" data-price-current>{{ default_v.price | money }}</span>
+            <span class="price__compare" data-price-compare{% unless default_v.compare_at_price > default_v.price %} hidden{% endunless %}>{{ default_v.compare_at_price | money }}</span>
+            {%- if default_v.compare_at_price > default_v.price -%}
+              <span class="price__badge" data-price-badge>-{{ default_v.compare_at_price | minus: default_v.price | times: 100 | divided_by: default_v.compare_at_price }}%</span>
+            {%- else -%}
+              <span class="price__badge" data-price-badge hidden></span>
+            {%- endif -%}
+          </div>
+          <span class="product__save" data-price-save{% unless default_v.compare_at_price > default_v.price %} hidden{% endunless %}>Vous économisez {{ default_v.compare_at_price | minus: default_v.price | money }}</span>
+          {%- if section.settings.instalment_text != blank -%}
+            <span class="product__instalment">{{ section.settings.instalment_text }}</span>
+          {%- endif -%}
+        </div>
 
         {%- if section.settings.show_stock -%}
-          <div class="product__stock" data-stock><span class="dot"></span> {{ 'sections.product.in_stock' | t }}</div>
+          <div class="product__stock" data-stock><span class="dot"></span> En stock · expédié rapidement</div>
         {%- endif -%}
 
-        {%- if product.description != blank -%}
-          <div class="product__description rte">{{ product.description }}</div>
-        {%- endif -%}
-
-        {%- comment -%} Options de taille réutilisables (placeholder + tailles) {%- endcomment -%}
+        {%- comment -%} Options de taille réutilisables {%- endcomment -%}
         {%- capture size_options -%}<option value="" disabled selected>Choisir la taille…</option>{%- for s in sizes -%}<option value="{{ s | strip }}">{{ s | strip }}</option>{%- endfor -%}{%- endcapture -%}
 
-        {%- comment -%} Sélecteur de formules — prix fixes {%- endcomment -%}
+        {%- comment -%} Sélecteur de formules ----- {%- endcomment -%}
         <div class="packs" data-bundles role="radiogroup" aria-label="Choisissez votre offre">
           {%- for v in product.variants -%}
             {%- assign qty = v.option1 | split: ' ' | first | plus: 0 -%}
@@ -99,7 +99,6 @@
                 <span class="pack__sizes-label">{% if qty == 1 %}Choisissez votre taille{% else %}Une taille par genouillère{% endif %}</span>
                 {%- for i in (1..qty) -%}
                   <div class="pack__size-row">
-                    {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
                     <label class="visually-hidden" for="{{ section.id }}-{{ qty }}-{{ i }}">Taille genouillère {{ i }}</label>
                     <select id="{{ section.id }}-{{ qty }}-{{ i }}" data-size-select>{{ size_options }}</select>
                   </div>
@@ -109,19 +108,17 @@
           {%- endfor -%}
         </div>
 
-        {%- if section.settings.size_guide_page != blank -%}
-          <a class="product__size-guide-link" href="{{ section.settings.size_guide_page.url }}">{{ 'sections.product.size_guide' | t }}</a>
-        {%- endif -%}
-
-        <div class="product__form-buttons">
+        <div class="product__buy">
+          {%- if section.settings.size_guide_page != blank -%}
+            <a class="product__size-guide-link" href="{{ section.settings.size_guide_page.url }}">Guide des tailles</a>
+          {%- endif -%}
           <button type="button" class="btn btn--large" data-bundle-add data-add-btn>
             <span class="loading-spinner"></span>
-            <span class="btn__text">{{ 'sections.product.add_to_cart' | t }}</span>
+            <span class="btn__text">Ajouter au panier</span>
           </button>
+          <div data-cart-error class="product__error" hidden></div>
         </div>
-        <div data-cart-error hidden style="color:#c0392b;font-weight:600;margin:.5rem 0 1rem"></div>
 
-        {%- comment -%} Réassurance {%- endcomment -%}
         <ul class="product__reassurance">
           {%- for block in section.blocks -%}
             {%- if block.type == 'reassurance' -%}
@@ -131,12 +128,10 @@
         </ul>
 
         {%- if section.settings.show_payment_icons -%}
-          <div>
-            <p style="font-size:.85rem;opacity:.7;margin-bottom:.4rem">{% render 'icon', name: 'shield', class: 'icon-inline' %} Paiement 100% sécurisé</p>
+          <div class="product__payments">
+            <span class="product__payments-label">{% render 'icon', name: 'shield' %} Paiement 100% sécurisé</span>
             <div class="payment-icons">
-              {%- for type in shop.enabled_payment_types -%}
-                {{ type | payment_type_svg_tag: class: 'payment-icon' }}
-              {%- endfor -%}
+              {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'payment-icon' }}{%- endfor -%}
             </div>
           </div>
         {%- endif -%}
@@ -151,7 +146,7 @@
     <div class="sticky-atc__title">{{ product.title }}</div>
     <div class="sticky-atc__price" data-sticky-price>{{ default_v.price | money }}</div>
   </div>
-  <button type="button" class="btn" data-sticky-add>{{ 'sections.product.add_to_cart' | t }}</button>
+  <button type="button" class="btn" data-sticky-add>Ajouter</button>
 </div>
 
 {%- comment -%} Données structurées SEO {%- endcomment -%}
