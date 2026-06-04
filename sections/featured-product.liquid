@@ -1,0 +1,55 @@
+{%- comment -%}
+  Produit vedette pour la page d'accueil.
+  Affiche l'image, le prix « à partir de », la note et un bouton vers la fiche produit.
+{%- endcomment -%}
+{%- assign p = section.settings.product -%}
+<section class="section featured-product {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="fp">
+      <div class="fp__media">
+        {%- if p != blank and p.featured_media -%}
+          {{ p.featured_media | image_url: width: 900 | image_tag: class: 'fp__img', widths: '420,640,900', sizes: '(max-width: 800px) 100vw, 50vw', alt: p.title }}
+        {%- else -%}
+          <div class="fp__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      </div>
+      <div class="fp__body">
+        {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2 class="fp__title">{{ section.settings.heading | default: p.title }}</h2>
+        {%- if section.settings.show_rating -%}
+          <div class="fp__rating">{% render 'stars', rating: 5 %} <span>{{ section.settings.rating_text }}</span></div>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}<p class="fp__text">{{ section.settings.text }}</p>{%- endif -%}
+        {%- if p != blank -%}
+          <div class="fp__price"><span class="fp__price-from">à partir de</span> <b>{{ p.price_min | money }}</b></div>
+        {%- endif -%}
+        <a href="{% if p != blank %}{{ p.url }}{% else %}{{ section.settings.button_url | default: '/products/genouillere-betterknee' }}{% endif %}" class="btn btn--large fp__cta">{{ section.settings.button_label }}</a>
+        <div class="fp__assur">
+          <span>{% render 'icon', name: 'truck' %} Livraison offerte dès 59€</span>
+          <span>{% render 'icon', name: 'return' %} 30 jours satisfait ou remboursé</span>
+          <span>{% render 'icon', name: 'shield' %} Paiement 100% sécurisé</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produit vedette",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "La genouillère qu'on oublie" },
+    { "type": "text", "id": "heading", "label": "Titre (vide = nom du produit)", "default": "Genouillère BetterKnee" },
+    { "type": "checkbox", "id": "show_rating", "label": "Afficher la note", "default": true },
+    { "type": "text", "id": "rating_text", "label": "Texte note", "default": "4,9/5 · 2 347 avis vérifiés" },
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Une compression ciblée qui apaise vos douleurs au genou, si légère et confortable qu'elle se fait oublier — jusqu'à remarquer que vous bougez plus librement." },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Je veux ma BetterKnee" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton (si pas de produit)" }
+  ],
+  "presets": [
+    { "name": "Produit vedette" }
+  ]
+}
+{% endschema %}
