@@ -26,6 +26,8 @@
           <li><a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Politique de confidentialité</a></li>
           <li><a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">Conditions de service</a></li>
           <li><a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">Politique d'expédition</a></li>
+          <li><a href="{{ section.settings.legal_url | default: '/pages/mentions-legales' }}">Mentions légales</a></li>
+          <li><a href="{{ section.settings.cgv_url | default: '/pages/conditions-generales-de-vente' }}">Conditions générales de vente</a></li>
           <li><a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">Politique de remboursement</a></li>
         </ul>
       </div>
@@ -46,11 +48,13 @@
 {
   "name": "Pied de page",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Couleur de fond", "default": "#2F3E2C" },
+    { "type": "color", "id": "bg_color", "label": "Couleur de fond", "default": "#000000" },
     { "type": "image_picker", "id": "logo", "label": "Logo (sinon le nom s'affiche)" },
     { "type": "text", "id": "brand_name", "label": "Nom de la marque (vide = nom de la boutique)" },
     { "type": "text", "id": "tagline", "label": "Slogan", "default": "Retrouvez le plaisir de bouger, en toute liberté." },
     { "type": "text", "id": "links_title", "label": "Titre liens", "default": "Liens rapides" },
+    { "type": "url", "id": "legal_url", "label": "Lien « Mentions légales »" },
+    { "type": "url", "id": "cgv_url", "label": "Lien « Conditions générales de vente »" },
     { "type": "text", "id": "service_title", "label": "Titre service", "default": "Service client" },
     { "type": "textarea", "id": "service_text", "label": "Texte service", "default": "Une question ? Notre équipe française vous répond sous 24h, 7j/7 — à contact@bettermoove.com." },
     { "type": "text", "id": "cta_label", "label": "Bouton CTA", "default": "Soulager mes genoux" },
