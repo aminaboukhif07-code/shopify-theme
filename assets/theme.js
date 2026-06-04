@@ -8,9 +8,14 @@
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
   const formatMoney = (cents) => {
-    const amount = (cents / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const fmt = window.moneyFormat || '{{amount}} €';
-    return fmt.replace(/\{\{\s*amount(_no_decimals)?\s*\}\}/, amount);
+    return fmt.replace(/\{\{\s*(\w+)\s*\}\}/g, (match, name) => {
+      const noDecimals = name.indexOf('no_decimals') !== -1;
+      return (cents / 100).toLocaleString('fr-FR', {
+        minimumFractionDigits: noDecimals ? 0 : 2,
+        maximumFractionDigits: noDecimals ? 0 : 2,
+      });
+    });
   };
 
   /* ----------------------------------------------------------------------- */
