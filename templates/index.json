@@ -317,9 +317,9 @@
         "t4": {
           "type": "item",
           "settings": {
-            "icon": "headset",
-            "title": "Une équipe française",
-            "subtitle": "À votre écoute"
+            "icon": "shield",
+            "title": "Paiement 100% sécurisé",
+            "subtitle": "Vos données protégées"
           }
         }
       },
