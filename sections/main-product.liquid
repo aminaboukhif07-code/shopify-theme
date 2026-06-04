@@ -1,7 +1,16 @@
 {%- liquid
   assign product = product
-  assign current_variant = product.selected_or_first_available_variant
-  assign unit_price = current_variant.price
+  assign sizes = section.settings.sizes | default: 'S,M,L,XL' | split: ','
+  comment
+    Variante affichée par défaut : la formule « 2 » si elle existe, sinon la première.
+  endcomment
+  assign default_v = product.variants.first
+  for v in product.variants
+    assign n = v.option1 | split: ' ' | first | plus: 0
+    if n == 2
+      assign default_v = v
+    endif
+  endfor
 -%}
 
 <section class="section" data-product-container>
@@ -42,11 +51,15 @@
         {%- endif -%}
 
         <div class="product__price">
-          <span class="price__current" data-price-current>{{ 5999 | money }}</span>
-          <span class="price__compare" data-price-compare>{{ unit_price | times: 2 | money }}</span>
-          <span class="price__badge" data-price-badge>-25%</span>
+          <span class="price__current" data-price-current>{{ default_v.price | money }}</span>
+          <span class="price__compare" data-price-compare{% unless default_v.compare_at_price > default_v.price %} hidden{% endunless %}>{{ default_v.compare_at_price | money }}</span>
+          {%- if default_v.compare_at_price > default_v.price -%}
+            <span class="price__badge" data-price-badge>-{{ default_v.compare_at_price | minus: default_v.price | times: 100 | divided_by: default_v.compare_at_price }}%</span>
+          {%- else -%}
+            <span class="price__badge" data-price-badge hidden></span>
+          {%- endif -%}
         </div>
-        <p class="product__save" data-price-save>Vous économisez {{ unit_price | times: 2 | minus: 5999 | money }}</p>
+        <p class="product__save" data-price-save{% unless default_v.compare_at_price > default_v.price %} hidden{% endunless %}>Vous économisez {{ default_v.compare_at_price | minus: default_v.price | money }}</p>
 
         {%- if section.settings.instalment_text != blank -%}
           <p class="product__instalment">{{ section.settings.instalment_text }}</p>
@@ -60,75 +73,40 @@
           <div class="product__description rte">{{ product.description }}</div>
         {%- endif -%}
 
-        {%- comment -%} Options de taille réutilisables {%- endcomment -%}
-        {%- capture size_options -%}
-          {%- for v in product.variants -%}
-            <option value="{{ v.id }}"{% unless v.available %} disabled{% endunless %}>{{ v.title }}{% unless v.available %} — épuisé{% endunless %}</option>
-          {%- endfor -%}
-        {%- endcapture -%}
+        {%- comment -%} Options de taille réutilisables (placeholder + tailles) {%- endcomment -%}
+        {%- capture size_options -%}<option value="" disabled selected>Choisir la taille…</option>{%- for s in sizes -%}<option value="{{ s | strip }}">{{ s | strip }}</option>{%- endfor -%}{%- endcapture -%}
 
-        {%- comment -%} Sélecteur d'offres (lots) — façon OneCompress {%- endcomment -%}
+        {%- comment -%} Sélecteur de formules — prix fixes {%- endcomment -%}
         <div class="packs" data-bundles role="radiogroup" aria-label="Choisissez votre offre">
-
-          {%- comment -%} 1 genouillère {%- endcomment -%}
-          <div class="pack" data-bundle data-qty="1" data-price="{{ unit_price }}" data-compare="0" data-label="1 genouillère" tabindex="0" role="radio" aria-checked="false">
-            <div class="pack__head">
-              <span class="pack__radio" aria-hidden="true"></span>
-              <span class="pack__name">1 genouillère</span>
-              <span class="pack__badge-save">Essai</span>
-              <span class="pack__prices"><b>{{ unit_price | money }}</b></span>
-            </div>
-            <div class="pack__sizes" data-sizes hidden>
-              <span class="pack__sizes-label">Choisissez votre taille</span>
-              <div class="pack__size-row">
-                {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
-                <label class="visually-hidden" for="{{ section.id }}-b1-s1">Taille genouillère 1</label>
-                <select id="{{ section.id }}-b1-s1" data-size-select>{{ size_options }}</select>
+          {%- for v in product.variants -%}
+            {%- assign qty = v.option1 | split: ' ' | first | plus: 0 -%}
+            {%- assign is_default = false -%}
+            {%- if v.id == default_v.id -%}{%- assign is_default = true -%}{%- endif -%}
+            <div class="pack{% if qty == 2 %} pack--featured{% endif %}{% if qty == 4 %} pack--best{% endif %}{% if is_default %} is-selected{% endif %}" data-bundle data-variant-id="{{ v.id }}" data-qty="{{ qty }}" data-price="{{ v.price }}" data-compare="{{ v.compare_at_price | default: 0 }}" data-label="{{ v.title | escape }}" tabindex="0" role="radio" aria-checked="{% if is_default %}true{% else %}false{% endif %}">
+              {%- if qty == 2 -%}<span class="pack__ribbon">Le + populaire</span>{%- endif -%}
+              {%- if qty == 4 -%}<span class="pack__ribbon pack__ribbon--best">Meilleure offre</span>{%- endif -%}
+              <div class="pack__head">
+                <span class="pack__radio" aria-hidden="true"></span>
+                <span class="pack__name">{{ v.title }}</span>
+                {%- if v.compare_at_price > v.price -%}
+                  <span class="pack__badge-save">Économisez {{ v.compare_at_price | minus: v.price | money }}</span>
+                {%- else -%}
+                  <span class="pack__badge-save">Pour essayer</span>
+                {%- endif -%}
+                <span class="pack__prices"><b>{{ v.price | money }}</b>{% if v.compare_at_price > v.price %}<s>{{ v.compare_at_price | money }}</s>{% endif %}</span>
+              </div>
+              <div class="pack__sizes" data-sizes{% unless is_default %} hidden{% endunless %}>
+                <span class="pack__sizes-label">{% if qty == 1 %}Choisissez votre taille{% else %}Une taille par genouillère{% endif %}</span>
+                {%- for i in (1..qty) -%}
+                  <div class="pack__size-row">
+                    {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
+                    <label class="visually-hidden" for="{{ section.id }}-{{ qty }}-{{ i }}">Taille genouillère {{ i }}</label>
+                    <select id="{{ section.id }}-{{ qty }}-{{ i }}" data-size-select>{{ size_options }}</select>
+                  </div>
+                {%- endfor -%}
               </div>
             </div>
-          </div>
-
-          {%- comment -%} 2 genouillères — Le + populaire {%- endcomment -%}
-          <div class="pack pack--featured is-selected" data-bundle data-qty="2" data-price="5999" data-compare="{{ unit_price | times: 2 }}" data-label="Lot de 2 genouillères" tabindex="0" role="radio" aria-checked="true">
-            <span class="pack__ribbon">Le + populaire</span>
-            <div class="pack__head">
-              <span class="pack__radio" aria-hidden="true"></span>
-              <span class="pack__name">2 genouillères</span>
-              <span class="pack__badge-save">Économisez {{ unit_price | times: 2 | minus: 5999 | money }}</span>
-              <span class="pack__prices"><b>{{ 5999 | money }}</b><s>{{ unit_price | times: 2 | money }}</s></span>
-            </div>
-            <div class="pack__sizes" data-sizes>
-              <span class="pack__sizes-label">Une taille par genouillère</span>
-              {%- for i in (1..2) -%}
-                <div class="pack__size-row">
-                  {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
-                  <label class="visually-hidden" for="{{ section.id }}-b2-s{{ i }}">Taille genouillère {{ i }}</label>
-                  <select id="{{ section.id }}-b2-s{{ i }}" data-size-select>{{ size_options }}</select>
-                </div>
-              {%- endfor -%}
-            </div>
-          </div>
-
-          {%- comment -%} 4 genouillères — Meilleure offre {%- endcomment -%}
-          <div class="pack pack--best" data-bundle data-qty="4" data-price="9999" data-compare="{{ unit_price | times: 4 }}" data-label="Lot de 4 genouillères" tabindex="0" role="radio" aria-checked="false">
-            <span class="pack__ribbon pack__ribbon--best">Meilleure offre</span>
-            <div class="pack__head">
-              <span class="pack__radio" aria-hidden="true"></span>
-              <span class="pack__name">4 genouillères</span>
-              <span class="pack__badge-save">Économisez {{ unit_price | times: 4 | minus: 9999 | money }}</span>
-              <span class="pack__prices"><b>{{ 9999 | money }}</b><s>{{ unit_price | times: 4 | money }}</s></span>
-            </div>
-            <div class="pack__sizes" data-sizes hidden>
-              <span class="pack__sizes-label">Une taille par genouillère</span>
-              {%- for i in (1..4) -%}
-                <div class="pack__size-row">
-                  {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
-                  <label class="visually-hidden" for="{{ section.id }}-b4-s{{ i }}">Taille genouillère {{ i }}</label>
-                  <select id="{{ section.id }}-b4-s{{ i }}" data-size-select>{{ size_options }}</select>
-                </div>
-              {%- endfor -%}
-            </div>
-          </div>
+          {%- endfor -%}
         </div>
 
         {%- if section.settings.size_guide_page != blank -%}
@@ -171,7 +149,7 @@
 <div class="sticky-atc" data-sticky-atc>
   <div class="sticky-atc__info">
     <div class="sticky-atc__title">{{ product.title }}</div>
-    <div class="sticky-atc__price" data-sticky-price>{{ 5999 | money }}</div>
+    <div class="sticky-atc__price" data-sticky-price>{{ default_v.price | money }}</div>
   </div>
   <button type="button" class="btn" data-sticky-add>{{ 'sections.product.add_to_cart' | t }}</button>
 </div>
@@ -188,7 +166,7 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": {{ cart.currency.iso_code | json }},
-    "price": "{{ unit_price | divided_by: 100.0 }}",
+    "price": "{{ product.price | divided_by: 100.0 }}",
     "availability": "{% if product.available %}http://schema.org/InStock{% else %}http://schema.org/OutOfStock{% endif %}",
     "url": {{ request.origin | append: product.url | json }}
   },
@@ -204,6 +182,7 @@
     { "type": "checkbox", "id": "show_rating", "label": "Afficher la note", "default": true },
     { "type": "text", "id": "reviews_count", "label": "Nombre d'avis", "default": "2347" },
     { "type": "checkbox", "id": "show_stock", "label": "Afficher le stock", "default": true },
+    { "type": "text", "id": "sizes", "label": "Tailles proposées (séparées par des virgules)", "default": "S,M,L,XL" },
     { "type": "text", "id": "instalment_text", "label": "Texte sous le prix", "default": "Paiement 100% sécurisé · Livraison rapide" },
     { "type": "checkbox", "id": "show_payment_icons", "label": "Afficher les moyens de paiement", "default": true },
     { "type": "page", "id": "size_guide_page", "label": "Page guide des tailles" }

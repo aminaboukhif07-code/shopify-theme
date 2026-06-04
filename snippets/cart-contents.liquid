@@ -32,6 +32,17 @@
             {%- unless item.variant.title contains 'Default' -%}
               <div class="cart-item__variant">{{ item.variant.title }}</div>
             {%- endunless -%}
+            {%- assign has_props = false -%}
+            {%- for p in item.properties -%}{%- unless p.last == blank or p.first contains '_' -%}{%- assign has_props = true -%}{%- endunless -%}{%- endfor -%}
+            {%- if has_props -%}
+              <div class="cart-item__props">
+                {%- for p in item.properties -%}
+                  {%- unless p.last == blank or p.first contains '_' -%}
+                    <div>{{ p.first }} : <strong>{{ p.last }}</strong></div>
+                  {%- endunless -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
             <div class="cart-item__qty">
               <button type="button" data-qty-change data-line="{{ forloop.index }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Diminuer">&minus;</button>
               <input type="text" value="{{ item.quantity }}" readonly aria-label="{{ 'sections.product.quantity' | t }}">

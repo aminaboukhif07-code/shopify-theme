@@ -349,22 +349,19 @@
     if (addBtn) {
       addBtn.addEventListener('click', () => {
         const pack = selected();
+        const variantId = Number(pack.dataset.variantId);
+        if (!variantId) { showError('Offre indisponible.', addBtn); return; }
         const selects = $$('[data-size-select]', pack);
-        const counts = {};
+        const properties = {};
         let invalid = false;
-        selects.forEach((s) => {
+        selects.forEach((s, i) => {
           const opt = s.options[s.selectedIndex];
           if (!s.value || (opt && opt.disabled)) { invalid = true; return; }
-          counts[s.value] = (counts[s.value] || 0) + 1;
+          const key = selects.length > 1 ? 'Taille genouillère ' + (i + 1) : 'Taille';
+          properties[key] = s.value;
         });
-        if (invalid) { showError('Veuillez choisir une taille disponible pour chaque genouillère.', addBtn); return; }
-        const label = pack.dataset.label || '';
-        const items = Object.keys(counts).map((id) => ({
-          id: Number(id),
-          quantity: counts[id],
-          properties: { 'Offre': label },
-        }));
-        addItemsToCart(items, addBtn);
+        if (invalid) { showError('Veuillez choisir une taille pour chaque genouillère.', addBtn); return; }
+        addItemsToCart([{ id: variantId, quantity: 1, properties: properties }], addBtn);
       });
     }
   });
