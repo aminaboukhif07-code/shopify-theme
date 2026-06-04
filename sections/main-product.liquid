@@ -1,10 +1,7 @@
 {%- liquid
   assign product = product
   assign current_variant = product.selected_or_first_available_variant
-  assign on_sale = false
-  if current_variant.compare_at_price > current_variant.price
-    assign on_sale = true
-  endif
+  assign unit_price = current_variant.price
 -%}
 
 <section class="section" data-product-container>
@@ -45,107 +42,106 @@
         {%- endif -%}
 
         <div class="product__price">
-          {%- if on_sale -%}
-            <span class="price__current" data-price-current>{{ current_variant.price | money }}</span>
-            <span class="price__compare" data-price-compare>{{ current_variant.compare_at_price | money }}</span>
-            <span class="price__badge">-{{ current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price }}%</span>
-          {%- else -%}
-            <span class="price__current" data-price-current>{{ current_variant.price | money }}</span>
-            <span class="price__compare" data-price-compare hidden></span>
-          {%- endif -%}
+          <span class="price__current" data-price-current>{{ 5999 | money }}</span>
+          <span class="price__compare" data-price-compare>{{ unit_price | times: 2 | money }}</span>
+          <span class="price__badge" data-price-badge>-25%</span>
         </div>
+        <p class="product__save" data-price-save>Vous économisez {{ unit_price | times: 2 | minus: 5999 | money }}</p>
+
         {%- if section.settings.instalment_text != blank -%}
           <p class="product__instalment">{{ section.settings.instalment_text }}</p>
         {%- endif -%}
 
-        {%- comment -%} Stock {%- endcomment -%}
-        {%- if section.settings.show_stock and current_variant.available -%}
-          {%- if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= section.settings.low_stock_threshold -%}
-            <div class="product__stock product__stock--low" data-stock><span class="dot"></span> {{ 'sections.product.low_stock' | t }} ({{ current_variant.inventory_quantity }})</div>
-          {%- else -%}
-            <div class="product__stock" data-stock><span class="dot"></span> {{ 'sections.product.in_stock' | t }}</div>
-          {%- endif -%}
+        {%- if section.settings.show_stock -%}
+          <div class="product__stock" data-stock><span class="dot"></span> {{ 'sections.product.in_stock' | t }}</div>
         {%- endif -%}
 
-        {%- comment -%} Description courte (bénéfices) {%- endcomment -%}
         {%- if product.description != blank -%}
           <div class="product__description rte">{{ product.description }}</div>
         {%- endif -%}
 
-        {%- comment -%} Formulaire d'achat {%- endcomment -%}
-        {%- form 'product', product, data-product-form: true -%}
-          {%- comment -%} Sélecteur de variantes par option {%- endcomment -%}
-          {%- unless product.has_only_default_variant -%}
-            {%- for option in product.options_with_values -%}
-              <div class="variant-picker" data-option-index="{{ forloop.index0 }}">
-                <div class="variant-picker__label">
-                  <span>{{ option.name }} : <strong data-selected-value="{{ forloop.index0 }}">{{ option.selected_value }}</strong></span>
-                  {%- if option.name == 'Taille' or option.name == 'Size' -%}
-                    {%- if section.settings.size_guide_page != blank -%}
-                      <a href="{{ section.settings.size_guide_page.url }}">{{ 'sections.product.size_guide' | t }}</a>
-                    {%- endif -%}
-                  {%- endif -%}
-                </div>
-                <div class="variant-options">
-                  {%- for value in option.values -%}
-                    {%- assign opt_id = section.id | append: '-' | append: forloop.index0 | append: '-' | append: forloop.index -%}
-                    <input
-                      type="radio"
-                      id="{{ opt_id }}"
-                      name="option-{{ option.position }}"
-                      value="{{ value | escape }}"
-                      {% if option.selected_value == value %}checked{% endif %}>
-                    <label for="{{ opt_id }}">{{ value }}</label>
-                  {%- endfor -%}
-                </div>
-              </div>
-            {%- endfor -%}
-          {%- endunless -%}
+        {%- comment -%} Options de taille réutilisables {%- endcomment -%}
+        {%- capture size_options -%}
+          {%- for v in product.variants -%}
+            <option value="{{ v.id }}"{% unless v.available %} disabled{% endunless %}>{{ v.title }}{% unless v.available %} — épuisé{% endunless %}</option>
+          {%- endfor -%}
+        {%- endcapture -%}
 
-          <input type="hidden" name="id" value="{{ current_variant.id }}">
+        {%- comment -%} Sélecteur d'offres (lots) — façon OneCompress {%- endcomment -%}
+        <div class="packs" data-bundles role="radiogroup" aria-label="Choisissez votre offre">
 
-          {%- comment -%} Offres par lot {%- endcomment -%}
-          {%- if section.settings.show_bundles -%}
-            <div class="bundles" data-bundles="#Quantity-{{ section.id }}">
-              <div class="bundle is-selected" data-bundle="1">
-                <span class="bundle__radio"></span>
-                <div class="bundle__info"><div class="bundle__title">1 genouillère</div><div class="bundle__save">Essai</div></div>
-                <div class="bundle__price">{{ current_variant.price | money }}</div>
-              </div>
-              <div class="bundle" data-bundle="2">
-                <span class="bundle__tag">Le + populaire</span>
-                <span class="bundle__radio"></span>
-                <div class="bundle__info"><div class="bundle__title">2 genouillères (les deux genoux)</div><div class="bundle__save">Économisez sur la paire</div></div>
-                <div class="bundle__price">{{ current_variant.price | times: 2 | money }}</div>
-              </div>
-              <div class="bundle" data-bundle="3">
-                <span class="bundle__radio"></span>
-                <div class="bundle__info"><div class="bundle__title">3 genouillères</div><div class="bundle__save">Idéal pour offrir</div></div>
-                <div class="bundle__price">{{ current_variant.price | times: 3 | money }}</div>
+          {%- comment -%} 1 genouillère {%- endcomment -%}
+          <div class="pack" data-bundle data-qty="1" data-price="{{ unit_price }}" data-compare="0" data-label="1 genouillère" tabindex="0" role="radio" aria-checked="false">
+            <div class="pack__head">
+              <span class="pack__radio" aria-hidden="true"></span>
+              <span class="pack__name">1 genouillère</span>
+              <span class="pack__badge-save">Essai</span>
+              <span class="pack__prices"><b>{{ unit_price | money }}</b></span>
+            </div>
+            <div class="pack__sizes" data-sizes hidden>
+              <span class="pack__sizes-label">Choisissez votre taille</span>
+              <div class="pack__size-row">
+                {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
+                <label class="visually-hidden" for="{{ section.id }}-b1-s1">Taille genouillère 1</label>
+                <select id="{{ section.id }}-b1-s1" data-size-select>{{ size_options }}</select>
               </div>
             </div>
-          {%- endif -%}
-
-          {%- comment -%} Quantité {%- endcomment -%}
-          <div class="variant-picker__label" style="margin-bottom:.5rem"><span>{{ 'sections.product.quantity' | t }}</span></div>
-          <div class="quantity-selector" data-quantity>
-            <button type="button" data-qty-btn="-1" aria-label="Diminuer">&minus;</button>
-            <input type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1" inputmode="numeric">
-            <button type="button" data-qty-btn="1" aria-label="Augmenter">+</button>
           </div>
 
-          <div class="product__form-buttons">
-            <button type="submit" class="btn btn--large" data-add-btn {% unless current_variant.available %}disabled{% endunless %}>
-              <span class="loading-spinner"></span>
-              <span class="btn__text">{% if current_variant.available %}{{ 'sections.product.add_to_cart' | t }}{% else %}{{ 'sections.product.sold_out' | t }}{% endif %}</span>
-            </button>
-            {%- if section.settings.show_dynamic_checkout -%}
-              {{ form | payment_button }}
-            {%- endif -%}
+          {%- comment -%} 2 genouillères — Le + populaire {%- endcomment -%}
+          <div class="pack pack--featured is-selected" data-bundle data-qty="2" data-price="5999" data-compare="{{ unit_price | times: 2 }}" data-label="Lot de 2 genouillères" tabindex="0" role="radio" aria-checked="true">
+            <span class="pack__ribbon">Le + populaire</span>
+            <div class="pack__head">
+              <span class="pack__radio" aria-hidden="true"></span>
+              <span class="pack__name">2 genouillères</span>
+              <span class="pack__badge-save">Économisez {{ unit_price | times: 2 | minus: 5999 | money }}</span>
+              <span class="pack__prices"><b>{{ 5999 | money }}</b><s>{{ unit_price | times: 2 | money }}</s></span>
+            </div>
+            <div class="pack__sizes" data-sizes>
+              <span class="pack__sizes-label">Une taille par genouillère</span>
+              {%- for i in (1..2) -%}
+                <div class="pack__size-row">
+                  {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
+                  <label class="visually-hidden" for="{{ section.id }}-b2-s{{ i }}">Taille genouillère {{ i }}</label>
+                  <select id="{{ section.id }}-b2-s{{ i }}" data-size-select>{{ size_options }}</select>
+                </div>
+              {%- endfor -%}
+            </div>
           </div>
 
-          <div data-cart-error hidden style="color:#c0392b;font-weight:600;margin-bottom:1rem"></div>
-        {%- endform -%}
+          {%- comment -%} 4 genouillères — Meilleure offre {%- endcomment -%}
+          <div class="pack pack--best" data-bundle data-qty="4" data-price="9999" data-compare="{{ unit_price | times: 4 }}" data-label="Lot de 4 genouillères" tabindex="0" role="radio" aria-checked="false">
+            <span class="pack__ribbon pack__ribbon--best">Meilleure offre</span>
+            <div class="pack__head">
+              <span class="pack__radio" aria-hidden="true"></span>
+              <span class="pack__name">4 genouillères</span>
+              <span class="pack__badge-save">Économisez {{ unit_price | times: 4 | minus: 9999 | money }}</span>
+              <span class="pack__prices"><b>{{ 9999 | money }}</b><s>{{ unit_price | times: 4 | money }}</s></span>
+            </div>
+            <div class="pack__sizes" data-sizes hidden>
+              <span class="pack__sizes-label">Une taille par genouillère</span>
+              {%- for i in (1..4) -%}
+                <div class="pack__size-row">
+                  {%- if product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">{%- endif -%}
+                  <label class="visually-hidden" for="{{ section.id }}-b4-s{{ i }}">Taille genouillère {{ i }}</label>
+                  <select id="{{ section.id }}-b4-s{{ i }}" data-size-select>{{ size_options }}</select>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+
+        {%- if section.settings.size_guide_page != blank -%}
+          <a class="product__size-guide-link" href="{{ section.settings.size_guide_page.url }}">{{ 'sections.product.size_guide' | t }}</a>
+        {%- endif -%}
+
+        <div class="product__form-buttons">
+          <button type="button" class="btn btn--large" data-bundle-add data-add-btn>
+            <span class="loading-spinner"></span>
+            <span class="btn__text">{{ 'sections.product.add_to_cart' | t }}</span>
+          </button>
+        </div>
+        <div data-cart-error hidden style="color:#c0392b;font-weight:600;margin:.5rem 0 1rem"></div>
 
         {%- comment -%} Réassurance {%- endcomment -%}
         <ul class="product__reassurance">
@@ -156,7 +152,6 @@
           {%- endfor -%}
         </ul>
 
-        {%- comment -%} Moyens de paiement {%- endcomment -%}
         {%- if section.settings.show_payment_icons -%}
           <div>
             <p style="font-size:.85rem;opacity:.7;margin-bottom:.4rem">{% render 'icon', name: 'shield', class: 'icon-inline' %} Paiement 100% sécurisé</p>
@@ -170,28 +165,13 @@
       </div>
     </div>
   </div>
-
-  {%- comment -%} JSON des variantes pour le JS {%- endcomment -%}
-  <script type="application/json" data-variant-json>
-    [
-      {%- for variant in product.variants -%}
-        {
-          "id": {{ variant.id }},
-          "options": {{ variant.options | json }},
-          "price": {{ variant.price }},
-          "compare_at_price": {{ variant.compare_at_price | default: 0 }},
-          "available": {{ variant.available }}
-        }{% unless forloop.last %},{% endunless %}
-      {%- endfor -%}
-    ]
-  </script>
 </section>
 
 {%- comment -%} Barre d'ajout collante (mobile) {%- endcomment -%}
 <div class="sticky-atc" data-sticky-atc>
   <div class="sticky-atc__info">
     <div class="sticky-atc__title">{{ product.title }}</div>
-    <div class="sticky-atc__price">{{ current_variant.price | money }}</div>
+    <div class="sticky-atc__price" data-sticky-price>{{ 5999 | money }}</div>
   </div>
   <button type="button" class="btn" data-sticky-add>{{ 'sections.product.add_to_cart' | t }}</button>
 </div>
@@ -208,8 +188,8 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": {{ cart.currency.iso_code | json }},
-    "price": "{{ current_variant.price | divided_by: 100.0 }}",
-    "availability": "{% if current_variant.available %}http://schema.org/InStock{% else %}http://schema.org/OutOfStock{% endif %}",
+    "price": "{{ unit_price | divided_by: 100.0 }}",
+    "availability": "{% if product.available %}http://schema.org/InStock{% else %}http://schema.org/OutOfStock{% endif %}",
     "url": {{ request.origin | append: product.url | json }}
   },
   "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "{{ section.settings.reviews_count }}" }
@@ -224,10 +204,7 @@
     { "type": "checkbox", "id": "show_rating", "label": "Afficher la note", "default": true },
     { "type": "text", "id": "reviews_count", "label": "Nombre d'avis", "default": "2347" },
     { "type": "checkbox", "id": "show_stock", "label": "Afficher le stock", "default": true },
-    { "type": "range", "id": "low_stock_threshold", "min": 5, "max": 50, "step": 5, "label": "Seuil de stock faible", "default": 20 },
-    { "type": "text", "id": "instalment_text", "label": "Texte paiement fractionné", "default": "ou 4x sans frais — Paiement sécurisé" },
-    { "type": "checkbox", "id": "show_bundles", "label": "Afficher les offres par lot", "default": true },
-    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Bouton de paiement express", "default": true },
+    { "type": "text", "id": "instalment_text", "label": "Texte sous le prix", "default": "Paiement 100% sécurisé · Livraison rapide" },
     { "type": "checkbox", "id": "show_payment_icons", "label": "Afficher les moyens de paiement", "default": true },
     { "type": "page", "id": "size_guide_page", "label": "Page guide des tailles" }
   ],
@@ -247,7 +224,7 @@
           ],
           "default": "truck"
         },
-        { "type": "text", "id": "text", "label": "Texte", "default": "Livraison offerte dès 50€, expédiée sous 24h" }
+        { "type": "text", "id": "text", "label": "Texte", "default": "Livraison offerte dès 59€, livraison rapide" }
       ]
     }
   ]

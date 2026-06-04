@@ -128,7 +128,7 @@
   }
 
   function showError(msg, button) {
-    const target = button && button.closest('form');
+    const target = button && (button.closest('form') || button.closest('[data-product-container]'));
     let box = target && target.querySelector('[data-cart-error]');
     if (box) {
       box.textContent = msg;
@@ -276,20 +276,97 @@
   });
 
   /* ----------------------------------------------------------------------- */
-  /*  Offres par lot (bundles)                                               */
+  /*  Offres par lot (bundles) + ajout multi-lignes au panier                */
   /* ----------------------------------------------------------------------- */
+  async function addItemsToCart(items, button) {
+    if (button) button.classList.add('is-loading');
+    try {
+      const res = await fetch(window.routes.cart_add_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/javascript' },
+        body: JSON.stringify({ items }),
+      });
+      const data = await res.json();
+      if (data.status) {
+        showError(data.description || (window.cartStrings && window.cartStrings.error) || 'Une erreur est survenue.', button);
+        return;
+      }
+      await refreshCart();
+      openCart();
+    } catch (e) {
+      showError((window.cartStrings && window.cartStrings.error) || 'Une erreur est survenue.', button);
+    } finally {
+      if (button) button.classList.remove('is-loading');
+    }
+  }
+
   $$('[data-bundles]').forEach((wrap) => {
-    const qtyInput = document.querySelector(wrap.dataset.bundles);
-    $$('[data-bundle]', wrap).forEach((bundle) =>
-      bundle.addEventListener('click', () => {
-        $$('[data-bundle]', wrap).forEach((b) => b.classList.remove('is-selected'));
-        bundle.classList.add('is-selected');
-        if (qtyInput) {
-          qtyInput.value = bundle.dataset.bundle;
-          qtyInput.dispatchEvent(new Event('change'));
-        }
-      })
-    );
+    const packs = $$('[data-bundle]', wrap);
+    const container = wrap.closest('[data-product-container]') || document;
+    const priceCurrent = $('[data-price-current]', container);
+    const priceCompare = $('[data-price-compare]', container);
+    const priceBadge = $('[data-price-badge]', container);
+    const priceSave = $('[data-price-save]', container);
+    const stickyPrice = $('[data-sticky-price]');
+    const addBtn = $('[data-bundle-add]', container);
+
+    const selected = () => wrap.querySelector('[data-bundle].is-selected') || packs[0];
+
+    function updatePrice(pack) {
+      const price = parseInt(pack.dataset.price, 10) || 0;
+      const compare = parseInt(pack.dataset.compare, 10) || 0;
+      const saving = compare > price;
+      if (priceCurrent) priceCurrent.textContent = formatMoney(price);
+      if (priceCompare) { priceCompare.textContent = formatMoney(compare); priceCompare.hidden = !saving; }
+      if (priceBadge) { priceBadge.textContent = '-' + Math.round(((compare - price) / compare) * 100) + '%'; priceBadge.hidden = !saving; }
+      if (priceSave) { priceSave.textContent = 'Vous économisez ' + formatMoney(compare - price); priceSave.hidden = !saving; }
+      if (stickyPrice) stickyPrice.textContent = formatMoney(price);
+    }
+
+    function select(pack) {
+      packs.forEach((p) => {
+        const on = p === pack;
+        p.classList.toggle('is-selected', on);
+        p.setAttribute('aria-checked', on ? 'true' : 'false');
+        const sizes = p.querySelector('[data-sizes]');
+        if (sizes) sizes.hidden = !on;
+      });
+      updatePrice(pack);
+    }
+
+    packs.forEach((pack) => {
+      pack.addEventListener('click', (e) => {
+        if (e.target.closest('[data-size-select]')) return;
+        select(pack);
+      });
+      pack.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(pack); }
+      });
+    });
+
+    select(selected());
+
+    if (addBtn) {
+      addBtn.addEventListener('click', () => {
+        const pack = selected();
+        const selects = $$('[data-size-select]', pack);
+        const counts = {};
+        let invalid = false;
+        selects.forEach((s) => {
+          const opt = s.options[s.selectedIndex];
+          if (!s.value || (opt && opt.disabled)) { invalid = true; return; }
+          counts[s.value] = (counts[s.value] || 0) + 1;
+        });
+        if (invalid) { showError('Veuillez choisir une taille disponible pour chaque genouillère.', addBtn); return; }
+        const label = pack.dataset.label || '';
+        const items = Object.keys(counts).map((id) => ({
+          id: Number(id),
+          quantity: counts[id],
+          properties: { 'Offre': label },
+        }));
+        addItemsToCart(items, addBtn);
+      });
+    }
   });
 
   /* ----------------------------------------------------------------------- */
