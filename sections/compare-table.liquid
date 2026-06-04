@@ -1,0 +1,110 @@
+<section class="section compare-table {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+
+    <div class="ctable">
+      <div class="ctable__head">
+        <div class="ctable__head-spacer" aria-hidden="true"></div>
+        <div class="ctable__head-col ctable__head-col--us">
+          {%- if section.settings.us_image != blank -%}
+            {{ section.settings.us_image | image_url: width: 260 | image_tag: class: 'ctable__head-img', widths: '130,200,260', alt: section.settings.us_label }}
+          {%- endif -%}
+          <span class="ctable__head-label">{{ section.settings.us_label }}</span>
+        </div>
+        <div class="ctable__head-col ctable__head-col--them">
+          {%- if section.settings.them_image != blank -%}
+            {{ section.settings.them_image | image_url: width: 260 | image_tag: class: 'ctable__head-img', widths: '130,200,260', alt: section.settings.them_label }}
+          {%- endif -%}
+          <span class="ctable__head-label">{{ section.settings.them_label }}</span>
+        </div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div class="ctable__row" {{ block.shopify_attributes }}>
+          <div class="ctable__feat">
+            <span class="ctable__feat-icon">{% render 'icon', name: block.settings.icon %}</span>
+            <span class="ctable__feat-text">
+              <strong>{{ block.settings.feature }}</strong>
+              {%- if block.settings.feature_desc != blank -%}<small>{{ block.settings.feature_desc }}</small>{%- endif -%}
+            </span>
+          </div>
+          <div class="ctable__cell ctable__cell--us">
+            <span class="ctable__mark ctable__mark--yes">{% render 'icon', name: 'check' %}</span>
+            {%- if block.settings.us_text != blank -%}<p>{{ block.settings.us_text }}</p>{%- endif -%}
+          </div>
+          <div class="ctable__cell ctable__cell--them">
+            <span class="ctable__mark ctable__mark--no">{% render 'icon', name: 'x' %}</span>
+            {%- if block.settings.them_text != blank -%}<p>{{ block.settings.them_text }}</p>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="ctable__cta">
+        <a href="{{ section.settings.button_url | default: '/products/genouillere-betterknee' }}" class="btn btn--large">{{ section.settings.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparatif détaillé",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "La différence se ressent" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "BetterKnee ou une genouillère ordinaire ?" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Ce qui change vraiment, point par point." },
+    { "type": "image_picker", "id": "us_image", "label": "Image BetterKnee" },
+    { "type": "text", "id": "us_label", "label": "Libellé BetterKnee", "default": "BetterKnee" },
+    { "type": "image_picker", "id": "them_image", "label": "Image concurrents" },
+    { "type": "text", "id": "them_label", "label": "Libellé concurrents", "default": "Autres genouillères" },
+    { "type": "text", "id": "button_label", "label": "Bouton (vide = masqué)", "default": "Je veux ma BetterKnee" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Critère",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icône", "default": "activity",
+          "options": [
+            { "value": "activity", "label": "Soulagement" },
+            { "value": "wave", "label": "Antidérapant" },
+            { "value": "wind", "label": "Respirant" },
+            { "value": "grid", "label": "Extensible / maille" },
+            { "value": "moon", "label": "Sommeil" },
+            { "value": "feather", "label": "Léger" },
+            { "value": "shield", "label": "Durable" },
+            { "value": "heart", "label": "Confort" },
+            { "value": "leaf", "label": "Douceur" }
+          ]
+        },
+        { "type": "text", "id": "feature", "label": "Critère", "default": "Aide à soulager les douleurs et la raideur" },
+        { "type": "text", "id": "feature_desc", "label": "Précision (optionnel)", "default": "grâce à la compression ciblée" },
+        { "type": "textarea", "id": "us_text", "label": "Texte BetterKnee", "default": "Compression ciblée qui soulage efficacement et réduit la raideur." },
+        { "type": "textarea", "id": "them_text", "label": "Texte concurrents", "default": "Compression inefficace et peu de maintien." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparatif détaillé",
+      "blocks": [
+        { "type": "row", "settings": { "icon": "activity", "feature": "Aide à soulager les douleurs et la raideur", "feature_desc": "grâce à la compression ciblée", "us_text": "Compression ciblée qui soulage efficacement et réduit la raideur.", "them_text": "Compression inefficace et peu de maintien." } },
+        { "type": "row", "settings": { "icon": "wave", "feature": "Bande antidérapante en silicone", "feature_desc": "qui reste bien en place", "us_text": "Reste fermement en place toute la journée, sans glisser ni rouler.", "them_text": "Glisse et roule, nécessite des réajustements constants." } },
+        { "type": "row", "settings": { "icon": "wind", "feature": "Maille respirante agréable à porter", "feature_desc": "toute la journée", "us_text": "Favorise la circulation de l'air et garde votre peau fraîche et au sec.", "them_text": "Sensation d'étouffement et de transpiration." } },
+        { "type": "row", "settings": { "icon": "grid", "feature": "Nylon extensible qui épouse le genou", "feature_desc": "naturellement", "us_text": "S'adapte parfaitement à la forme de votre genou et suit vos mouvements.", "them_text": "Matière rigide qui limite les mouvements." } },
+        { "type": "row", "settings": { "icon": "moon", "feature": "Maintien confortable même pendant le sommeil", "feature_desc": "", "us_text": "Offre un soutien doux et stable toute la nuit pour des réveils plus confortables.", "them_text": "Inconfortable après plusieurs heures." } },
+        { "type": "row", "settings": { "icon": "feather", "feature": "Légère et discrète sous les vêtements", "feature_desc": "", "us_text": "Fine, légère et indétectable sous tous vos vêtements.", "them_text": "Épaisse, visible et gênante au quotidien." } },
+        { "type": "row", "settings": { "icon": "shield", "feature": "Garde sa forme et son maintien dans le temps", "feature_desc": "", "us_text": "Conçue avec des matériaux durables qui conservent leur élasticité et leur efficacité.", "them_text": "Se détend et perd rapidement en efficacité." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -243,48 +243,98 @@
         "button_url": "/products/genouillere-betterknee"
       }
     },
-    "testimonials": {
-      "type": "testimonials",
+    "compare_table": {
+      "type": "compare-table",
       "blocks": {
         "r1": {
-          "type": "review",
+          "type": "row",
           "settings": {
-            "rating": 5,
-            "text": "Mes genoux me faisaient souffrir dans les escaliers. Au début j'oubliais que je la portais… puis j'ai réalisé que je montais sans grimacer.",
-            "name": "Martine D., 58 ans",
-            "verified": true
+            "icon": "activity",
+            "feature": "Aide à soulager les douleurs et la raideur",
+            "feature_desc": "grâce à la compression ciblée",
+            "us_text": "Compression ciblée qui soulage efficacement et réduit la raideur.",
+            "them_text": "Compression inefficace et peu de maintien."
           }
         },
         "r2": {
-          "type": "review",
+          "type": "row",
           "settings": {
-            "rating": 5,
-            "text": "Discrète sous le pantalon, on ne la sent pas. Mes douleurs se sont calmées et j'ai repris mes marches du dimanche, en confiance.",
-            "name": "Jean-Pierre L., 63 ans",
-            "verified": true
+            "icon": "wave",
+            "feature": "Bande antidérapante en silicone",
+            "feature_desc": "qui reste bien en place",
+            "us_text": "Reste fermement en place toute la journée, sans glisser ni rouler.",
+            "them_text": "Glisse et roule, nécessite des réajustements constants."
           }
         },
         "r3": {
-          "type": "review",
+          "type": "row",
           "settings": {
-            "rating": 5,
-            "text": "Légère et confortable, je l'oublie. Mon genou est bien plus apaisé et je profite à nouveau de mon jardin sans appréhension.",
-            "name": "Christine M., 52 ans",
-            "verified": true
+            "icon": "wind",
+            "feature": "Maille respirante agréable à porter",
+            "feature_desc": "toute la journée",
+            "us_text": "Favorise la circulation de l'air et garde votre peau fraîche et au sec.",
+            "them_text": "Sensation d'étouffement et de transpiration."
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "icon": "grid",
+            "feature": "Nylon extensible qui épouse le genou",
+            "feature_desc": "naturellement",
+            "us_text": "S'adapte parfaitement à la forme de votre genou et suit vos mouvements.",
+            "them_text": "Matière rigide qui limite les mouvements."
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "icon": "moon",
+            "feature": "Maintien confortable même pendant le sommeil",
+            "feature_desc": "",
+            "us_text": "Offre un soutien doux et stable toute la nuit pour des réveils plus confortables.",
+            "them_text": "Inconfortable après plusieurs heures."
+          }
+        },
+        "r6": {
+          "type": "row",
+          "settings": {
+            "icon": "feather",
+            "feature": "Légère et discrète sous les vêtements",
+            "feature_desc": "",
+            "us_text": "Fine, légère et indétectable sous tous vos vêtements.",
+            "them_text": "Épaisse, visible et gênante au quotidien."
+          }
+        },
+        "r7": {
+          "type": "row",
+          "settings": {
+            "icon": "shield",
+            "feature": "Garde sa forme et son maintien dans le temps",
+            "feature_desc": "",
+            "us_text": "Conçue avec des matériaux durables qui conservent leur élasticité et leur efficacité.",
+            "them_text": "Se détend et perd rapidement en efficacité."
           }
         }
       },
       "block_order": [
         "r1",
         "r2",
-        "r3"
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7"
       ],
       "settings": {
         "soft_bg": false,
-        "eyebrow": "Leurs mots, pas les nôtres",
-        "title": "Des genoux apaisés, une vie retrouvée",
-        "show_rating": true,
-        "rating_text": "4,9/5 sur plus de 2 300 avis vérifiés"
+        "eyebrow": "La différence se ressent",
+        "title": "BetterKnee ou une genouillère ordinaire ?",
+        "subtitle": "Ce qui change vraiment, point par point.",
+        "us_label": "BetterKnee",
+        "them_label": "Autres genouillères",
+        "button_label": "Je veux ma BetterKnee",
+        "button_url": "/products/genouillere-betterknee"
       }
     },
     "trust": {
@@ -330,55 +380,6 @@
         "t4"
       ],
       "settings": {}
-    },
-    "comparison": {
-      "type": "comparison",
-      "blocks": {
-        "c1": {
-          "type": "row",
-          "settings": {
-            "feature": "Aide à apaiser les douleurs au genou"
-          }
-        },
-        "c2": {
-          "type": "row",
-          "settings": {
-            "feature": "Si légère qu'on l'oublie"
-          }
-        },
-        "c3": {
-          "type": "row",
-          "settings": {
-            "feature": "Tissu sans couture, sans irritation"
-          }
-        },
-        "c4": {
-          "type": "row",
-          "settings": {
-            "feature": "Maintien qui rassure sans comprimer"
-          }
-        },
-        "c5": {
-          "type": "row",
-          "settings": {
-            "feature": "30 jours pour l'adopter sereinement"
-          }
-        }
-      },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3",
-        "c4",
-        "c5"
-      ],
-      "settings": {
-        "soft_bg": false,
-        "title": "Pourquoi on l'adopte (et on ne la quitte plus)",
-        "subtitle": "La différence se ressent dès le premier port.",
-        "us_label": "BetterKnee",
-        "them_label": "Genouillères classiques"
-      }
     },
     "faq": {
       "type": "faq",
@@ -463,9 +464,8 @@
     "image_text",
     "compare",
     "how",
-    "testimonials",
+    "compare_table",
     "trust",
-    "comparison",
     "faq",
     "cta",
     "newsletter"
