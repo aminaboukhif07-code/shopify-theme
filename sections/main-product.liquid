@@ -1,6 +1,6 @@
 {%- liquid
   assign product = product
-  assign sizes = section.settings.sizes | default: 'S,M,L,XL' | split: ','
+  assign sizes = section.settings.sizes | default: 'S (37-43cm),M (43-48cm),L (48-53cm),XL (53-58cm)' | split: ','
   comment
     Variante affichée par défaut : la formule « 2 » si elle existe, sinon la première.
   endcomment
@@ -182,7 +182,7 @@
     { "type": "checkbox", "id": "show_rating", "label": "Afficher la note", "default": true },
     { "type": "text", "id": "reviews_count", "label": "Nombre d'avis", "default": "2347" },
     { "type": "checkbox", "id": "show_stock", "label": "Afficher le stock", "default": true },
-    { "type": "text", "id": "sizes", "label": "Tailles proposées (séparées par des virgules)", "default": "S,M,L,XL" },
+    { "type": "text", "id": "sizes", "label": "Tailles proposées (séparées par des virgules)", "default": "S (37-43cm),M (43-48cm),L (48-53cm),XL (53-58cm)" },
     { "type": "text", "id": "instalment_text", "label": "Texte sous le prix", "default": "Paiement 100% sécurisé · Livraison rapide" },
     { "type": "checkbox", "id": "show_payment_icons", "label": "Afficher les moyens de paiement", "default": true },
     { "type": "page", "id": "size_guide_page", "label": "Page guide des tailles" }
