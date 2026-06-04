@@ -1,0 +1,66 @@
+{%- comment -%}
+  Guide des tailles Bettermoove — DA sauge.
+  Bloc « Comment prendre votre mesure » + tableau Taille / Tour de cuisse.
+{%- endcomment -%}
+<section class="section sizeguide {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="sizeguide__card">
+      <div class="sizeguide__intro">
+        <span class="sizeguide__icon">{% render 'icon', name: 'ruler' %}</span>
+        <div class="sizeguide__intro-text">
+          <h3 class="sizeguide__eyebrow">{{ section.settings.eyebrow }}</h3>
+          <p>{{ section.settings.instruction }} {%- if section.settings.instruction_highlight != blank -%}<strong>{{ section.settings.instruction_highlight }}</strong>{%- endif -%}</p>
+        </div>
+      </div>
+
+      <div class="sizeguide__table" role="table">
+        <div class="sizeguide__row sizeguide__row--head" role="row">
+          <span role="columnheader">{{ section.settings.col1_label }}</span>
+          <span role="columnheader">{{ section.settings.col2_label }}{%- if section.settings.col2_sub != blank -%}<small>{{ section.settings.col2_sub }}</small>{%- endif -%}</span>
+        </div>
+        {%- for block in section.blocks -%}
+          <div class="sizeguide__row" role="row" {{ block.shopify_attributes }}>
+            <span class="sizeguide__badge">{{ block.settings.label }}</span>
+            <span class="sizeguide__measure">{{ block.settings.measure }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Guide des tailles",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Titre", "default": "Comment prendre votre mesure ?" },
+    { "type": "text", "id": "instruction", "label": "Instruction", "default": "Mesurez le tour de votre cuisse" },
+    { "type": "text", "id": "instruction_highlight", "label": "Partie en évidence", "default": "à 10 cm au-dessus du genou." },
+    { "type": "text", "id": "col1_label", "label": "Colonne 1", "default": "Taille" },
+    { "type": "text", "id": "col2_label", "label": "Colonne 2", "default": "Tour de cuisse" },
+    { "type": "text", "id": "col2_sub", "label": "Colonne 2 — précision", "default": "(à 10 cm au-dessus du genou)" }
+  ],
+  "blocks": [
+    {
+      "type": "size",
+      "name": "Taille",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Taille", "default": "S" },
+        { "type": "text", "id": "measure", "label": "Tour de cuisse", "default": "37 - 43 cm" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guide des tailles",
+      "blocks": [
+        { "type": "size", "settings": { "label": "S", "measure": "37 - 43 cm" } },
+        { "type": "size", "settings": { "label": "M", "measure": "43 - 48 cm" } },
+        { "type": "size", "settings": { "label": "L", "measure": "48 - 53 cm" } },
+        { "type": "size", "settings": { "label": "XL", "measure": "53 - 58 cm" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
