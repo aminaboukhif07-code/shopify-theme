@@ -470,6 +470,36 @@ li { margin-bottom: 0.4em; }
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Argumentaire genou (mobile-first)                                         */
+/* -------------------------------------------------------------------------- */
+.argu__placeholder { background: var(--color-soft); border-radius: 18px; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; }
+.argu__placeholder svg { width: 40%; opacity: 0.35; }
+
+.argu__ps { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center; }
+.argu__ps-img { width: 100%; border-radius: 18px; }
+.argu__lead { font-size: 1.05rem; opacity: 0.82; }
+.argu__help { font-weight: 700; margin-bottom: 0.6rem; }
+.argu__list { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1rem; }
+.argu__list li { display: flex; align-items: flex-start; gap: 0.5rem; margin: 0; font-weight: 500; font-size: 0.95rem; }
+.argu__list li svg { flex: none; width: 20px; height: 20px; color: var(--color-cta-hover); margin-top: 2px; }
+.argu__cta { width: 100%; }
+
+.argu__features-header { margin-top: 48px; }
+.argu__rows { display: grid; gap: 32px; }
+.frow { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; }
+.frow__img { width: 100%; border-radius: 18px; }
+.frow__body h3 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+.frow__body p { opacity: 0.82; margin: 0; }
+
+@media (min-width: 800px) {
+  .argu__ps { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .argu__cta { width: auto; }
+  .argu__rows { gap: 56px; }
+  .frow { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .frow--reverse .frow__media { order: 2; }
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Page produit (mobile-first)                                               */
 /* -------------------------------------------------------------------------- */
 .product { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start; }

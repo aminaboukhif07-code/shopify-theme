@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -19,6 +28,34 @@
         "show_bundles": true,
         "show_dynamic_checkout": true,
         "show_payment_icons": true
+      }
+    },
+    "argumentaire": {
+      "type": "argumentaire",
+      "blocks": {
+        "c1": { "type": "condition", "settings": { "text": "Douleurs et gêne au genou" } },
+        "c2": { "type": "condition", "settings": { "text": "Raideurs au réveil" } },
+        "c3": { "type": "condition", "settings": { "text": "Gonflements" } },
+        "c4": { "type": "condition", "settings": { "text": "Douleurs d'arthrose" } },
+        "c5": { "type": "condition", "settings": { "text": "Genou du coureur" } },
+        "c6": { "type": "condition", "settings": { "text": "Tendinites" } },
+        "c7": { "type": "condition", "settings": { "text": "Douleurs dans les escaliers" } },
+        "c8": { "type": "condition", "settings": { "text": "Fatigue articulaire" } },
+        "f1": { "type": "feature", "settings": { "title": "Un soulagement en quelques minutes", "text": "Apaise les douleurs, raideurs et gonflements du genou dès les premiers instants." } },
+        "f2": { "type": "feature", "settings": { "title": "Plus de liberté de mouvement", "text": "Améliore la circulation pour limiter raideurs et gonflements, et garder le genou souple toute la journée." } },
+        "f3": { "type": "feature", "settings": { "title": "Un soutien qui rassure", "text": "Enveloppe l'articulation en douceur pour limiter la sensation de genou qui frotte, sans jamais comprimer." } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "f1", "f2", "f3"],
+      "settings": {
+        "soft_bg": false,
+        "eyebrow": "Conçue pour vous",
+        "title": "Mal au genou dès que vous bougez ?",
+        "subtitle": "La plupart des genouillères sont trop épaisses et inconfortables pour être vraiment portées. La BetterKnee, elle, se fait oublier.",
+        "help_title": "La BetterKnee aide à apaiser :",
+        "button_label": "Soulager mes genoux",
+        "button_url": "/products/genouillere-betterknee",
+        "features_title": "Pourquoi la BetterKnee change tout",
+        "features_subtitle": "Oubliez les genouillères rigides que vous détestez porter. La BetterKnee est pensée pour le confort et le soulagement."
       }
     },
     "benefits": {
@@ -63,5 +100,5 @@
       "settings": { "soft_bg": true, "title": "Questions fréquentes" }
     }
   },
-  "order": ["main", "benefits", "testimonials", "faq"]
+  "order": ["main", "argumentaire", "benefits", "testimonials", "faq"]
 }

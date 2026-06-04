@@ -1,0 +1,127 @@
+{%- comment -%}
+  Argumentaire produit façon OneCompress, adapté Bettermoove.
+  - Bloc problème / solution avec liste de bénéfices
+  - Rangées de bénéfices illustrées (image + texte, alternées)
+  Mobile-first. Les images sont configurables (image_picker).
+{%- endcomment -%}
+<section class="section argu {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+
+    {%- comment -%} Problème / solution {%- endcomment -%}
+    <div class="argu__ps">
+      <div class="argu__ps-media">
+        {%- if section.settings.problem_image != blank -%}
+          {{ section.settings.problem_image | image_url: width: 720 | image_tag: class: 'argu__ps-img', widths: '360,540,720', alt: section.settings.title }}
+        {%- else -%}
+          <div class="argu__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      </div>
+      <div class="argu__ps-body">
+        {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2>{{ section.settings.title }}</h2>
+        {%- if section.settings.subtitle != blank -%}<p class="argu__lead">{{ section.settings.subtitle }}</p>{%- endif -%}
+        {%- if section.settings.help_title != blank -%}<p class="argu__help">{{ section.settings.help_title }}</p>{%- endif -%}
+        <ul class="argu__list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'condition' -%}
+              <li {{ block.shopify_attributes }}>{% render 'icon', name: 'check-circle' %} <span>{{ block.settings.text }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_url | default: '/products/genouillere-betterknee' }}" class="btn argu__cta">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Bénéfices illustrés {%- endcomment -%}
+    {%- assign feature_count = 0 -%}
+    {%- for block in section.blocks -%}{%- if block.type == 'feature' -%}{%- assign feature_count = feature_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+    {%- if feature_count > 0 -%}
+      {%- if section.settings.features_title != blank -%}
+        <div class="section-header argu__features-header">
+          <h2>{{ section.settings.features_title }}</h2>
+          {%- if section.settings.features_subtitle != blank -%}<p>{{ section.settings.features_subtitle }}</p>{%- endif -%}
+        </div>
+      {%- endif -%}
+      <div class="argu__rows">
+        {%- assign fi = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'feature' -%}
+            {%- assign fi = fi | plus: 1 -%}
+            {%- assign row_even = fi | modulo: 2 -%}
+            <div class="frow {% if row_even == 0 %}frow--reverse{% endif %}" {{ block.shopify_attributes }}>
+              <div class="frow__media">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 720 | image_tag: class: 'frow__img', widths: '360,540,720', alt: block.settings.title }}
+                {%- else -%}
+                  <div class="argu__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+                {%- endif -%}
+              </div>
+              <div class="frow__body">
+                <h3>{{ block.settings.title }}</h3>
+                {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Argumentaire genou",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "header", "content": "Bloc problème / solution" },
+    { "type": "image_picker", "id": "problem_image", "label": "Image" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Conçue pour vous" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Mal au genou dès que vous bougez ?" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "La plupart des genouillères sont trop épaisses et inconfortables pour être vraiment portées. La BetterKnee, elle, se fait oublier." },
+    { "type": "text", "id": "help_title", "label": "Intro de la liste", "default": "La BetterKnee aide à apaiser :" },
+    { "type": "text", "id": "button_label", "label": "Bouton (vide = masqué)", "default": "Soulager mes genoux" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton" },
+    { "type": "header", "content": "Bénéfices illustrés" },
+    { "type": "text", "id": "features_title", "label": "Titre de la partie", "default": "Pourquoi la BetterKnee change tout" },
+    { "type": "textarea", "id": "features_subtitle", "label": "Sous-titre", "default": "Oubliez les genouillères rigides que vous détestez porter. La BetterKnee est pensée pour le confort et le soulagement." }
+  ],
+  "blocks": [
+    {
+      "type": "condition",
+      "name": "Ce que ça apaise",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texte", "default": "Douleurs au genou" }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Bénéfice illustré",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Un soulagement en quelques minutes" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Apaise les douleurs, raideurs et gonflements du genou dès les premiers instants." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Argumentaire genou",
+      "blocks": [
+        { "type": "condition", "settings": { "text": "Douleurs et gêne au genou" } },
+        { "type": "condition", "settings": { "text": "Raideurs au réveil" } },
+        { "type": "condition", "settings": { "text": "Gonflements" } },
+        { "type": "condition", "settings": { "text": "Douleurs d'arthrose" } },
+        { "type": "condition", "settings": { "text": "Genou du coureur" } },
+        { "type": "condition", "settings": { "text": "Tendinites" } },
+        { "type": "condition", "settings": { "text": "Douleurs dans les escaliers" } },
+        { "type": "condition", "settings": { "text": "Fatigue articulaire" } },
+        { "type": "feature", "settings": { "title": "Un soulagement en quelques minutes", "text": "Apaise les douleurs, raideurs et gonflements du genou dès les premiers instants." } },
+        { "type": "feature", "settings": { "title": "Plus de liberté de mouvement", "text": "Améliore la circulation pour limiter raideurs et gonflements, et garder le genou souple toute la journée." } },
+        { "type": "feature", "settings": { "title": "Un soutien qui rassure", "text": "Enveloppe l'articulation en douceur pour limiter la sensation de genou qui frotte, sans jamais comprimer." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
