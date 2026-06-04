@@ -258,21 +258,27 @@
   });
 
   /* ----------------------------------------------------------------------- */
-  /*  Galerie produit                                                        */
+  /*  Carrousel produit (scroll-snap, mobile-first)                          */
   /* ----------------------------------------------------------------------- */
-  $$('[data-gallery]').forEach((gallery) => {
-    const mainImg = $('[data-gallery-main] img', gallery);
-    $$('[data-gallery-thumb]', gallery).forEach((thumb) =>
-      thumb.addEventListener('click', () => {
-        const src = thumb.dataset.full;
-        if (mainImg && src) {
-          mainImg.src = src;
-          mainImg.srcset = '';
-        }
-        $$('[data-gallery-thumb]', gallery).forEach((t) => t.classList.remove('is-active'));
-        thumb.classList.add('is-active');
+  $$('[data-carousel]').forEach((carousel) => {
+    const track = $('[data-carousel-track]', carousel);
+    const dots = $$('[data-carousel-dot]', carousel);
+    if (!track) return;
+
+    dots.forEach((dot, i) =>
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' });
       })
     );
+
+    let raf;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const i = Math.round(track.scrollLeft / track.clientWidth);
+        dots.forEach((d, k) => d.classList.toggle('is-active', k === i));
+      });
+    });
   });
 
   /* ----------------------------------------------------------------------- */

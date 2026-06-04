@@ -1,9 +1,6 @@
 {%- liquid
   assign product = product
   assign sizes = section.settings.sizes | default: 'S (37-43cm),M (43-48cm),L (48-53cm),XL (53-58cm)' | split: ','
-  comment
-    Formule affichée par défaut : « 2 » si elle existe, sinon la première.
-  endcomment
   assign default_v = product.variants.first
   for v in product.variants
     assign n = v.option1 | split: ' ' | first | plus: 0
@@ -17,24 +14,30 @@
   <div class="page-width">
     <div class="product">
 
-      {%- comment -%} ----- Galerie ----- {%- endcomment -%}
-      <div class="product__media" data-gallery>
-        <div class="product__gallery-main" data-gallery-main>
-          {%- if product.featured_media -%}
-            {{ product.featured_media | image_url: width: 1100 | image_tag: widths: '500,750,1100', sizes: '(max-width: 990px) 100vw, 50vw', fetchpriority: 'high', alt: product.title }}
-          {%- else -%}
-            {{ 'product-2' | placeholder_svg_tag }}
+      {%- comment -%} ----- Carrousel ----- {%- endcomment -%}
+      <div class="product__media">
+        <div class="gallery" data-carousel>
+          <div class="gallery__track" data-carousel-track>
+            {%- if product.media.size > 0 -%}
+              {%- for media in product.media limit: 8 -%}
+                {%- assign img_loading = 'lazy' -%}
+                {%- if forloop.first -%}{%- assign img_loading = 'eager' -%}{%- endif -%}
+                <div class="gallery__slide">
+                  {{ media | image_url: width: 1100 | image_tag: widths: '500,750,1100', sizes: '(max-width: 990px) 100vw, 50vw', loading: img_loading, alt: product.title }}
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              <div class="gallery__slide">{{ 'product-2' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+          </div>
+          {%- if product.media.size > 1 -%}
+            <div class="gallery__dots" data-carousel-dots>
+              {%- for media in product.media limit: 8 -%}
+                <button type="button" class="gallery__dot {% if forloop.first %}is-active{% endif %}" data-carousel-dot aria-label="Image {{ forloop.index }}"></button>
+              {%- endfor -%}
+            </div>
           {%- endif -%}
         </div>
-        {%- if product.media.size > 1 -%}
-          <div class="product__thumbs">
-            {%- for media in product.media limit: 8 -%}
-              <button type="button" class="product__thumb {% if forloop.first %}is-active{% endif %}" data-gallery-thumb data-full="{{ media | image_url: width: 1100 }}" aria-label="Image {{ forloop.index }}">
-                {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: product.title }}
-              </button>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
       </div>
 
       {%- comment -%} ----- Infos & achat ----- {%- endcomment -%}
@@ -73,10 +76,9 @@
           <div class="product__stock" data-stock><span class="dot"></span> En stock · expédié rapidement</div>
         {%- endif -%}
 
-        {%- comment -%} Options de taille réutilisables {%- endcomment -%}
         {%- capture size_options -%}<option value="" disabled selected>Choisir la taille…</option>{%- for s in sizes -%}<option value="{{ s | strip }}">{{ s | strip }}</option>{%- endfor -%}{%- endcapture -%}
 
-        {%- comment -%} Sélecteur de formules ----- {%- endcomment -%}
+        {%- comment -%} ----- Formules ----- {%- endcomment -%}
         <div class="packs" data-bundles role="radiogroup" aria-label="Choisissez votre offre">
           {%- for v in product.variants -%}
             {%- assign qty = v.option1 | split: ' ' | first | plus: 0 -%}
@@ -117,22 +119,16 @@
             <span class="btn__text">Ajouter au panier</span>
           </button>
           <div data-cart-error class="product__error" hidden></div>
+          <div class="product__assur">
+            <span>{% render 'icon', name: 'truck' %} Livraison offerte dès 59€</span>
+            <span>{% render 'icon', name: 'return' %} 30 jours pour changer d'avis</span>
+            <span>{% render 'icon', name: 'shield' %} Paiement 100% sécurisé</span>
+          </div>
         </div>
 
-        <ul class="product__reassurance">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'reassurance' -%}
-              <li {{ block.shopify_attributes }}>{% render 'icon', name: block.settings.icon %} <span>{{ block.settings.text }}</span></li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
-
-        {%- if section.settings.show_payment_icons -%}
-          <div class="product__payments">
-            <span class="product__payments-label">{% render 'icon', name: 'shield' %} Paiement 100% sécurisé</span>
-            <div class="payment-icons">
-              {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'payment-icon' }}{%- endfor -%}
-            </div>
+        {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+          <div class="payment-icons">
+            {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'payment-icon' }}{%- endfor -%}
           </div>
         {%- endif -%}
       </div>
@@ -149,7 +145,6 @@
   <button type="button" class="btn" data-sticky-add>Ajouter</button>
 </div>
 
-{%- comment -%} Données structurées SEO {%- endcomment -%}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org/",
