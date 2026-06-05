@@ -34,16 +34,18 @@
         "badge_text": "30 jours pour l'adopter"
       }
     },
-    "trust": {
-      "type": "trust-strip",
+    "marquee": {
+      "type": "marquee",
       "blocks": {
-        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Livraison offerte", "subtitle": "Dès 59€ · rapide" } },
-        "t2": { "type": "item", "settings": { "icon": "return", "title": "30 jours", "subtitle": "Satisfait ou remboursé" } },
-        "t3": { "type": "item", "settings": { "icon": "shield", "title": "Paiement sécurisé", "subtitle": "100% protégé" } },
-        "t4": { "type": "item", "settings": { "icon": "feather", "title": "Confort", "subtitle": "On l'oublie" } }
+        "m1": { "type": "item", "settings": { "icon": "heart", "text": "Soulage les douleurs" } },
+        "m2": { "type": "item", "settings": { "icon": "feather", "text": "Légère comme une seconde peau" } },
+        "m3": { "type": "item", "settings": { "icon": "check-circle", "text": "Maintien optimal" } },
+        "m4": { "type": "item", "settings": { "icon": "leaf", "text": "Pensée pour les peaux sensibles" } },
+        "m5": { "type": "item", "settings": { "icon": "activity", "text": "Bouger en confiance" } },
+        "m6": { "type": "item", "settings": { "icon": "shield", "text": "Apaise de jour comme de nuit" } }
       },
-      "block_order": ["t1", "t2", "t3", "t4"],
-      "settings": {}
+      "block_order": ["m1", "m2", "m3", "m4", "m5", "m6"],
+      "settings": { "aria": "Nos engagements" }
     },
     "argumentaire": {
       "type": "argumentaire",
@@ -210,5 +212,5 @@
       }
     }
   },
-  "order": ["hero", "trust", "argumentaire", "emotion", "benefits", "compare", "compare_table", "featured", "testimonials", "guarantee", "faq", "newsletter"]
+  "order": ["hero", "marquee", "argumentaire", "featured", "emotion", "benefits", "compare", "compare_table", "testimonials", "guarantee", "faq", "newsletter"]
 }
