@@ -773,3 +773,95 @@ li { margin-bottom: 0.4em; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ========================================================================== */
+/*  BETTERMOOVE 2.0 — REFONTE 2026 (couche de surcharge, full conversion)     */
+/*  Identité conservée (sauge/crème/noir). Look modernisé : chips, boutons    */
+/*  premium, cartes en relief, sections aérées, micro-interactions.           */
+/* ========================================================================== */
+:root {
+  --bm-shadow-soft: 0 12px 32px rgba(28, 38, 24, 0.08);
+  --bm-shadow-lift: 0 22px 48px rgba(28, 38, 24, 0.15);
+  --bm-radius-xl: 24px;
+}
+
+/* Titres un peu plus serrés/impactants */
+h1, h2 { letter-spacing: -0.02em; }
+
+/* Eyebrows → pastilles modernes */
+.eyebrow,
+.section-header__eyebrow {
+  display: inline-block;
+  background: color-mix(in srgb, var(--color-cta) 16%, var(--color-bg));
+  color: var(--color-cta-hover);
+  padding: 0.42rem 0.95rem;
+  border-radius: 999px;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+}
+
+/* Boutons premium : relief + survol qui lève */
+.btn,
+.shopify-payment-button__button--unbranded {
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-cta) 28%, transparent);
+  letter-spacing: 0.01em;
+}
+.btn:hover,
+.shopify-payment-button__button--unbranded:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--color-cta) 42%, transparent);
+}
+.btn:active { transform: translateY(0); }
+.btn--outline,
+.btn--light { box-shadow: none; }
+.btn--outline:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,0.12); }
+
+/* Cartes & blocs : relief doux + survol */
+.benefit-card,
+.testimonial,
+.card,
+.pack,
+.sizeguide__table,
+.fp__media,
+.product__gallery-main,
+.gallery__track,
+.comparison-table {
+  box-shadow: var(--bm-shadow-soft);
+}
+.benefit-card:hover,
+.card:hover,
+.testimonial:hover { box-shadow: var(--bm-shadow-lift); transform: translateY(-3px); }
+.benefit-card,
+.testimonial,
+.card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+
+/* Pastille produit "économisez" et badges → plus ronds */
+.pack__badge-save,
+.badge-pill { border-radius: 999px; }
+.pack { border-radius: 18px; }
+.pack.is-selected { box-shadow: 0 16px 36px color-mix(in srgb, var(--color-cta) 26%, transparent); }
+
+/* Sections plus aérées et rythme premium sur desktop */
+@media (min-width: 900px) {
+  .section { padding-block: 88px; }
+  .section-header { margin-bottom: 48px; }
+}
+
+/* Header net + flou moderne */
+.header { border-bottom: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent); }
+
+/* Barre d'ajout collante premium */
+.sticky-atc { box-shadow: 0 -10px 34px rgba(0,0,0,0.14); border-top: none; }
+.sticky-atc .btn { box-shadow: 0 6px 16px color-mix(in srgb, var(--color-cta) 35%, transparent); }
+
+/* Bandeau annonce un peu plus présent */
+.announcement-bar__item { font-size: 0.82rem; letter-spacing: 0.03em; }
+
+/* Galerie produit : coins plus généreux */
+.gallery__track,
+.product__gallery-main,
+.fp__media { border-radius: var(--bm-radius-xl); }
+
+/* Liens du footer plus lisibles au survol */
+.footer a { transition: opacity 0.15s ease; }
+

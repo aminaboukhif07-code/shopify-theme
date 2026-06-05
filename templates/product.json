@@ -1,10 +1,6 @@
 /*
  * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
+ * Bettermoove 2.0 — fiche produit conversion (textes courts)
  * ------------------------------------------------------------
  */
 {
@@ -12,10 +8,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "re1": { "type": "reassurance", "settings": { "icon": "heart", "text": "Aide à apaiser les douleurs au genou, en douceur" } },
-        "re2": { "type": "reassurance", "settings": { "icon": "feather", "text": "Si légère et sans couture qu'on l'oublie en la portant" } },
-        "re3": { "type": "reassurance", "settings": { "icon": "truck", "text": "Livraison rapide et offerte dès 59€ en France" } },
-        "re4": { "type": "reassurance", "settings": { "icon": "return", "text": "30 jours pour l'adopter, ou remboursé sans question" } }
+        "re1": { "type": "reassurance", "settings": { "icon": "heart", "text": "Apaise les douleurs au genou" } },
+        "re2": { "type": "reassurance", "settings": { "icon": "feather", "text": "Si légère qu'on l'oublie" } },
+        "re3": { "type": "reassurance", "settings": { "icon": "truck", "text": "Livraison offerte dès 59€" } },
+        "re4": { "type": "reassurance", "settings": { "icon": "return", "text": "30 jours satisfait ou remboursé" } }
       },
       "block_order": ["re1", "re2", "re3", "re4"],
       "settings": {
@@ -23,7 +19,7 @@
         "show_rating": true,
         "reviews_count": "2347",
         "show_stock": true,
-        "instalment_text": "ou payez en 4x sans frais — Paiement 100% sécurisé",
+        "instalment_text": "Paiement 100% sécurisé · Livraison rapide",
         "show_payment_icons": true
       }
     },
@@ -38,83 +34,83 @@
       "block_order": ["z1", "z2", "z3", "z4"],
       "settings": {
         "soft_bg": true,
-        "eyebrow": "Comment prendre votre mesure ?",
-        "instruction": "Mesurez le tour de votre cuisse",
+        "eyebrow": "Trouvez votre taille",
+        "instruction": "Mesurez votre tour de cuisse",
         "instruction_highlight": "à 10 cm au-dessus du genou.",
         "col1_label": "Taille",
         "col2_label": "Tour de cuisse",
         "col2_sub": "(à 10 cm au-dessus du genou)"
       }
     },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "text": "Je montais les escaliers sans grimacer. Un vrai soulagement.", "name": "Martine D., 58 ans", "verified": true } },
+        "r2": { "type": "review", "settings": { "rating": 5, "text": "On ne la sent pas. J'ai repris mes marches en confiance.", "name": "Jean-Pierre L., 63 ans", "verified": true } },
+        "r3": { "type": "review", "settings": { "rating": 5, "text": "Légère, je l'oublie. Mon genou est apaisé.", "name": "Christine M., 52 ans", "verified": true } }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "settings": {
+        "eyebrow": "Ils l'ont adoptée",
+        "title": "+ de 2 300 genoux soulagés",
+        "show_rating": true,
+        "rating_text": "4,9/5 · avis vérifiés"
+      }
+    },
     "argumentaire": {
       "type": "argumentaire",
       "blocks": {
-        "c1": { "type": "condition", "settings": { "text": "Douleurs et gêne au genou" } },
-        "c2": { "type": "condition", "settings": { "text": "Raideurs au réveil" } },
+        "c1": { "type": "condition", "settings": { "text": "Douleurs au genou" } },
+        "c2": { "type": "condition", "settings": { "text": "Raideurs" } },
         "c3": { "type": "condition", "settings": { "text": "Gonflements" } },
-        "c4": { "type": "condition", "settings": { "text": "Douleurs d'arthrose" } },
+        "c4": { "type": "condition", "settings": { "text": "Arthrose" } },
         "c5": { "type": "condition", "settings": { "text": "Genou du coureur" } },
         "c6": { "type": "condition", "settings": { "text": "Tendinites" } },
         "c7": { "type": "condition", "settings": { "text": "Douleurs dans les escaliers" } },
         "c8": { "type": "condition", "settings": { "text": "Fatigue articulaire" } },
-        "f1": { "type": "feature", "settings": { "title": "Un soulagement en quelques minutes", "text": "Apaise les douleurs, raideurs et gonflements du genou dès les premiers instants." } },
-        "f2": { "type": "feature", "settings": { "title": "Plus de liberté de mouvement", "text": "Améliore la circulation pour limiter raideurs et gonflements, et garder le genou souple toute la journée." } },
-        "f3": { "type": "feature", "settings": { "title": "Un soutien qui rassure", "text": "Enveloppe l'articulation en douceur pour limiter la sensation de genou qui frotte, sans jamais comprimer." } }
+        "f1": { "type": "feature", "settings": { "title": "Soulagement rapide", "text": "Apaise douleurs, raideurs et gonflements." } },
+        "f2": { "type": "feature", "settings": { "title": "Plus de mobilité", "text": "Garde le genou souple toute la journée." } },
+        "f3": { "type": "feature", "settings": { "title": "Un soutien qui rassure", "text": "Maintient en douceur, sans comprimer." } }
       },
       "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "f1", "f2", "f3"],
       "settings": {
         "soft_bg": false,
         "eyebrow": "Conçue pour vous",
-        "title": "Mal au genou dès que vous bougez ?",
-        "subtitle": "La plupart des genouillères sont trop épaisses et inconfortables pour être vraiment portées. La BetterKnee, elle, se fait oublier.",
-        "help_title": "La BetterKnee aide à apaiser :",
+        "title": "Mal au genou ?",
+        "subtitle": "Une compression ciblée qui apaise — sans qu'on la sente.",
+        "help_title": "Soulage :",
         "button_label": "Soulager mes genoux",
         "button_url": "/products/genouillere-betterknee",
-        "features_title": "Pourquoi la BetterKnee change tout",
-        "features_subtitle": "Oubliez les genouillères rigides que vous détestez porter. La BetterKnee est pensée pour le confort et le soulagement."
+        "features_title": "Pourquoi elle change tout",
+        "features_subtitle": ""
       }
     },
     "benefits": {
       "type": "benefits",
       "blocks": {
-        "x1": { "type": "benefit", "settings": { "icon": "heart", "title": "Apaise le genou en douceur", "text": "Un soutien enveloppant qui aide à soulager les douleurs et tensions du quotidien." } },
-        "x2": { "type": "benefit", "settings": { "icon": "feather", "title": "Un confort qu'on oublie", "text": "Légère et sans couture, on ne la sent plus en quelques minutes." } },
-        "x3": { "type": "benefit", "settings": { "icon": "activity", "title": "La liberté de bouger", "text": "Retrouvez les gestes du quotidien, à votre rythme et sans appréhension." } },
-        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Discrète, toujours", "text": "Invisible sous un pantalon, elle vous accompagne en toute discrétion." } }
+        "x1": { "type": "benefit", "settings": { "icon": "heart", "title": "Apaise en douceur", "text": "Soulage les douleurs du quotidien." } },
+        "x2": { "type": "benefit", "settings": { "icon": "feather", "title": "On l'oublie", "text": "Légère et sans couture." } },
+        "x3": { "type": "benefit", "settings": { "icon": "activity", "title": "Liberté de bouger", "text": "Vos gestes, à votre rythme." } },
+        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Discrète", "text": "Invisible sous un pantalon." } }
       },
       "block_order": ["x1", "x2", "x3", "x4"],
       "settings": {
         "soft_bg": true,
         "eyebrow": "Plus qu'une genouillère",
-        "title": "Soulager le genou, sans s'en rendre compte"
-      }
-    },
-    "testimonials": {
-      "type": "testimonials",
-      "blocks": {
-        "r1": { "type": "review", "settings": { "rating": 5, "text": "Mes genoux me faisaient souffrir dans les escaliers. Je l'oubliais… puis j'ai réalisé que je montais sans grimacer.", "name": "Martine D., 58 ans", "verified": true } },
-        "r2": { "type": "review", "settings": { "rating": 5, "text": "On ne la sent pas sous le pantalon. Mes douleurs se sont calmées et j'ai repris mes marches en confiance.", "name": "Jean-Pierre L., 63 ans", "verified": true } },
-        "r3": { "type": "review", "settings": { "rating": 5, "text": "Légère, je l'oublie. Mon genou est apaisé et je profite à nouveau de mon jardin.", "name": "Christine M., 52 ans", "verified": true } }
-      },
-      "block_order": ["r1", "r2", "r3"],
-      "settings": {
-        "eyebrow": "Leurs mots, pas les nôtres",
-        "title": "Des genoux apaisés, une vie retrouvée",
-        "show_rating": true,
-        "rating_text": "4,9/5 sur plus de 2 300 avis vérifiés"
+        "title": "Le confort, sans y penser"
       }
     },
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "qa", "settings": { "question": "Est-ce que ça soulage vraiment les douleurs au genou ?", "answer": "<p>La BetterKnee enveloppe le genou d'un soutien doux qui aide à apaiser les douleurs et tensions du quotidien. La plupart de nos clients ressentent un genou plus léger dès les premiers ports — et vous avez 30 jours pour en juger.</p>" } },
-        "q2": { "type": "qa", "settings": { "question": "Est-ce vraiment confortable au quotidien ?", "answer": "<p>Oui. Sans couture et respirante, on l'oublie en quelques minutes — c'est souvent en bougeant qu'on remarque la différence.</p>" } },
-        "q3": { "type": "qa", "settings": { "question": "Comment choisir ma taille ?", "answer": "<p>Mesurez votre tour de cuisse à 10 cm au-dessus du genou et reportez-vous au guide des tailles. En cas de doute, prenez la taille au-dessus.</p>" } },
-        "q4": { "type": "qa", "settings": { "question": "Comment se passe la livraison ?", "answer": "<p>Livraison rapide et offerte dès 59€ d'achat, partout en France. 30 jours pour l'adopter, ou remboursé sans question.</p>" } }
+        "q1": { "type": "qa", "settings": { "question": "Ça soulage vraiment ?", "answer": "<p>Oui — un soutien doux qui apaise les douleurs du quotidien. 30 jours pour en juger.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "C'est confortable ?", "answer": "<p>Sans couture et respirante, on l'oublie en quelques minutes.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "Quelle taille choisir ?", "answer": "<p>Mesurez votre tour de cuisse à 10 cm au-dessus du genou et reportez-vous au guide. En cas de doute, prenez au-dessus.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "Et la livraison ?", "answer": "<p>Rapide et offerte dès 59€. 30 jours satisfait ou remboursé.</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4"],
-      "settings": { "soft_bg": true, "title": "Questions fréquentes" }
+      "settings": { "soft_bg": false, "title": "Questions fréquentes" }
     }
   },
-  "order": ["main", "sizeguide", "argumentaire", "benefits", "testimonials", "faq"]
+  "order": ["main", "sizeguide", "testimonials", "argumentaire", "benefits", "faq"]
 }
