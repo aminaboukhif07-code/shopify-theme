@@ -865,3 +865,29 @@ h1, h2 { letter-spacing: -0.02em; }
 /* Liens du footer plus lisibles au survol */
 .footer a { transition: opacity 0.15s ease; }
 
+/* ===== CTA TERRACOTTA — seule couleur chaude, pour accrocher l'œil ===== */
+:root { --color-terracotta: #C0613B; --color-terracotta-hover: #A44E2C; }
+.btn,
+.shopify-payment-button__button--unbranded {
+  background: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  color: #fff;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-terracotta) 30%, transparent);
+}
+.btn:hover,
+.shopify-payment-button__button--unbranded:hover {
+  background: var(--color-terracotta-hover);
+  border-color: var(--color-terracotta-hover);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--color-terracotta) 45%, transparent);
+}
+/* variantes neutres conservées */
+.btn--outline { background: transparent; color: var(--color-text); border-color: var(--color-text); box-shadow: none; }
+.btn--outline:hover { background: var(--color-text); color: var(--color-bg); }
+.btn--light { background: var(--color-bg); color: var(--color-text); border-color: var(--color-bg); box-shadow: none; }
+/* prix barré dans le CTA */
+.btn s { opacity: 0.6; font-weight: 600; font-size: 0.86em; margin-right: 0.3em; text-decoration: line-through; }
+
+/* CTA centré sous le slider comparateur */
+.compare__cta { text-align: center; margin-top: 28px; }
+@media (max-width: 749px) { .compare__cta .btn { width: 100%; } }
+

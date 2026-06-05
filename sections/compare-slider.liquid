@@ -43,6 +43,12 @@
         </span>
       </div>
     </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="compare__cta">
+        <a href="{{ section.settings.button_url | default: '/products/genouillere-betterknee' }}" class="btn">{{ section.settings.button_label }}</a>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -70,7 +76,9 @@
       ],
       "default": "4 / 5"
     },
-    { "type": "range", "id": "start_position", "min": 10, "max": 90, "step": 5, "unit": "%", "label": "Position de départ du curseur", "default": 50 }
+    { "type": "range", "id": "start_position", "min": 10, "max": 90, "step": 5, "unit": "%", "label": "Position de départ du curseur", "default": 50 },
+    { "type": "text", "id": "button_label", "label": "Texte du bouton" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton" }
   ],
   "presets": [{ "name": "Comparateur avant/après" }]
 }
