@@ -9,17 +9,19 @@
     <div class="ctable">
       <div class="ctable__head">
         <div class="ctable__head-spacer" aria-hidden="true"></div>
-        <div class="ctable__head-col ctable__head-col--us">
-          {%- if section.settings.us_image != blank -%}
-            {{ section.settings.us_image | image_url: width: 260 | image_tag: class: 'ctable__head-img', widths: '130,200,260', alt: section.settings.us_label }}
-          {%- endif -%}
-          <span class="ctable__head-label">{{ section.settings.us_label }}</span>
-        </div>
-        <div class="ctable__head-col ctable__head-col--them">
-          {%- if section.settings.them_image != blank -%}
-            {{ section.settings.them_image | image_url: width: 260 | image_tag: class: 'ctable__head-img', widths: '130,200,260', alt: section.settings.them_label }}
-          {%- endif -%}
-          <span class="ctable__head-label">{{ section.settings.them_label }}</span>
+        <div class="ctable__head-cells">
+          <div class="ctable__head-col ctable__head-col--us">
+            {%- if section.settings.us_image != blank -%}
+              {{ section.settings.us_image | image_url: width: 260 | image_tag: class: 'ctable__head-img', widths: '130,200,260', alt: section.settings.us_label }}
+            {%- endif -%}
+            <span class="ctable__head-label">{{ section.settings.us_label }}</span>
+          </div>
+          <div class="ctable__head-col ctable__head-col--them">
+            {%- if section.settings.them_image != blank -%}
+              {{ section.settings.them_image | image_url: width: 260 | image_tag: class: 'ctable__head-img', widths: '130,200,260', alt: section.settings.them_label }}
+            {%- endif -%}
+            <span class="ctable__head-label">{{ section.settings.them_label }}</span>
+          </div>
         </div>
       </div>
 
@@ -32,13 +34,17 @@
               {%- if block.settings.feature_desc != blank -%}<small>{{ block.settings.feature_desc }}</small>{%- endif -%}
             </span>
           </div>
-          <div class="ctable__cell ctable__cell--us">
-            <span class="ctable__mark ctable__mark--yes">{% render 'icon', name: 'check' %}</span>
-            {%- if block.settings.us_text != blank -%}<p>{{ block.settings.us_text }}</p>{%- endif -%}
-          </div>
-          <div class="ctable__cell ctable__cell--them">
-            <span class="ctable__mark ctable__mark--no">{% render 'icon', name: 'x' %}</span>
-            {%- if block.settings.them_text != blank -%}<p>{{ block.settings.them_text }}</p>{%- endif -%}
+          <div class="ctable__cells">
+            <div class="ctable__cell ctable__cell--us">
+              <span class="ctable__cell-label">{{ section.settings.us_label }}</span>
+              <span class="ctable__mark ctable__mark--yes">{% render 'icon', name: 'check' %}</span>
+              {%- if block.settings.us_text != blank -%}<p>{{ block.settings.us_text }}</p>{%- endif -%}
+            </div>
+            <div class="ctable__cell ctable__cell--them">
+              <span class="ctable__cell-label">{{ section.settings.them_label }}</span>
+              <span class="ctable__mark ctable__mark--no">{% render 'icon', name: 'x' %}</span>
+              {%- if block.settings.them_text != blank -%}<p>{{ block.settings.them_text }}</p>{%- endif -%}
+            </div>
           </div>
         </div>
       {%- endfor -%}
