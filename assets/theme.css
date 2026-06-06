@@ -891,3 +891,22 @@ h1, h2 { letter-spacing: -0.02em; }
 .compare__cta { text-align: center; margin-top: 28px; }
 @media (max-width: 749px) { .compare__cta .btn { width: 100%; } }
 
+/* ===== Sélecteur de douleur interactif (façon IM8) ===== */
+.psel { max-width: 880px; margin-inline: auto; }
+.psel__tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
+.psel__tab { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.05rem; border-radius: 999px; border: 1.5px solid var(--color-border); background: var(--color-bg); font-family: var(--font-body); font-weight: 600; font-size: 0.92rem; line-height: 1; color: var(--color-text); cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+.psel__tab:hover { border-color: var(--color-cta); }
+.psel__tab.is-active { background: var(--color-cta); border-color: var(--color-cta); color: #fff; }
+.psel__tab-emoji { font-size: 1rem; line-height: 1; }
+.psel__panels { position: relative; }
+.psel__panel { display: none; background: var(--color-bg); border-radius: 20px; padding: 26px 22px; box-shadow: var(--bm-shadow-soft); border-top: 4px solid var(--color-cta); }
+.psel__panel.is-active { display: block; animation: pselfade 0.25s ease; }
+@keyframes pselfade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.psel__panel h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.psel__panel-emoji { font-family: initial; }
+.psel__panel p { margin: 0; opacity: 0.85; font-size: 1.05rem; }
+.psel__footer { text-align: center; margin-top: 1.4rem; font-weight: 600; opacity: 0.85; }
+.psel__cta { text-align: center; margin-top: 1.6rem; }
+@media (max-width: 749px) { .psel__cta .btn { width: 100%; } }
+@media (min-width: 700px) { .psel__panel { padding: 36px 40px; } }
+

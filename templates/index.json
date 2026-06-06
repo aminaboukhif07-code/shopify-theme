@@ -47,32 +47,28 @@
       "block_order": ["m1", "m2", "m3", "m4", "m5", "m6"],
       "settings": { "aria": "Nos engagements" }
     },
-    "argumentaire": {
-      "type": "argumentaire",
+    "painselector": {
+      "type": "pain-selector",
       "blocks": {
-        "c1": { "type": "condition", "settings": { "text": "Douleurs au genou" } },
-        "c2": { "type": "condition", "settings": { "text": "Raideurs" } },
-        "c3": { "type": "condition", "settings": { "text": "Gonflements" } },
-        "c4": { "type": "condition", "settings": { "text": "Arthrose" } },
-        "c5": { "type": "condition", "settings": { "text": "Genou du coureur" } },
-        "c6": { "type": "condition", "settings": { "text": "Tendinites" } },
-        "c7": { "type": "condition", "settings": { "text": "Douleurs dans les escaliers" } },
-        "c8": { "type": "condition", "settings": { "text": "Fatigue articulaire" } },
-        "f1": { "type": "feature", "settings": { "title": "Soulagement rapide", "text": "Apaise douleurs, raideurs et gonflements." } },
-        "f2": { "type": "feature", "settings": { "title": "Plus de mobilité", "text": "Garde le genou souple toute la journée." } },
-        "f3": { "type": "feature", "settings": { "title": "Un soutien qui rassure", "text": "Maintient en douceur, sans comprimer." } }
+        "p1": { "type": "pain", "settings": { "emoji": "🦵", "label": "Douleurs au genou", "title": "Douleurs au genou", "text": "La compression ciblée enveloppe le genou et aide à apaiser les douleurs du quotidien, dès les premiers ports." } },
+        "p2": { "type": "pain", "settings": { "emoji": "🌅", "label": "Raideurs", "title": "Raideurs au réveil", "text": "Le maintien doux garde l'articulation au chaud et souple, pour des matins beaucoup moins raides." } },
+        "p3": { "type": "pain", "settings": { "emoji": "💧", "label": "Gonflements", "title": "Gonflements", "text": "La compression favorise la circulation et aide à réduire la sensation de gonflement au fil de la journée." } },
+        "p4": { "type": "pain", "settings": { "emoji": "🦴", "label": "Arthrose", "title": "Douleurs d'arthrose", "text": "Un soutien enveloppant qui soulage la pression sur l'articulation et accompagne chacun de vos mouvements en douceur." } },
+        "p5": { "type": "pain", "settings": { "emoji": "🏃", "label": "Genou du coureur", "title": "Genou du coureur", "text": "Stabilise le genou pendant l'effort et limite les douleurs liées aux frottements répétés." } },
+        "p6": { "type": "pain", "settings": { "emoji": "🔥", "label": "Tendinites", "title": "Tendinites", "text": "Maintient la zone sensible et réduit les tensions pour soulager au quotidien." } },
+        "p7": { "type": "pain", "settings": { "emoji": "🪜", "label": "Escaliers", "title": "Douleurs dans les escaliers", "text": "Sécurise chaque appui pour monter et descendre les escaliers sans appréhension." } },
+        "p8": { "type": "pain", "settings": { "emoji": "🌙", "label": "La nuit", "title": "Inconfort la nuit", "text": "Si légère qu'on l'oublie : un soutien doux même pendant le sommeil, pour des réveils plus confortables." } },
+        "p9": { "type": "pain", "settings": { "emoji": "🤸", "label": "Fatigue articulaire", "title": "Fatigue articulaire", "text": "Soulage la sensation de jambes lourdes et garde le genou énergisé toute la journée." } }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "f1", "f2", "f3"],
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9"],
       "settings": {
         "soft_bg": false,
-        "eyebrow": "Mal au genou en bougeant ?",
-        "title": "Vous n'êtes pas seul(e)",
-        "subtitle": "La plupart des genouillères sont trop épaisses pour être portées. La BetterKnee, elle, se fait oublier.",
-        "help_title": "Elle aide à apaiser :",
+        "eyebrow": "Soulagement ciblé",
+        "title": "Une genouillère, 9 douleurs soulagées",
+        "subtitle": "Sélectionnez votre gêne — on vous montre comment la BetterKnee aide.",
+        "footer": "9 gênes apaisées par une seule genouillère, légère et discrète.",
         "button_label": "Soulager mes genoux · dès 39,99€",
-        "button_url": "/products/genouillere-betterknee",
-        "features_title": "Pourquoi elle change tout",
-        "features_subtitle": ""
+        "button_url": "/products/genouillere-betterknee"
       }
     },
     "emotion": {
@@ -212,5 +208,5 @@
       }
     }
   },
-  "order": ["hero", "marquee", "argumentaire", "featured", "emotion", "benefits", "compare", "compare_table", "testimonials", "guarantee", "faq", "newsletter"]
+  "order": ["hero", "marquee", "painselector", "featured", "emotion", "benefits", "compare", "compare_table", "testimonials", "guarantee", "faq", "newsletter"]
 }

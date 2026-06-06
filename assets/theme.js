@@ -472,6 +472,25 @@
   /* ----------------------------------------------------------------------- */
   // Géré côté Shopify via le formulaire customer.
 
+  /* ----------------------------------------------------------------------- */
+  /*  Sélecteur de douleur (onglets interactifs)                             */
+  /* ----------------------------------------------------------------------- */
+  $$('[data-pain-selector]').forEach((sel) => {
+    const tabs = $$('[data-pain-tab]', sel);
+    const panels = $$('[data-pain-panel]', sel);
+    tabs.forEach((tab) =>
+      tab.addEventListener('click', () => {
+        const i = tab.dataset.painTab;
+        tabs.forEach((t) => {
+          const on = t === tab;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panels.forEach((p) => p.classList.toggle('is-active', p.dataset.painPanel === i));
+      })
+    );
+  });
+
   /* Initial cart count */
   fetch(`${window.routes.cart_url}.js`)
     .then((r) => r.json())

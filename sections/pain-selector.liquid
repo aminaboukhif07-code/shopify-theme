@@ -1,0 +1,80 @@
+{%- comment -%}
+  Sélecteur de douleur interactif (façon IM8).
+  Le visiteur choisit sa gêne → une carte explique comment la BetterKnee soulage.
+{%- endcomment -%}
+<section class="section pain-selector {% if section.settings.soft_bg %}section--soft{% endif %}">
+  <div class="page-width">
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+
+    <div class="psel" data-pain-selector>
+      <div class="psel__tabs" role="tablist">
+        {%- for block in section.blocks -%}
+          <button type="button" class="psel__tab {% if forloop.first %}is-active{% endif %}" data-pain-tab="{{ forloop.index0 }}" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>
+            {%- if block.settings.emoji != blank -%}<span class="psel__tab-emoji">{{ block.settings.emoji }}</span>{%- endif -%}{{ block.settings.label }}
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <div class="psel__panels">
+        {%- for block in section.blocks -%}
+          <div class="psel__panel {% if forloop.first %}is-active{% endif %}" data-pain-panel="{{ forloop.index0 }}">
+            <h3>{%- if block.settings.emoji != blank -%}<span class="psel__panel-emoji">{{ block.settings.emoji }}</span> {% endif %}{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if section.settings.footer != blank -%}<p class="psel__footer">{{ section.settings.footer }}</p>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <div class="psel__cta"><a href="{{ section.settings.button_url | default: '/products/genouillere-betterknee' }}" class="btn">{{ section.settings.button_label }}</a></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sélecteur de douleur",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Soulagement ciblé" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Une genouillère, 9 douleurs soulagées" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Sélectionnez votre gêne — on vous montre comment la BetterKnee aide." },
+    { "type": "text", "id": "footer", "label": "Ligne du bas", "default": "9 gênes apaisées par une seule genouillère, légère et discrète." },
+    { "type": "text", "id": "button_label", "label": "Bouton (vide = masqué)", "default": "Soulager mes genoux · dès 39,99€" },
+    { "type": "url", "id": "button_url", "label": "Lien du bouton" }
+  ],
+  "blocks": [
+    {
+      "type": "pain",
+      "name": "Douleur / gêne",
+      "settings": [
+        { "type": "text", "id": "emoji", "label": "Emoji", "default": "🦵" },
+        { "type": "text", "id": "label", "label": "Onglet", "default": "Douleurs au genou" },
+        { "type": "text", "id": "title", "label": "Titre de la carte", "default": "Douleurs au genou" },
+        { "type": "textarea", "id": "text", "label": "Explication", "default": "La compression ciblée enveloppe le genou et aide à apaiser les douleurs du quotidien, dès les premiers ports." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sélecteur de douleur",
+      "blocks": [
+        { "type": "pain", "settings": { "emoji": "🦵", "label": "Douleurs au genou", "title": "Douleurs au genou", "text": "La compression ciblée enveloppe le genou et aide à apaiser les douleurs du quotidien, dès les premiers ports." } },
+        { "type": "pain", "settings": { "emoji": "🌅", "label": "Raideurs", "title": "Raideurs au réveil", "text": "Le maintien doux garde l'articulation au chaud et souple, pour des matins beaucoup moins raides." } },
+        { "type": "pain", "settings": { "emoji": "💧", "label": "Gonflements", "title": "Gonflements", "text": "La compression favorise la circulation et aide à réduire la sensation de gonflement au fil de la journée." } },
+        { "type": "pain", "settings": { "emoji": "🦴", "label": "Arthrose", "title": "Douleurs d'arthrose", "text": "Un soutien enveloppant qui soulage la pression sur l'articulation et accompagne chacun de vos mouvements en douceur." } },
+        { "type": "pain", "settings": { "emoji": "🏃", "label": "Genou du coureur", "title": "Genou du coureur", "text": "Stabilise le genou pendant l'effort et limite les douleurs liées aux frottements répétés." } },
+        { "type": "pain", "settings": { "emoji": "🔥", "label": "Tendinites", "title": "Tendinites", "text": "Maintient la zone sensible et réduit les tensions pour soulager au quotidien." } },
+        { "type": "pain", "settings": { "emoji": "🪜", "label": "Escaliers", "title": "Douleurs dans les escaliers", "text": "Sécurise chaque appui pour monter et descendre les escaliers sans appréhension." } },
+        { "type": "pain", "settings": { "emoji": "🌙", "label": "La nuit", "title": "Inconfort la nuit", "text": "Si légère qu'on l'oublie : un soutien doux même pendant le sommeil, pour des réveils plus confortables." } },
+        { "type": "pain", "settings": { "emoji": "🤸", "label": "Fatigue articulaire", "title": "Fatigue articulaire", "text": "Soulage la sensation de jambes lourdes et garde le genou énergisé toute la journée." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
