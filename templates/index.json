@@ -101,8 +101,11 @@
       "block_order": ["x1", "x2", "x3", "x4"],
       "settings": {
         "soft_bg": false,
+        "image": "shopify://shop_images/cf8b5169-81c3-48ea-9872-5bd0ecea0031.jpg",
+        "reverse": false,
         "eyebrow": "Plus qu'une genouillère",
-        "title": "Le confort, sans y penser"
+        "title": "Le confort, sans y penser",
+        "subtitle": "Des matériaux pensés pour le confort et le maintien, jour après jour."
       }
     },
     "compare": {

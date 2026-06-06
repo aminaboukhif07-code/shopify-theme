@@ -1,19 +1,47 @@
 <section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
   <div class="page-width">
-    <div class="section-header">
-      {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
-      <h2>{{ section.settings.title }}</h2>
-      {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
-    </div>
-    <div class="benefits-grid">
-      {%- for block in section.blocks -%}
-        <div class="benefit-card" {{ block.shopify_attributes }}>
-          <div class="benefit-card__icon">{% render 'icon', name: block.settings.icon %}</div>
-          <h3>{{ block.settings.title }}</h3>
-          <p>{{ block.settings.text }}</p>
+    {%- if section.settings.image != blank -%}
+      {%- comment -%} Version avec image (crédibilité) {%- endcomment -%}
+      <div class="benefits-split {% if section.settings.reverse %}benefits-split--reverse{% endif %}">
+        <div class="benefits-split__media">
+          {{ section.settings.image | image_url: width: 900 | image_tag: class: 'benefits-split__img', widths: '420,640,900', sizes: '(max-width: 849px) 100vw, 50vw', loading: 'lazy', alt: section.settings.title }}
         </div>
-      {%- endfor -%}
-    </div>
+        <div class="benefits-split__body">
+          <div class="section-header section-header--left">
+            {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+            <h2>{{ section.settings.title }}</h2>
+            {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+          </div>
+          <ul class="benefits-list">
+            {%- for block in section.blocks -%}
+              <li class="benefit-row" {{ block.shopify_attributes }}>
+                <span class="benefit-row__icon">{% render 'icon', name: block.settings.icon %}</span>
+                <span class="benefit-row__text">
+                  <strong>{{ block.settings.title }}</strong>
+                  {%- if block.settings.text != blank -%}<span>{{ block.settings.text }}</span>{%- endif -%}
+                </span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    {%- else -%}
+      {%- comment -%} Version grille (sans image) {%- endcomment -%}
+      <div class="section-header">
+        {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2>{{ section.settings.title }}</h2>
+        {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle }}</p>{%- endif -%}
+      </div>
+      <div class="benefits-grid">
+        {%- for block in section.blocks -%}
+          <div class="benefit-card" {{ block.shopify_attributes }}>
+            <div class="benefit-card__icon">{% render 'icon', name: block.settings.icon %}</div>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -22,6 +50,8 @@
   "name": "Bénéfices",
   "settings": [
     { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Image (active la version 2 colonnes)" },
+    { "type": "checkbox", "id": "reverse", "label": "Image à droite", "default": false },
     { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Pourquoi la BetterKnee" },
     { "type": "text", "id": "title", "label": "Titre", "default": "Conçue pour soulager, pensée pour durer" },
     { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Chaque détail a été étudié pour vous offrir confort et maintien, du lever au coucher." }
