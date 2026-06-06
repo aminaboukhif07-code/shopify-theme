@@ -1,10 +1,19 @@
 <section class="section {% if section.settings.soft_bg %}section--soft{% endif %}">
   <div class="page-width">
-    {%- if section.settings.image != blank -%}
+    {%- liquid
+      assign b_image = section.settings.image
+      if b_image == blank and section.settings.product != blank
+        assign b_image = section.settings.product.featured_media
+      endif
+      if b_image == blank
+        assign b_image = all_products['genouillere-betterknee'].featured_media
+      endif
+    -%}
+    {%- if b_image != blank -%}
       {%- comment -%} Version avec image (crédibilité) {%- endcomment -%}
       <div class="benefits-split {% if section.settings.reverse %}benefits-split--reverse{% endif %}">
         <div class="benefits-split__media">
-          {{ section.settings.image | image_url: width: 900 | image_tag: class: 'benefits-split__img', widths: '420,640,900', sizes: '(max-width: 849px) 100vw, 50vw', loading: 'lazy', alt: section.settings.title }}
+          {{ b_image | image_url: width: 900 | image_tag: class: 'benefits-split__img', widths: '420,640,900', sizes: '(max-width: 849px) 100vw, 50vw', loading: 'lazy', alt: section.settings.title }}
         </div>
         <div class="benefits-split__body">
           <div class="section-header section-header--left">
@@ -51,6 +60,7 @@
   "settings": [
     { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
     { "type": "image_picker", "id": "image", "label": "Image (active la version 2 colonnes)" },
+    { "type": "product", "id": "product", "label": "Produit (image de secours si aucune image)" },
     { "type": "checkbox", "id": "reverse", "label": "Image à droite", "default": false },
     { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Pourquoi la BetterKnee" },
     { "type": "text", "id": "title", "label": "Titre", "default": "Conçue pour soulager, pensée pour durer" },
