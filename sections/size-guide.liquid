@@ -18,17 +18,14 @@
           {%- if section.settings.image != blank -%}
             {{ section.settings.image | image_url: width: 440 | image_tag: class: 'sizeguide__illus-img', widths: '220,330,440', alt: 'Mesure à 10 cm au-dessus du genou' }}
           {%- else -%}
-            <svg class="sizeguide__svg" viewBox="0 0 220 240" fill="none" role="img" aria-label="Mesurez à 10 cm au-dessus du genou">
-              <rect x="110" y="16" width="40" height="118" rx="20" stroke="#C9CFC6" stroke-width="3"/>
-              <circle cx="130" cy="158" r="28" stroke="#C9CFC6" stroke-width="3"/>
-              <rect x="114" y="182" width="32" height="52" rx="15" stroke="#C9CFC6" stroke-width="3"/>
-              <ellipse cx="130" cy="92" rx="23" ry="8" stroke="#8FAF8A" stroke-width="6"/>
-              <line x1="80" y1="92" x2="130" y2="92" stroke="#8FAF8A" stroke-width="1.5" stroke-dasharray="3 3"/>
-              <line x1="80" y1="130" x2="130" y2="130" stroke="#8FAF8A" stroke-width="1.5" stroke-dasharray="3 3"/>
-              <line x1="80" y1="92" x2="80" y2="130" stroke="#76976F" stroke-width="2.5"/>
-              <line x1="74" y1="92" x2="86" y2="92" stroke="#76976F" stroke-width="2.5"/>
-              <line x1="74" y1="130" x2="86" y2="130" stroke="#76976F" stroke-width="2.5"/>
-              <text x="68" y="116" fill="#76976F" font-size="15" font-weight="700" text-anchor="end" font-family="sans-serif">10 cm</text>
+            <svg class="sizeguide__svg" viewBox="0 0 260 280" fill="none" role="img" aria-label="Mesurez à 10 cm au-dessus du genou">
+              <path d="M70 264 C60 226 80 196 96 181 L186 80 C197 71 208 80 207 97 L132 187 C120 211 112 236 106 261 C96 270 80 271 70 264 Z" stroke="#2b2b2b" stroke-width="2.4" stroke-linejoin="round"/>
+              <path d="M96 181 C108 178 122 180 132 187" stroke="#2b2b2b" stroke-width="2.4" stroke-linecap="round"/>
+              <ellipse cx="175" cy="108" rx="10" ry="34" transform="rotate(-48 175 108)" stroke="#8FAF8A" stroke-width="6"/>
+              <line x1="75" y1="161" x2="165" y2="61" stroke="#76976F" stroke-width="2.4" stroke-linecap="round"/>
+              <line x1="69" y1="156" x2="81" y2="166" stroke="#76976F" stroke-width="2.4" stroke-linecap="round"/>
+              <line x1="159" y1="56" x2="171" y2="66" stroke="#76976F" stroke-width="2.4" stroke-linecap="round"/>
+              <text x="123" y="116" fill="#2b2b2b" font-size="19" font-weight="700" text-anchor="middle" transform="rotate(-48 123 116)" font-family="sans-serif">10 cm</text>
             </svg>
           {%- endif -%}
           <span class="sizeguide__illus-cap">Mesurez à 10 cm au-dessus du genou</span>
