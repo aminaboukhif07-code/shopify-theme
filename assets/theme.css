@@ -740,7 +740,7 @@ li { margin-bottom: 0.4em; }
 
 .footer__grid { display: grid; grid-template-columns: 1fr; gap: 32px; padding-block: 40px; }
 .footer__brandname { color: var(--color-bg); font-size: 1.8rem; margin-bottom: 0.4rem; }
-.footer__logo-img { max-height: 120px; width: auto; margin-bottom: 0.6rem; }
+.footer__logo-img { max-height: 175px; width: auto; margin-bottom: 0.6rem; }
 .footer__tagline { opacity: 0.85; font-size: 0.95rem; max-width: 320px; }
 .footer__col h4 { color: var(--color-bg); margin-bottom: 1rem; font-size: 1.05rem; }
 .footer__col ul { list-style: none; padding: 0; }
