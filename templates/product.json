@@ -40,8 +40,8 @@
     "morpho": {
       "type": "morpho-slider",
       "blocks": {
-        "h": { "type": "profile", "settings": { "label": "Homme" } },
-        "f": { "type": "profile", "settings": { "label": "Femme" } }
+        "h": { "type": "profile", "settings": { "label": "Homme", "image_before": "shopify://shop_images/291a3050-602f-498d-a797-7c6178f3eb1f.jpg", "image_after": "shopify://shop_images/d724b9d3-2f56-4533-8d9d-d51cb84d357f.jpg" } },
+        "f": { "type": "profile", "settings": { "label": "Femme", "image_before": "shopify://shop_images/3bc609e2-3ff2-434d-9092-88be2ebea611.jpg", "image_after": "shopify://shop_images/d8842551-c23e-4b4b-afbf-16f8c6240111.jpg" } }
       },
       "block_order": ["h", "f"],
       "settings": {
