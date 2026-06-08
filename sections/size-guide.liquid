@@ -1,6 +1,6 @@
 {%- comment -%}
   Guide des tailles Bettermoove — DA sauge.
-  Bloc « Comment prendre votre mesure » + tableau Taille / Tour de cuisse.
+  Bloc « Comment prendre votre mesure » + illustration (10 cm au-dessus du genou) + tableau.
 {%- endcomment -%}
 <section class="section sizeguide {% if section.settings.soft_bg %}section--soft{% endif %}">
   <div class="page-width">
@@ -13,17 +13,39 @@
         </div>
       </div>
 
-      <div class="sizeguide__table" role="table">
-        <div class="sizeguide__row sizeguide__row--head" role="row">
-          <span role="columnheader">{{ section.settings.col1_label }}</span>
-          <span role="columnheader">{{ section.settings.col2_label }}{%- if section.settings.col2_sub != blank -%}<small>{{ section.settings.col2_sub }}</small>{%- endif -%}</span>
+      <div class="sizeguide__cols">
+        <div class="sizeguide__illus">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 440 | image_tag: class: 'sizeguide__illus-img', widths: '220,330,440', alt: 'Mesure à 10 cm au-dessus du genou' }}
+          {%- else -%}
+            <svg class="sizeguide__svg" viewBox="0 0 220 240" fill="none" role="img" aria-label="Mesurez à 10 cm au-dessus du genou">
+              <rect x="110" y="16" width="40" height="118" rx="20" stroke="#C9CFC6" stroke-width="3"/>
+              <circle cx="130" cy="158" r="28" stroke="#C9CFC6" stroke-width="3"/>
+              <rect x="114" y="182" width="32" height="52" rx="15" stroke="#C9CFC6" stroke-width="3"/>
+              <ellipse cx="130" cy="92" rx="23" ry="8" stroke="#8FAF8A" stroke-width="6"/>
+              <line x1="80" y1="92" x2="130" y2="92" stroke="#8FAF8A" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <line x1="80" y1="130" x2="130" y2="130" stroke="#8FAF8A" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <line x1="80" y1="92" x2="80" y2="130" stroke="#76976F" stroke-width="2.5"/>
+              <line x1="74" y1="92" x2="86" y2="92" stroke="#76976F" stroke-width="2.5"/>
+              <line x1="74" y1="130" x2="86" y2="130" stroke="#76976F" stroke-width="2.5"/>
+              <text x="68" y="116" fill="#76976F" font-size="15" font-weight="700" text-anchor="end" font-family="sans-serif">10 cm</text>
+            </svg>
+          {%- endif -%}
+          <span class="sizeguide__illus-cap">Mesurez à 10 cm au-dessus du genou</span>
         </div>
-        {%- for block in section.blocks -%}
-          <div class="sizeguide__row" role="row" {{ block.shopify_attributes }}>
-            <span class="sizeguide__badge">{{ block.settings.label }}</span>
-            <span class="sizeguide__measure">{{ block.settings.measure }}</span>
+
+        <div class="sizeguide__table" role="table">
+          <div class="sizeguide__row sizeguide__row--head" role="row">
+            <span role="columnheader">{{ section.settings.col1_label }}</span>
+            <span role="columnheader">{{ section.settings.col2_label }}{%- if section.settings.col2_sub != blank -%}<small>{{ section.settings.col2_sub }}</small>{%- endif -%}</span>
           </div>
-        {%- endfor -%}
+          {%- for block in section.blocks -%}
+            <div class="sizeguide__row" role="row" {{ block.shopify_attributes }}>
+              <span class="sizeguide__badge">{{ block.settings.label }}</span>
+              <span class="sizeguide__measure">{{ block.settings.measure }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
       </div>
     </div>
   </div>
@@ -37,6 +59,7 @@
     { "type": "text", "id": "eyebrow", "label": "Titre", "default": "Comment prendre votre mesure ?" },
     { "type": "text", "id": "instruction", "label": "Instruction", "default": "Mesurez le tour de votre cuisse" },
     { "type": "text", "id": "instruction_highlight", "label": "Partie en évidence", "default": "à 10 cm au-dessus du genou." },
+    { "type": "image_picker", "id": "image", "label": "Illustration (sinon un schéma s'affiche)" },
     { "type": "text", "id": "col1_label", "label": "Colonne 1", "default": "Taille" },
     { "type": "text", "id": "col2_label", "label": "Colonne 2", "default": "Tour de cuisse" },
     { "type": "text", "id": "col2_sub", "label": "Colonne 2 — précision", "default": "(à 10 cm au-dessus du genou)" }

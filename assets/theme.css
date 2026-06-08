@@ -524,6 +524,16 @@ li { margin-bottom: 0.4em; }
 .sizeguide__intro-text p { margin: 0; opacity: 0.85; }
 .sizeguide__intro-text strong { color: var(--color-cta-hover); font-weight: 700; }
 
+/* Illustration (10 cm au-dessus du genou) + tableau côte à côte */
+.sizeguide__cols { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: center; }
+.sizeguide__illus { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.sizeguide__illus-img, .sizeguide__svg { width: 100%; max-width: 190px; height: auto; }
+.sizeguide__illus-cap { font-size: 0.82rem; font-weight: 600; color: var(--color-cta-hover); text-align: center; }
+@media (min-width: 620px) {
+  .sizeguide__card { max-width: 760px; }
+  .sizeguide__cols { grid-template-columns: 190px 1fr; gap: 36px; }
+}
+
 .sizeguide__table { border: 1px solid var(--color-border); border-radius: 18px; overflow: hidden; background: var(--color-bg); }
 .sizeguide__row { display: grid; grid-template-columns: 1fr 1.6fr; align-items: center; gap: 1rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--color-border); }
 .sizeguide__row:last-child { border-bottom: none; }
