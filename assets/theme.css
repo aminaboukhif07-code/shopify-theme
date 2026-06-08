@@ -584,8 +584,8 @@ li { margin-bottom: 0.4em; }
 .gallery { position: relative; }
 .gallery__track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-radius: 18px; border: 1px solid var(--color-border); background: var(--color-soft); }
 .gallery__track::-webkit-scrollbar { display: none; }
-.gallery__slide { flex: 0 0 100%; scroll-snap-align: center; height: clamp(280px, 52vh, 430px); display: flex; align-items: center; justify-content: center; padding: 14px; }
-.gallery__slide img, .gallery__slide svg { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.gallery__slide { flex: 0 0 100%; scroll-snap-align: center; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; padding: 0; }
+.gallery__slide img, .gallery__slide svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 .gallery__dots { display: flex; gap: 7px; justify-content: center; margin-top: 12px; }
 .gallery__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-border); border: none; padding: 0; cursor: pointer; transition: width 0.2s ease, background 0.2s ease; }
 .gallery__dot.is-active { width: 22px; border-radius: 4px; background: var(--color-cta-hover); }
