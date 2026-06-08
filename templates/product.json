@@ -1,8 +1,3 @@
-/*
- * ------------------------------------------------------------
- * Bettermoove 2.0 — fiche produit conversion (textes courts)
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -40,21 +35,6 @@
         "col1_label": "Taille",
         "col2_label": "Tour de cuisse",
         "col2_sub": "(à 10 cm au-dessus du genou)"
-      }
-    },
-    "testimonials": {
-      "type": "testimonials",
-      "blocks": {
-        "r1": { "type": "review", "settings": { "rating": 5, "text": "Je montais les escaliers sans grimacer. Un vrai soulagement.", "name": "Martine D., 58 ans", "verified": true } },
-        "r2": { "type": "review", "settings": { "rating": 5, "text": "On ne la sent pas. J'ai repris mes marches en confiance.", "name": "Jean-Pierre L., 63 ans", "verified": true } },
-        "r3": { "type": "review", "settings": { "rating": 5, "text": "Légère, je l'oublie. Mon genou est apaisé.", "name": "Christine M., 52 ans", "verified": true } }
-      },
-      "block_order": ["r1", "r2", "r3"],
-      "settings": {
-        "eyebrow": "Ils l'ont adoptée",
-        "title": "+ de 2 300 genoux soulagés",
-        "show_rating": true,
-        "rating_text": "4,9/5 · avis vérifiés"
       }
     },
     "argumentaire": {
@@ -112,5 +92,5 @@
       "settings": { "soft_bg": false, "title": "Questions fréquentes" }
     }
   },
-  "order": ["main", "sizeguide", "testimonials", "argumentaire", "benefits", "faq"]
+  "order": ["main", "sizeguide", "argumentaire", "benefits", "faq"]
 }
