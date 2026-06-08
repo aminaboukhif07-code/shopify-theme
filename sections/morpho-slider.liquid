@@ -51,9 +51,6 @@
           {%- endif -%}
         </div>
 
-        {%- if section.settings.label_before != blank -%}<span class="compare__label compare__label--before">{{ section.settings.label_before }}</span>{%- endif -%}
-        {%- if section.settings.label_after != blank -%}<span class="compare__label compare__label--after">{{ section.settings.label_after }}</span>{%- endif -%}
-
         <div class="compare__handle" data-compare-handle aria-hidden="true">
           <span class="compare__grip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="10 7 5 12 10 17"/><polyline points="14 7 19 12 14 17"/></svg>
@@ -85,7 +82,6 @@
               aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
               {{ block.shopify_attributes }}
             >
-              <span class="morpho__btn-icon">{% render 'icon', name: 'ruler' %}</span>
               <span class="morpho__btn-label">{{ block.settings.label }}</span>
             </button>
           {%- endfor -%}
