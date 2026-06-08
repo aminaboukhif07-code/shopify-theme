@@ -337,6 +337,33 @@ li { margin-bottom: 0.4em; }
   .compare__label--after { right: 16px; }
 }
 
+/* Comparateur morphologie — sélecteur segmenté sous le slider */
+.morpho__wrap { max-width: 920px; margin-inline: auto; }
+.morpho__select { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.morpho__select-label { font-weight: 600; font-size: 0.95rem; color: var(--color-text); }
+.morpho__options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.morpho__btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.55rem;
+  min-height: 56px; padding: 0 1rem;
+  background: var(--color-bg); color: var(--color-text);
+  border: 1.5px solid var(--color-border); border-radius: 14px;
+  font-size: 1rem; font-weight: 600; cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.morpho__btn-icon { display: inline-flex; opacity: 0.65; }
+.morpho__btn-icon svg { width: 20px; height: 20px; }
+.morpho__btn:hover { border-color: var(--color-cta-hover); }
+.morpho__btn.is-active {
+  background: var(--color-cta-hover); color: #fff; border-color: var(--color-cta-hover);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.morpho__btn.is-active .morpho__btn-icon { opacity: 1; }
+@media (min-width: 750px) {
+  .morpho__select { flex-direction: row; align-items: center; gap: 16px; margin-top: 20px; }
+  .morpho__select-label { flex: none; }
+  .morpho__options { flex: 1; }
+}
+
 /* -------------------------------------------------------------------------- */
 /*  Bandeau de confiance                                                      */
 /* -------------------------------------------------------------------------- */

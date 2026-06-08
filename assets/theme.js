@@ -491,6 +491,28 @@
     );
   });
 
+  /* ----------------------------------------------------------------------- */
+  /*  Comparateur morphologie (swap des images avant/après)                  */
+  /* ----------------------------------------------------------------------- */
+  $$('[data-morpho]').forEach((wrap) => {
+    const tabs = $$('[data-morpho-tab]', wrap);
+    const imgBefore = $('[data-morpho-before]', wrap);
+    const imgAfter = $('[data-morpho-after]', wrap);
+    tabs.forEach((tab) =>
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => {
+          const on = t === tab;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        const b = tab.dataset.before;
+        const a = tab.dataset.after;
+        if (imgBefore && b) { imgBefore.removeAttribute('srcset'); imgBefore.src = b; }
+        if (imgAfter && a) { imgAfter.removeAttribute('srcset'); imgAfter.src = a; }
+      })
+    );
+  });
+
   /* Initial cart count */
   fetch(`${window.routes.cart_url}.js`)
     .then((r) => r.json())

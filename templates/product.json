@@ -37,6 +37,25 @@
         "col2_sub": "(à 10 cm au-dessus du genou)"
       }
     },
+    "morpho": {
+      "type": "morpho-slider",
+      "blocks": {
+        "h": { "type": "profile", "settings": { "label": "Homme" } },
+        "f": { "type": "profile", "settings": { "label": "Femme" } }
+      },
+      "block_order": ["h", "f"],
+      "settings": {
+        "soft_bg": true,
+        "eyebrow": "Pensée pour toutes les morphologies",
+        "title": "Un maintien qui s'adapte à vous",
+        "subtitle": "Glissez le curseur pour voir la différence.",
+        "label_before": "Avant",
+        "label_after": "Après",
+        "select_label": "Vous êtes :",
+        "ratio": "4 / 3",
+        "start_position": 50
+      }
+    },
     "argumentaire": {
       "type": "argumentaire",
       "blocks": {
@@ -92,5 +111,5 @@
       "settings": { "soft_bg": false, "title": "Questions fréquentes" }
     }
   },
-  "order": ["main", "sizeguide", "argumentaire", "benefits", "faq"]
+  "order": ["main", "sizeguide", "morpho", "argumentaire", "benefits", "faq"]
 }
