@@ -940,6 +940,21 @@ h1, h2 { letter-spacing: -0.02em; }
 .pack__ribbon { background: var(--color-terracotta); }
 .pack__ribbon--best { background: var(--color-terracotta-hover); }
 .price__badge { background: var(--color-terracotta); }
+/* carte « 1 genouillère » : prix en noir (exception) */
+.pack--single .pack__prices b { color: var(--color-text); }
+
+/* Description produit repliable (accordéon avec flèche) */
+.product__desc { border-top: 1px solid var(--color-border); }
+.product__desc-summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; list-style: none; padding: 16px 2px; font-weight: 600; font-size: 1.02rem; }
+.product__desc-summary::-webkit-details-marker { display: none; }
+.product__desc-summary:focus-visible { outline: 3px solid var(--color-cta); outline-offset: 2px; border-radius: 6px; }
+.product__desc-chevron { display: inline-flex; flex: none; transition: transform 0.25s ease; }
+.product__desc-chevron svg { width: 22px; height: 22px; }
+.product__desc[open] .product__desc-chevron { transform: rotate(180deg); }
+.product__desc-body { padding: 0 2px 16px; line-height: 1.65; }
+.product__desc-body > :first-child { margin-top: 0; }
+.product__desc-body :where(p, ul, ol) { margin: 0 0 0.8em; }
+.product__desc-body :where(ul, ol) { padding-left: 1.2em; }
 
 /* Ligne « Paiement sécurisé » (remplace les avis) */
 .product__secure { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; color: var(--color-text); }
