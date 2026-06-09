@@ -144,7 +144,7 @@ li { margin-bottom: 0.4em; }
   .header__inner { padding-block: 1.1rem; }
   .header__logo { font-size: 1.7rem; }
   .header__logo img { max-height: 120px; }
-  .header__actions .header__icon svg { width: 30px; height: 30px; }
+  .header__actions .header__icon svg { width: 30px !important; height: 30px !important; }
 }
 
 /* Menu mobile */
