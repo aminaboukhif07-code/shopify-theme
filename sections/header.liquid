@@ -14,14 +14,18 @@
 
     <nav class="header__nav" aria-label="{{ 'sections.header.menu' | t }}">
       {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- assign lt = link.title -%}
+        {%- case link.title -%}
+          {%- when 'Home' -%}{%- assign lt = 'Accueil' -%}
+          {%- when 'Catalog' -%}{%- assign lt = 'Catalogue' -%}
+          {%- when 'Search' -%}{%- assign lt = 'Recherche' -%}
+          {%- when 'About' -%}{%- assign lt = 'À propos' -%}
+        {%- endcase -%}
+        <a href="{{ link.url }}">{{ lt }}</a>
       {%- endfor -%}
     </nav>
 
     <div class="header__actions">
-      {%- if section.settings.show_search -%}
-        <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'accessibility.search' | t }}">{% render 'icon', name: 'search' %}</a>
-      {%- endif -%}
       <a href="{{ routes.account_url }}" class="header__icon" aria-label="Compte client">{% render 'icon', name: 'user' %}</a>
       <button type="button" class="header__icon" data-cart-toggle aria-label="{{ 'accessibility.cart' | t }}">
         {% render 'icon', name: 'cart' %}
@@ -36,7 +40,14 @@
   <button type="button" class="mobile-nav__close" data-menu-close aria-label="{{ 'accessibility.close' | t }}">&times;</button>
   <ul>
     {%- for link in section.settings.menu.links -%}
-      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- assign lt = link.title -%}
+      {%- case link.title -%}
+        {%- when 'Home' -%}{%- assign lt = 'Accueil' -%}
+        {%- when 'Catalog' -%}{%- assign lt = 'Catalogue' -%}
+        {%- when 'Search' -%}{%- assign lt = 'Recherche' -%}
+        {%- when 'About' -%}{%- assign lt = 'À propos' -%}
+      {%- endcase -%}
+      <li><a href="{{ link.url }}">{{ lt }}</a></li>
     {%- endfor -%}
   </ul>
 </aside>
