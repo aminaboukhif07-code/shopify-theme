@@ -134,7 +134,7 @@ li { margin-bottom: 0.4em; }
 .header__actions { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 0.5rem; }
 .header__icon { background: none; border: none; cursor: pointer; padding: 0.45rem; color: var(--color-text); position: relative; display: inline-flex; }
 .header__icon svg { width: 25px; height: 25px; }
-.header__actions .header__icon svg { width: 42px; height: 42px; }
+.header__actions .header__icon svg { width: 52px; height: 52px; }
 .cart-count { position: absolute; top: -2px; right: -2px; background: var(--color-cta); color: var(--color-cta-text); font-size: 0.68rem; font-weight: 700; min-width: 19px; height: 19px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 0 5px; }
 .header__menu-toggle { display: inline-flex; }
 
