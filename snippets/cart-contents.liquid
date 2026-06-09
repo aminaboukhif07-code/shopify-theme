@@ -5,12 +5,13 @@
       {%- comment -%} Seuil livraison offerte : 59€ (France). Modifiable ici. {%- endcomment -%}
       {%- assign threshold = 5900 -%}
       {%- assign remaining = threshold | minus: cart.total_price -%}
+      {%- assign remaining_money = remaining | money -%}
       <div class="free-shipping-bar">
         <div class="free-shipping-bar__text">
           {%- if remaining > 0 -%}
-            {{ 'sections.cart.free_shipping_progress_html' | t: amount: remaining | money }}
+            Plus que <strong>{{ remaining_money }}</strong> pour la livraison offerte&nbsp;!
           {%- else -%}
-            {{ 'sections.cart.free_shipping_unlocked' | t }}
+            🎉 Livraison offerte débloquée !
           {%- endif -%}
         </div>
         <div class="free-shipping-bar__track">
@@ -67,6 +68,10 @@
       <div class="cart-totals">
         <span>{{ 'sections.cart.subtotal' | t }}</span>
         <span>{{ cart.total_price | money }}</span>
+      </div>
+      <div class="cart-totals" style="font-size:.95rem;font-weight:500;margin-top:-.5rem">
+        <span>Livraison</span>
+        <span>{% if cart.total_price >= 5900 %}Offerte{% else %}4,90€{% endif %}</span>
       </div>
       <p style="font-size:.85rem;opacity:.7;text-align:center;margin-bottom:1rem">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</p>
       <form action="{{ routes.cart_url }}" method="post">
