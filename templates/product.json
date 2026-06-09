@@ -17,6 +17,7 @@
         "sizes": "S (37-43cm),M (43-48cm),L (48-53cm),XL (53-58cm)",
         "instalment_text": "Paiement 100% sécurisé · Livraison rapide",
         "show_payment_icons": true,
+        "desc_title": "Description du produit",
         "size_guide_page": ""
       }
     },
@@ -70,9 +71,9 @@
         "c6": { "type": "condition", "settings": { "text": "Se sentir plus stable à chaque pas" } },
         "c7": { "type": "condition", "settings": { "text": "Garder son indépendance au quotidien" } },
         "c8": { "type": "condition", "settings": { "text": "Profiter des moments qui comptent" } },
-        "f1": { "type": "feature", "settings": { "title": "Soulagement rapide", "text": "Apaise douleurs, raideurs et gonflements." } },
-        "f2": { "type": "feature", "settings": { "title": "Plus de mobilité", "text": "Garde le genou souple toute la journée." } },
-        "f3": { "type": "feature", "settings": { "title": "Un soutien qui rassure", "text": "Maintient en douceur, sans comprimer." } }
+        "f1": { "type": "feature", "settings": { "title": "Prenez soin de vous", "text": "Parce qu'avec les années, votre mobilité devient l'une de vos plus grandes richesses." } },
+        "f2": { "type": "feature", "settings": { "title": "Prenez soin de vos aînés", "text": "Parce qu'ils méritent de continuer à profiter pleinement de chaque instant." } },
+        "f3": { "type": "feature", "settings": { "title": "Reprenez le rythme qui vous rassemble", "text": "Parce que les plus beaux souvenirs se créent en mouvement, auprès de ceux qui comptent le plus." } }
       },
       "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "f1", "f2", "f3"],
       "settings": {
@@ -84,26 +85,8 @@
         "help_title": "Il est temps de :",
         "button_label": "",
         "button_url": "/products/genouillere-betterknee",
-        "features_title": "Pourquoi elle change tout",
+        "features_title": "Pour aujourd'hui. Pour demain.",
         "features_subtitle": ""
-      }
-    },
-    "benefits": {
-      "type": "benefits",
-      "blocks": {
-        "x1": { "type": "benefit", "settings": { "icon": "heart", "title": "Apaise en douceur", "text": "Soulage les douleurs du quotidien." } },
-        "x2": { "type": "benefit", "settings": { "icon": "feather", "title": "On l'oublie", "text": "Légère et sans couture." } },
-        "x3": { "type": "benefit", "settings": { "icon": "activity", "title": "Liberté de bouger", "text": "Vos gestes, à votre rythme." } },
-        "x4": { "type": "benefit", "settings": { "icon": "check-circle", "title": "Discrète", "text": "Invisible sous un pantalon." } }
-      },
-      "block_order": ["x1", "x2", "x3", "x4"],
-      "settings": {
-        "soft_bg": true,
-        "product": "",
-        "reverse": false,
-        "eyebrow": "Plus qu'une genouillère",
-        "title": "Le confort, sans y penser",
-        "subtitle": "Chaque détail a été étudié pour vous offrir confort et maintien, du lever au coucher."
       }
     },
     "faq": {
@@ -127,5 +110,5 @@
       }
     }
   },
-  "order": ["main", "sizeguide", "morpho", "argumentaire", "benefits", "faq"]
+  "order": ["main", "sizeguide", "morpho", "argumentaire", "faq"]
 }
