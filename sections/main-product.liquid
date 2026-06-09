@@ -108,6 +108,12 @@
           {%- endfor -%}
         </div>
 
+        <figure class="pack-review">
+          <span class="pack-review__stars">{% render 'stars', rating: 5 %}</span>
+          <blockquote class="pack-review__text">Honnêtement, je les ai portées plusieurs jours et j’aime beaucoup. Le maintien est vraiment bon et confortable, et surtout elles ne glissent pas durant la journée, même quand je marche beaucoup. Elles sont très confortables et discrètes sous les vêtements. une très bonne surprise.</blockquote>
+          <figcaption class="pack-review__name">Yesmine</figcaption>
+        </figure>
+
         <div class="product__buy">
           {%- if section.settings.size_guide_page != blank -%}
             <a class="product__size-guide-link" href="{{ section.settings.size_guide_page.url }}">Guide des tailles</a>

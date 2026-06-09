@@ -943,6 +943,14 @@ h1, h2 { letter-spacing: -0.02em; }
 /* carte « 1 genouillère » : prix en noir (exception) */
 .pack--single .pack__prices b { color: var(--color-text); }
 
+/* Avis client sous les formules */
+.pack-review { margin: 4px 0 2px; padding: 1rem 1.1rem; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-soft); display: flex; flex-direction: column; gap: 0.5rem; }
+.pack-review__stars { display: inline-flex; }
+.pack-review__text { margin: 0; font-size: 0.96rem; line-height: 1.55; font-style: italic; }
+.pack-review__text::before { content: "“"; }
+.pack-review__text::after { content: "”"; }
+.pack-review__name { font-weight: 700; font-size: 0.9rem; color: var(--color-cta-hover); }
+
 /* Description produit repliable (accordéon avec flèche) */
 .product__desc { border-top: 1px solid var(--color-border); }
 .product__desc-summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; list-style: none; padding: 16px 2px; font-weight: 600; font-size: 1.02rem; }
