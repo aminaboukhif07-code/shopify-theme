@@ -931,6 +931,21 @@ h1, h2 { letter-spacing: -0.02em; }
 /* prix barré dans le CTA */
 .btn s { opacity: 0.6; font-weight: 600; font-size: 0.86em; margin-right: 0.3em; text-decoration: line-through; }
 
+/* ===== Prix & mentions d'offre en terracotta (fiche produit) ===== */
+.product__price .price__current,
+.pack__prices b,
+.sticky-atc__price { color: var(--color-terracotta); }
+.product__save { color: var(--color-terracotta-hover); }
+.pack__badge-save { background: color-mix(in srgb, var(--color-terracotta) 16%, transparent); color: var(--color-terracotta-hover); }
+.pack__ribbon { background: var(--color-terracotta); }
+.pack__ribbon--best { background: var(--color-terracotta-hover); }
+.price__badge { background: var(--color-terracotta); }
+
+/* Ligne « Paiement sécurisé » (remplace les avis) */
+.product__secure { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; color: var(--color-text); }
+.product__secure-icon { display: inline-flex; color: var(--color-cta-hover); }
+.product__secure-icon svg { width: 20px; height: 20px; }
+
 /* CTA centré sous le slider comparateur */
 .compare__cta { text-align: center; margin-top: 28px; }
 @media (max-width: 749px) { .compare__cta .btn { width: 100%; } }

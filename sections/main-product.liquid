@@ -49,9 +49,9 @@
           {%- endif -%}
           <h1 class="product__title">{{ product.title }}</h1>
           {%- if section.settings.show_rating -%}
-            <div class="product__rating">
-              {% render 'stars', rating: 5 %}
-              <span>4,9/5 · {{ section.settings.reviews_count }} avis vérifiés</span>
+            <div class="product__secure">
+              <span class="product__secure-icon">{% render 'icon', name: 'shield' %}</span>
+              <span>Paiement 100% sécurisé</span>
             </div>
           {%- endif -%}
         </div>
@@ -73,7 +73,7 @@
         </div>
 
         {%- if section.settings.show_stock -%}
-          <div class="product__stock" data-stock><span class="dot"></span> En stock · expédié rapidement</div>
+          <div class="product__stock" data-stock><span class="dot"></span> Plus que 25 en stock</div>
         {%- endif -%}
 
         {%- capture size_options -%}<option value="" disabled selected>Choisir la taille…</option>{%- for s in sizes -%}<option value="{{ s | strip }}">{{ s | strip }}</option>{%- endfor -%}{%- endcapture -%}
