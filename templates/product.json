@@ -110,5 +110,5 @@
       }
     }
   },
-  "order": ["main", "sizeguide", "morpho", "argumentaire", "faq"]
+  "order": ["main", "morpho", "argumentaire", "sizeguide", "faq"]
 }
