@@ -26,15 +26,19 @@
               <figure class="testimonial reviews-marquee__card" {% if i == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
                 {% render 'stars', rating: block.settings.rating %}
                 <blockquote class="testimonial__text">« {{ block.settings.text }} »</blockquote>
-                <figcaption class="testimonial__author">
-                  <span class="testimonial__avatar">{{ block.settings.name | slice: 0 }}</span>
-                  <div>
-                    {{ block.settings.name }}
-                    {%- if block.settings.verified -%}
-                      <div class="testimonial__verified">{% render 'icon', name: 'check-circle' %} Achat vérifié</div>
+                {%- if block.settings.name != blank or block.settings.verified -%}
+                  <figcaption class="testimonial__author">
+                    {%- if block.settings.name != blank -%}
+                      <span class="testimonial__avatar">{{ block.settings.name | slice: 0 }}</span>
                     {%- endif -%}
-                  </div>
-                </figcaption>
+                    <div>
+                      {{ block.settings.name }}
+                      {%- if block.settings.verified -%}
+                        <div class="testimonial__verified">{% render 'icon', name: 'check-circle' %} Achat vérifié</div>
+                      {%- endif -%}
+                    </div>
+                  </figcaption>
+                {%- endif -%}
               </figure>
             {%- endif -%}
           {%- endfor -%}
