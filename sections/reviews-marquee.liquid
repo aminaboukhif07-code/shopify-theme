@@ -1,0 +1,107 @@
+{%- liquid
+  assign reviews = section.blocks | where: 'type', 'review'
+  assign speed = section.settings.speed | default: 45
+-%}
+<section class="section reviews-marquee {% if section.settings.soft_bg %}section--soft{% endif %}" id="avis-{{ section.id }}">
+  {%- if section.settings.title != blank or section.settings.eyebrow != blank -%}
+    <div class="page-width">
+      <div class="section-header">
+        {%- if section.settings.eyebrow != blank -%}<span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.title != blank -%}<h2>{{ section.settings.title }}</h2>{%- endif -%}
+        {%- if section.settings.show_rating -%}
+          <div class="reviews-marquee__rating">
+            {% render 'stars', rating: 5 %} <span>{{ section.settings.rating_text }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if reviews.size > 0 -%}
+    <div class="reviews-marquee__viewport" aria-label="{{ section.settings.title | default: 'Avis clients' | escape }}">
+      <div class="reviews-marquee__track" style="--rm-duration: {{ speed | times: reviews.size | divided_by: 3 | at_least: 20 }}s;">
+        {%- for i in (1..2) -%}
+          {%- for block in reviews -%}
+            {%- if block.settings.text != blank -%}
+              <figure class="testimonial reviews-marquee__card" {% if i == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
+                {% render 'stars', rating: block.settings.rating %}
+                <blockquote class="testimonial__text">« {{ block.settings.text }} »</blockquote>
+                <figcaption class="testimonial__author">
+                  <span class="testimonial__avatar">{{ block.settings.name | slice: 0 }}</span>
+                  <div>
+                    {{ block.settings.name }}
+                    {%- if block.settings.verified -%}
+                      <div class="testimonial__verified">{% render 'icon', name: 'check-circle' %} Achat vérifié</div>
+                    {%- endif -%}
+                  </div>
+                </figcaption>
+              </figure>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<style>
+  .reviews-marquee__rating { display: flex; align-items: center; justify-content: center; gap: .6rem; font-weight: 600; }
+  .reviews-marquee__viewport {
+    overflow: hidden;
+    padding-block: 12px 24px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .reviews-marquee__track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: reviews-marquee var(--rm-duration, 45s) linear infinite;
+  }
+  .reviews-marquee__viewport:hover .reviews-marquee__track,
+  .reviews-marquee__viewport:focus-within .reviews-marquee__track { animation-play-state: paused; }
+  .reviews-marquee__card {
+    flex: none;
+    width: min(82vw, 340px);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .reviews-marquee__card .testimonial__text { font-size: 1.02rem; flex: 1; margin-inline: 0; }
+  .reviews-marquee__card:hover { transform: none; }
+  @keyframes reviews-marquee { to { transform: translateX(calc(-50% - 9px)); } }
+  @media (min-width: 750px) { .reviews-marquee__card { width: 380px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-marquee__viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    .reviews-marquee__track { animation: none; }
+    .reviews-marquee__card[aria-hidden="true"] { display: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Avis défilants",
+  "settings": [
+    { "type": "checkbox", "id": "soft_bg", "label": "Fond doux", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Ils l'ont adoptée" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ce que nos clients en disent" },
+    { "type": "checkbox", "id": "show_rating", "label": "Afficher la note globale", "default": false },
+    { "type": "text", "id": "rating_text", "label": "Texte note" },
+    { "type": "range", "id": "speed", "min": 20, "max": 90, "step": 5, "unit": "s", "label": "Vitesse (secondes pour 3 avis, plus haut = plus lent)", "default": 45 }
+  ],
+  "blocks": [
+    {
+      "type": "review", "name": "Avis",
+      "settings": [
+        { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "label": "Note", "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Avis client" },
+        { "type": "text", "id": "name", "label": "Prénom / initiale" },
+        { "type": "checkbox", "id": "verified", "label": "Achat vérifié", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Avis défilants", "blocks": [ { "type": "review" } ] }
+  ]
+}
+{% endschema %}
